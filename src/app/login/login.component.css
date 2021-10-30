@@ -1,0 +1,11 @@
+.auth-box {
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 20px 0 0 0;
+    padding: 20px;
+}
+
+.login-card.auth-body {
+    width: 450px;
+    margin: 0 auto;
+}
