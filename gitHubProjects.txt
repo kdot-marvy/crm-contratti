@@ -5,3 +5,24 @@ https://github.com/joni2back/angular-filemanager/blob/master/API.md
 
 crud 
 https://github.com/yelken/springboot-crud/blob/developer/src/main/java/com/example/crud/controller/NoteController.java
+{
+    "name":"enel",
+    "gestore":"telefono"
+}
+
+{
+    "nome":"enel",
+    "note":"telefono",
+    "statoPratica":"attivo"
+
+pagination 
+https://www.youtube.com/watch?v=wJBAFZv_KN0&ab_channel=CodeForgeYT
+https://github.com/codeforgeyt/jpa-paging-sorting-filtering
+
+queryparams 
+pageSize 
+filter
+pagNumber
+sort
+sortDirection
+}
