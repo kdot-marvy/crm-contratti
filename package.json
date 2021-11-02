@@ -4,8 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o",
+    "start": "http-server-spa dist/crm-contratti index.html $PORT",
     "build": "ng build",
+    "heroku-postbuild": "ng build --prod && npm install -g http-server-spa",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -31,7 +32,6 @@
     "chart.js": "2.9.3",
     "chartist": "0.11.4",
     "core-js": "3.6.5",
-    "express": "4.17.1",
     "jquery": "3.5.1",
     "moment": "2.29.1",
     "ngx-toastr": "13.1.0",
