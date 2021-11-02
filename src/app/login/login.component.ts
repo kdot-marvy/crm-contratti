@@ -11,7 +11,7 @@ import { LoginUserModel } from '../shared/models/loginUser.model';
 })
 export class LoginComponent implements OnInit {
 
-  private loginUser: LoginUserModel = new LoginUserModel();
+  public loginUser: LoginUserModel = new LoginUserModel();
   private submitted = false;
   private returnUrl = 'restricted';
   constructor(private authenticationService: AuthenticationService,
