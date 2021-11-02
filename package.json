@@ -2,6 +2,9 @@
   "name": "paper-dashboard-angular",
   "version": "2.2.0",
   "license": "MIT",
+  "engines": {
+    "node": "10.13.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "http-server-spa dist/crm-contratti index.html $PORT",
