@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AddressData } from 'app/admin/models/addressData';
 import { ContractModel } from 'app/admin/models/contract.model';
+import { EAddressType } from 'app/admin/models/EAddressType.enum';
+import { EDocType } from 'app/admin/models/EDocType.enum';
+import { EStatoSim } from 'app/admin/models/EStatoSim.enum';
 
 
 @Component({
@@ -14,6 +17,18 @@ export class NewContractComponent implements OnInit {
   private contract: ContractModel = new ContractModel();
   private submitted = false;
 
+  isShown: boolean = false
+
+
+  addresTypes = EAddressType;
+  addressTypeKeys = [];
+
+  docTypeKeys = [];
+  docTypes = EDocType;
+
+  EStatoSimKeys = [];
+  EStatoSims = EStatoSim;
+
   // private addressType: AddressData;
   // private address: AddressData;
   // private addressNumber: AddressData;
@@ -23,9 +38,12 @@ export class NewContractComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    this.addressTypeKeys = Object.keys(this.addresTypes);
+    this.docTypeKeys = Object.keys(this.docTypes);
+    this.EStatoSimKeys = Object.keys(this.EStatoSims);
   }
 
-  isShown: boolean = false
 
   output(event: any) {
     if (event === "1" || "2") {

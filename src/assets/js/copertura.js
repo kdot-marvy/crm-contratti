@@ -1,0 +1,1 @@
+{ "coperture": ["FTTH", "FTTC", "MAKE", "ADSL", "VULA"] }
