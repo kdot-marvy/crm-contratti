@@ -1,9 +1,9 @@
 export class ManagerData {
 
-    private _manager: string[];
-    private _package: string[];
-    private _coverage: string[];
-    private _additionalOptions: string[];
+    private _manager: string;
+    private _package: string;
+    private _coverage: string;
+    private _additionalOptions: string;
     private _portability: string;
     private _portabilityNumber: string;
     private _vodafoneStationSerial: string;
@@ -14,17 +14,19 @@ export class ManagerData {
     private _newSimSerial: string;
     private _migrationCode: string;
     private _simType: string;
-    private _pod: string[];
+    private _pod: string;
     private _pdr: string;
     private _serialNumber: string;
     private _previousSupplier: string;
 
+   
+
     constructor() {
 
-        this._manager = [];
-        this._package = [];
-        this._coverage = [];
-        this._additionalOptions = [];
+        this._manager = '';
+        this._package = '';
+        this._coverage = '';
+        this._additionalOptions = '';
         this._portability = '';
         this._portabilityNumber = '';
         this._vodafoneStationSerial = '';
@@ -35,35 +37,35 @@ export class ManagerData {
         this._newSimSerial = '';
         this._migrationCode = '';
         this._simType = '';
-        this._pod = [];
+        this._pod = '';
         this._pdr = '';
         this._serialNumber = '';
         this._previousSupplier = '';
     }
 
-    public get manager(): string[] {
+    public get manager(): string {
         return this._manager;
     }
-    public set manager(value: string[]) {
+    public set manager(value: string) {
         this._manager = value;
     }
 
-    public get package(): string[] {
+    public get package(): string {
         return this._package;
     }
-    public set package(value: string[]) {
+    public set package(value: string) {
         this._package = value;
     }
-    public get coverage(): string[] {
+    public get coverage(): string {
         return this._coverage;
     }
-    public set coverage(value: string[]) {
+    public set coverage(value: string) {
         this._coverage = value;
     }
-    public get additionalOptions(): string[] {
+    public get additionalOptions(): string {
         return this._additionalOptions;
     }
-    public set additionalOptions(value: string[]) {
+    public set additionalOptions(value: string) {
         this._additionalOptions = value;
     }
     public get portability(): string {
@@ -126,10 +128,10 @@ export class ManagerData {
     public set simType(value: string) {
         this._simType = value;
     }
-    public get pod(): string[] {
+    public get pod(): string {
         return this._pod;
     }
-    public set pod(value: string[]) {
+    public set pod(value: string) {
         this._pod = value;
     }
     public get pdr(): string {

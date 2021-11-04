@@ -1,42 +1,32 @@
 export class PersonalData {
 
-    private _surname: string;
+  private _surname: string;
   private _name: string;
-  private _palceOfBirth: string;
+  private _placeOfBirth: string;
   private _dateOfBirth: string;
   private _fiscalCode: string;
   private _partitaIVA: string;
-  private _addressType: string[];
-  private _address: string;
-  private _addressNumber: string;
-  private _zipCode: string;
-  private _location: string;
   private _phoneNumber: string;
   private _otherNumber?: string;
   private _email: string;
-  private _documentType: string[];
+  private _documentType: string;
   private _documentNumber: string;
   private _placeOfIssue: string;
   private _dateOfIssue: string;
   private _expiryDate: string;
 
-  constructor(){
-      
+  constructor() {
+
     this._surname = '';
     this._name = '';
-    this._palceOfBirth = '';
+    this._placeOfBirth = '';
     this._dateOfBirth = '';
     this._fiscalCode = '';
     this._partitaIVA = '';
-    this._addressType = [];
-    this._address = '';
-    this._addressNumber = '';
-    this._zipCode = '';
-    this._location = '';
     this._phoneNumber = '';
     this._otherNumber = '';
     this._email = '';
-    this._documentType = [];
+    this._documentType = '';
     this._documentNumber = '';
     this._placeOfIssue = '';
     this._dateOfIssue = '';
@@ -57,10 +47,10 @@ export class PersonalData {
     this._name = value;
   }
   public get placeOfBirth(): string {
-    return this._palceOfBirth;
+    return this._placeOfBirth;
   }
   public set placeOfBirth(value: string) {
-    this._palceOfBirth = value;
+    this._placeOfBirth = value;
   }
   public get dateOfBirth(): string {
     return this._dateOfBirth;
@@ -80,36 +70,7 @@ export class PersonalData {
   public set partitaIVA(value: string) {
     this._partitaIVA = value;
   }
-  public get addressType(): string[] {
-    return this._addressType;
-  }
-  public set addressType(value: string[]) {
-    this._addressType = value;
-  }
-  public get address(): string {
-    return this._address;
-  }
-  public set address(value: string) {
-    this._address = value;
-  }
-  public get addressNumber(): string {
-    return this._addressNumber;
-  }
-  public set addressNumber(value: string) {
-    this._addressNumber = value;
-  }
-  public get zipCode(): string {
-    return this._zipCode;
-  }
-  public set zipCode(value: string) {
-    this._zipCode = value;
-  }
-  public get location(): string {
-    return this._location;
-  }
-  public set location(value: string) {
-    this._location = value;
-  }
+
   public get phoneNumber(): string {
     return this._phoneNumber;
   }
@@ -128,10 +89,10 @@ export class PersonalData {
   public set email(value: string) {
     this._email = value;
   }
-  public get documentType(): string[] {
+  public get documentType(): string {
     return this._documentType;
   }
-  public set documentType(value: string[]) {
+  public set documentType(value: string) {
     this._documentType = value;
   }
   public get documentNumber(): string {
@@ -144,7 +105,7 @@ export class PersonalData {
     return this._placeOfIssue;
   }
   public set placeOfIssue(value: string) {
-    this._palceOfBirth = value;
+    this._placeOfIssue = value;
   }
   public get dateOfIssue(): string {
     return this._dateOfIssue;
@@ -159,19 +120,14 @@ export class PersonalData {
     this._expiryDate = value;
   }
 
-  toJson(){
-      return {
+  toJSon() {
+    return {
       surname: this._surname,
       name: this._name,
-      placeofBirth: this._palceOfBirth,
+      placeofBirth: this._placeOfBirth,
       dateOfBirth: this._dateOfBirth,
       fiscalCode: this._fiscalCode,
       partitaIVA: this._partitaIVA,
-      addrressType: this._addressType,
-      address: this._address,
-      addressNumber: this._addressNumber,
-      zipCode: this._zipCode,
-      location: this._location,
       phoneNumber: this._phoneNumber,
       otherNumber: this._otherNumber,
       email: this._email,
@@ -180,6 +136,6 @@ export class PersonalData {
       placeOfIssue: this._placeOfIssue,
       dateOfIssue: this._dateOfIssue,
       expiryDate: this._expiryDate,
-      }
+    }
   }
 }

@@ -1,46 +1,46 @@
 export class AccountingData {
 
-    private _fileStatus: string[];
-    private _paymentType: string[];
+    private _fileStatus: string;
+    private _paymentType: string;
     private _cardUserSurname?: string;
     private _cardUserName?: string;
     private _cardUserFiscalCode?: string;
-    private _cardType?: string[];
+    private _cardType?: string;
     private _creditCardNumber?: string;
     private _creditCardExpiryDate?: string;
     private _IBANcode?: string;
-    private _paymentStatus: string[];
-    private _cashedByBrand: string[];
-    private _commissionAgent: string[];
-    private _agent: string[];
+    private _paymentStatus: string;
+    private _cashedByBrand: string;
+    private _commissionAgent: string;
+    private _agent: string;
 
     constructor() {
 
-        this._fileStatus = [];
-        this._paymentType = [];
+        this._fileStatus = '';
+        this._paymentType = '';
         this._cardUserSurname = '';
         this._cardUserName = '';
         this._cardUserFiscalCode = '';
-        this._cardType = [];
+        this._cardType = '';
         this._creditCardNumber = '';
         this._creditCardExpiryDate = '';
         this._IBANcode = '';
-        this._paymentStatus = [];
-        this._cashedByBrand = [];
-        this._commissionAgent = [];
-        this._agent = [];
+        this._paymentStatus = '';
+        this._cashedByBrand = '';
+        this._commissionAgent = '';
+        this._agent = '';
     }
 
-    public get fileStatus(): string[] {
+    public get fileStatus(): string {
         return this._fileStatus;
     }
-    public set fileStatus(value: string[]) {
+    public set fileStatus(value: string) {
         this._fileStatus = value;
     }
-    public get paymentType(): string[] {
+    public get paymentType(): string {
         return this._paymentType;
     }
-    public set paymentType(value: string[]) {
+    public set paymentType(value: string) {
         this._paymentType = value;
     }
     public get cardUserSurname(): string {
@@ -61,10 +61,10 @@ export class AccountingData {
     public set cardUserFiscalCode(value: string) {
         this._cardUserFiscalCode = value;
     }
-    public get cardType(): string[] {
+    public get cardType(): string {
         return this._cardType;
     }
-    public set cardType(value: string[]) {
+    public set cardType(value: string) {
         this._cardType = value;
     }
     public get creditCardNumber(): string {
@@ -79,34 +79,34 @@ export class AccountingData {
     public set creditCardExpiryDate(value: string) {
         this._creditCardExpiryDate = value;
     }
-    public get carIBANcode(): string {
+    public get IBANcode(): string {
         return this._IBANcode;
     }
     public set IBANcode(value: string) {
         this._IBANcode = value;
     }
-    public get paymentStatus(): string[] {
+    public get paymentStatus(): string {
         return this._paymentStatus;
     }
-    public set paymentStatus(value: string[]) {
+    public set paymentStatus(value: string) {
         this._paymentStatus = value;
     }
-    public get cashedByBrand(): string[] {
+    public get cashedByBrand(): string {
         return this._cashedByBrand;
     }
-    public set cashedByBrand(value: string[]) {
+    public set cashedByBrand(value: string) {
         this._cashedByBrand = value;
     }
-    public get commissionAgent(): string[] {
+    public get commissionAgent(): string {
         return this._commissionAgent;
     }
-    public set commissionAgent(value: string[]) {
+    public set commissionAgent(value: string) {
         this._commissionAgent = value;
     }
-    public get agent(): string[] {
+    public get agent(): string {
         return this._agent;
     }
-    public set agent(value: string[]) {
+    public set agent(value: string) {
         this._agent = value;
     }
 
