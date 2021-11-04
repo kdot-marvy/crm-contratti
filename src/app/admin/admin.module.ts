@@ -20,6 +20,7 @@ import { ElencoContractComponent } from './components/elenco-contracts/elenco-co
 import { NewContractComponent } from './components/elenco-contracts/new-contract/new-contract.component';
 import { ElencoDocumentComponent } from './components/elenco-document/elenco-document.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     ElencoContractComponent,
     NewContractComponent,
     ElencoDocumentComponent,
+    SignUpComponent,
   ]
 })
 

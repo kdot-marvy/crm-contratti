@@ -1,0 +1,13 @@
+.custom-select.ng-touched.ng-invalid,
+.form-control.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.form-extra label,
+.form-extra-2 label,
+.carta-di-credito label,
+.conto-corrente label,
+.card-user-details label {
+  font-weight: bold;
+  padding: 0 .2rem;
+}

@@ -1,0 +1,25 @@
+.main-panel{
+    height: 100vh;
+}
+nav{
+    display: flex;
+    gap: 1rem;
+    padding: 0 .5rem;
+}
+nav button{
+    padding: .5rem;
+    background: transparent;
+    color: black;
+}
+.archivio, .cestino{
+    cursor: pointer;
+}
+.accesso-rapido{
+    margin-bottom: 2rem;
+}
+.accesso-rapido button{
+    background: transparent;
+    color: black;
+    border: none;
+    outline: none;
+}

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthenticationService } from 'app/shared/services/authentication.service';
 
 
 @Component({
@@ -7,5 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  ngOnInit() { }
+  ngOnInit() {
+    // if (!this.authenticationService.currentUserValue) {
+    //   this.authenticationService.logout();
+    // }
+   }
+
+   constructor(private authenticationService: AuthenticationService,
+    private route: ActivatedRoute,
+    private router: Router){ }
+
+
+
 }
