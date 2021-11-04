@@ -13,6 +13,7 @@ import { ElencoContractComponent } from './components/elenco-contracts/elenco-co
 import { NewContractComponent } from './components/elenco-contracts/new-contract/new-contract.component';
 import { ElencoDocumentComponent } from './components/elenco-document/elenco-document.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 export const AdminRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -31,5 +32,6 @@ export const AdminRoutes: Routes = [
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent }
+    { path: 'upgrade',        component: UpgradeComponent },
+    { path: 'signup', component: SignUpComponent}
 ];

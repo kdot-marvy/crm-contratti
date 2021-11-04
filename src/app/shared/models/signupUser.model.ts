@@ -63,6 +63,8 @@ export class SignupUserModel {
       username: this._username,
       password: this._password,
       email: this._email,
+      firstName: this._firstName,
+      lastName: this._lastName,
     };
   }
  }
