@@ -74,10 +74,7 @@
                             <label>Tipo Indirizzo *:</label>
                             <select class="custom-select" name="address-type" required ngModel #addressType="ngModel"
                               [(ngModel)]="contract.addressData.addressType">
-                              <option selected>via...</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+                              <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
                             </select>
                             <p class="text-danger" *ngIf="addressType.touched && addressType.invalid">*campo richiesto
                             </p>
@@ -199,7 +196,7 @@
                           </div>
                         </div>
                       </div>
-    
+
                     </div>
                   </div>
                 </div>
@@ -397,10 +394,7 @@
                             <label>Tipo Indirizzo *:</label>
                             <select class="custom-select" name="location-address-type" required ngModel #addressType="ngModel"
                               [(ngModel)]="contract.addressData.plantLocationAddressType">
-                              <option selected>via...</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+                              <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
                             </select>
                             <p class="text-danger" *ngIf="addressType.touched && addressType.invalid">*campo richiesto
                             </p>
@@ -451,10 +445,7 @@
                             <label>Tipo Indirizzo *:</label>
                             <select class="custom-select" name="shipping-address" required ngModel #shippingAddressType="ngModel"
                               [(ngModel)]="contract.addressData.shippingAddressType">
-                              <option selected>via...</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+                              <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
                             </select>
                             <p class="text-danger" *ngIf="shippingAddressType.touched && shippingAddressType.invalid">*campo richiesto
                             </p>
@@ -503,7 +494,7 @@
                           </div>
                         </div>
                       </div>
-      
+
                     </div>
                   </div>
                 </div>
@@ -726,7 +717,7 @@
                             </div>
                           </div>
                         </div>
-    
+
                       </div>
                     </div>
                   </div>

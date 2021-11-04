@@ -1,0 +1,1 @@
+{ "tipoSim": ["Ricaricabile", "Abbonamento"] }

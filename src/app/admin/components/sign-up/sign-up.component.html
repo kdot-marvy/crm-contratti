@@ -1,1 +1,67 @@
-<p>sign-up works!</p>
+<div class="container-fluid">
+  <div class="login-card card-body auth-body">
+    <div class="card-header border-0">
+      <h5 class="card-title text-center m-0">Sign Up</h5>
+    </div>
+    <div class="card-body">
+      <form #signUpUserForm="ngForm" class="md-float-material" (submit)="onSubmit(signUpUserForm.valid)">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Username" [(ngModel)]="registration.username"
+                name="username" required>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Nome" [(ngModel)]="registration.firstName"
+                name="password" required>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Cognome" [(ngModel)]="registration.lastName"
+                name="password" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="Email" [(ngModel)]="registration.email"
+                name="username" required>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Password" [(ngModel)]="registration.password"
+                name="password" required>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Conferma Password" [(ngModel)]="registration.confirmPassword"
+                name="password" required>
+            </div>
+          </div>
+        </div>
+        <div class="row m-t-30">
+          <div class="col-md-2">
+            <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign
+              up</button>
+          </div>
+        </div>
+        <hr />
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- constructor() {
+    this._username = '';
+    this._password = '';
+    this._firstName = '';
+    this._email = '';
+    this._lastName = '';
+    this._confirmPassword = '';
+  } -->
