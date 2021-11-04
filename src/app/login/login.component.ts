@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   private loginUser: LoginUserModel = new LoginUserModel();
   private submitted = false;
-  private returnUrl = 'restricted';
+  private returnUrl = 'dashboard';
+  private passwordErrorMsg;
   constructor(private authenticationService: AuthenticationService,
     private route: ActivatedRoute,
     private router: Router,
@@ -26,8 +27,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
+    if (this.authenticationService.currentUserValue) {
+      this.authenticationService.logout();
+  }
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
+    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'];
 
   }
 
@@ -39,16 +43,16 @@ export class LoginComponent implements OnInit {
           if (res.accessToken) {
             this.goToRestrited();
           }
+        },(error) => {
+          if(error.status == 401){
+            this.passwordErrorMsg = 'Username o Password errato'
+          }
         }
       );
     }
-    console.warn(this.loginUser);
   }
 
   goToRestrited() {
-
-    console.log(this.authenticationService.currentUserValue);
-
     if (this.authenticationService.currentUserValue) {
         this.router.navigate([this.returnUrl]);
     }

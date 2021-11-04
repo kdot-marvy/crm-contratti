@@ -23,7 +23,7 @@
                     </a>
                     <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu dropdown-menu-right">
                         <a ngbDropdownItem href="javascript:void(0)">Account</a>
-                        <a ngbDropdownItem href="javascript:void(0)"><i class="nc-icon nc-button-power"></i> Logout</a>
+                        <a ngbDropdownItem (click)="logout()"><i class="nc-icon nc-button-power"></i> Logout</a>
                     </div>
                 </li>
             </ul>

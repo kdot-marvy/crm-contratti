@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ElencoContractComponent implements OnInit {
 
+  data = false
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
