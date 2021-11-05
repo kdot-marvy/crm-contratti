@@ -1,0 +1,21 @@
+[{
+        "name": "Gestore1",
+        "panel": "1",
+        "id": "0"
+    },
+    {
+        "name": "Gestore2",
+        "panel": "2",
+        "id": "1"
+    },
+    {
+        "name": "Gestore3",
+        "panel": "2",
+        "id": "2"
+    },
+    {
+        "name": "Gestore4",
+        "panel": "0",
+        "id": "3"
+    }
+]

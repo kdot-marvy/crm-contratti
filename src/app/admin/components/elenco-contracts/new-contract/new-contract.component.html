@@ -1,737 +1,694 @@
 <div class="row justify-content-center">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title"> Nuovo</h4>
-      </div>
-      <div class="card-body">
-        <form #contractForm="ngForm" (submit)="onSubmit(contractForm.valid)">
-          <ngb-tabset>
-            <ngb-tab title="Dati Anagrafici" id="anagrafici">
-              <ng-template ngbTabContent>
-                <div class="col-md-12">
-                  <div class="card card-user">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-5 pr-1">
-                          <div class="form-group">
-                            <label>Rag.Soc./Cognome *: </label>
-                            <input type="text" name="cognome" class="form-control"
-                              placeholder="Ragione Sociale / Cognome" required ngModel #cognome="ngModel"
-                              [(ngModel)]="contract.personalData.surname">
-                            <p class="text-danger" *ngIf="cognome.touched && cognome.invalid">*campo richiesto</p>
-                          </div>
-                        </div>
-                        <div class="col-md-3 px-1">
-                          <div class="form-group">
-                            <label>Nome : </label>
-                            <input type="text" name="nome" class="form-control" placeholder="Nome"
-                              [(ngModel)]="contract.personalData.name">
-                          </div>
-                        </div>
-                        <div class="col-md-4 pl-1">
-                          <div class="form-group">
-                            <label>Luogo di nascita:</label>
-                            <input type="text" name="luogo-di-nascita" class="form-control"
-                              placeholder="Luogo di nascita" ngModel required #luogoNascita="ngModel"
-                              [(ngModel)]="contract.personalData.placeOfBirth">
-                            <p class="text-danger" *ngIf="luogoNascita.touched && luogoNascita.invalid">*campo richiesto
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-4 pr-1">
-                          <div class="form-group">
-                            <label>Data Di Nascita *:</label>
-                            <input type="date" name="data-di-nascita" class="form-control" placeholder="" required
-                              ngModel #dataNascita="ngModel" [(ngModel)]="contract.personalData.dateOfBirth">
-                            <p class="text-danger" *ngIf="dataNascita.touched && dataNascita.invalid">*campo richiesto
-                            </p>
-                          </div>
-                        </div>
-                        <div class="col-md-4 pl-1">
-                          <div class="form-group">
-                            <label>Codice Fiscale *:</label>
-                            <input type="text" name="codice-fiscale" class="form-control" placeholder="Codice Fiscale"
-                              required ngModel #codiceFiscale="ngModel" [(ngModel)]="contract.personalData.fiscalCode">
-                            <p class="text-danger" *ngIf="codiceFiscale.touched && codiceFiscale.invalid">*campo
-                              richiesto</p>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="form-group">
-                            <label>Partita IVA *:</label>
-                            <input type="text" name="partita-iva" class="form-control" placeholder="Partita Iva" ngModel
-                              required #partitaIva="ngModel" [(ngModel)]="contract.personalData.partitaIVA">
-                            <p class="text-danger" *ngIf="partitaIva.touched && partitaIva.invalid">*campo richiesto</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-2 mb-3 pr-1">
-                          <div class="form-group">
-                            <label>Tipo Indirizzo *:</label>
-                            <select class="custom-select" name="address-type" required ngModel #addressType="ngModel"
-                              [(ngModel)]="contract.addressData.addressType">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title"> Nuovo <input (keydown.i)="onKeydown($event)"></h4>
+            </div>
+            <div class="card-body">
+                <form #contractForm="ngForm" (submit)="onSubmit(contractForm.valid)">
+                    <ngb-tabset>
+                        <ngb-tab title="Dati Anagrafici" id="anagrafici">
+                            <ng-template ngbTabContent>
+                                <div class="col-md-12">
+                                    <div class="card card-user">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-5 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Rag.Soc./Cognome *: </label>
+                                                        <input type="text" name="cognome" class="form-control" placeholder="Ragione Sociale / Cognome" required ngModel #cognome="ngModel" [(ngModel)]="contract.personalData.surname">
+                                                        <p class="text-danger" *ngIf="cognome.touched && cognome.invalid">*campo richiesto</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 px-1">
+                                                    <div class="form-group">
+                                                        <label>Nome : </label>
+                                                        <input type="text" name="nome" class="form-control" placeholder="Nome" [(ngModel)]="contract.personalData.name">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Luogo di nascita:</label>
+                                                        <input type="text" name="luogo-di-nascita" class="form-control" placeholder="Luogo di nascita" ngModel required #luogoNascita="ngModel" [(ngModel)]="contract.personalData.placeOfBirth">
+                                                        <p class="text-danger" *ngIf="luogoNascita.touched && luogoNascita.invalid">*campo richiesto
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Data Di Nascita *:</label>
+                                                        <input type="date" name="data-di-nascita" class="form-control" placeholder="" required ngModel #dataNascita="ngModel" [(ngModel)]="contract.personalData.dateOfBirth">
+                                                        <p class="text-danger" *ngIf="dataNascita.touched && dataNascita.invalid">*campo richiesto
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Codice Fiscale *:</label>
+                                                        <input type="text" name="codice-fiscale" class="form-control" placeholder="Codice Fiscale" required ngModel #codiceFiscale="ngModel" [(ngModel)]="contract.personalData.fiscalCode">
+                                                        <p class="text-danger" *ngIf="codiceFiscale.touched && codiceFiscale.invalid">*campo richiesto
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Partita IVA *:</label>
+                                                        <input type="text" name="partita-iva" class="form-control" placeholder="Partita Iva" ngModel required #partitaIva="ngModel" [(ngModel)]="contract.personalData.partitaIVA">
+                                                        <p class="text-danger" *ngIf="partitaIva.touched && partitaIva.invalid">*campo richiesto</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-2 mb-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Tipo Indirizzo *:</label>
+                                                        <select class="custom-select" name="address-type" required ngModel #addressType="ngModel" [(ngModel)]="contract.personalData.address.addressType">
+                              <option value="">Seleziona</option>
                               <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
                             </select>
-                            <p class="text-danger" *ngIf="addressType.touched && addressType.invalid">*campo richiesto
-                            </p>
-                          </div>
-                        </div>
-                        <div class="col-md-4 px-1">
-                          <div class="form-group">
-                            <label>Indirizzo *:</label>
-                            <input type="text" class="form-control" name="indirizzo" placeholder="Indirizzo" required
-                              ngModel #addressField="ngModel" [(ngModel)]="contract.addressData.address">
-                            <p class="text-danger" *ngIf="addressField.touched && addressField.invalid">*campo richiesto
-                            </p>
-                          </div>
-                        </div>
-                        <div class="col-md-2 pl-1">
-                          <div class="form-group">
-                            <label>N° civico *:</label>
-                            <input type="text" class="form-control" name="civico" placeholder="Numero Civico" required
-                              ngModel #numeroCivico="ngModel" [(ngModel)]="contract.addressData.addressNumber">
-                            <p class="text-danger" *ngIf="numeroCivico.touched && numeroCivico.invalid">*campo richiesto
-                            </p>
-                          </div>
-                        </div>
-                        <div class="col-md-2 pl-1">
-                          <div class="form-group">
-                            <label>C.A.P. *:</label>
-                            <input type="text" class="form-control" name="zipCode" placeholder="C.A.P." required ngModel
-                              #zipCode="ngModel" [(ngModel)]="contract.addressData.zipCode">
-                            <p class="text-danger" *ngIf="zipCode.touched && zipCode.invalid">*campo richiesto</p>
-                          </div>
-                        </div>
-                        <div class="col-md-2 pl-1">
-                          <div class="form-group">
-                            <label>Località *:</label>
-                            <input type="text" name="location" class="form-control" placeholder="Località" required
-                              ngModel #locationField="ngModel" [(ngModel)]="contract.addressData.location">
-                            <p class="text-danger" *ngIf="locationField.touched && locationField.invalid">*campo
-                              richiesto</p>
-                          </div>
-                        </div>
-                      </div>
+                                                        <p class="text-danger" *ngIf="addressType.touched && addressType.invalid">*campo richiesto
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 px-1">
+                                                    <div class="form-group">
+                                                        <label>Indirizzo *:</label>
+                                                        <input type="text" class="form-control" name="indirizzo" placeholder="Indirizzo" required ngModel #addressField="ngModel" [(ngModel)]="contract.personalData.address.address">
+                                                        <p class="text-danger" *ngIf="addressField.touched && addressField.invalid">*campo richiesto
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 pl-1">
+                                                    <div class="form-group">
+                                                        <label>N° civico *:</label>
+                                                        <input type="text" class="form-control" name="civico" placeholder="Numero Civico" required ngModel #numeroCivico="ngModel" [(ngModel)]="contract.personalData.address.addressNumber">
+                                                        <p class="text-danger" *ngIf="numeroCivico.touched && numeroCivico.invalid">*campo richiesto
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 pl-1">
+                                                    <div class="form-group">
+                                                        <label>C.A.P. *:</label>
+                                                        <input type="text" class="form-control" name="zipCode" placeholder="C.A.P." required ngModel #zipCode="ngModel" [(ngModel)]="contract.personalData.address.zipCode">
+                                                        <p class="text-danger" *ngIf="zipCode.touched && zipCode.invalid">*campo richiesto</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Località *:</label>
+                                                        <input type="text" name="location" class="form-control" placeholder="Località" required ngModel #locationField="ngModel" [(ngModel)]="contract.personalData.address.location">
+                                                        <p class="text-danger" *ngIf="locationField.touched && locationField.invalid">*campo richiesto
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                      <div class="row">
-                        <div class="col-md-4 pr-1">
-                          <div class="form-group">
-                            <label>Cellulare *:</label>
-                            <input type="text" name="number" class="form-control" placeholder="Cellulare" required
-                              ngModel #phoneNumber="ngModel" [(ngModel)]="contract.personalData.phoneNumber">
-                            <p class="text-danger" *ngIf="phoneNumber.touched && phoneNumber.invalid">*campo richiesto
-                            </p>
-                          </div>
-                        </div>
-                        <div class="col-md-4 pl-1">
-                          <div class="form-group">
-                            <label>Altro Telefono:</label>
-                            <input type="text" class="form-control" name="otherNumber" placeholder="Altro Telefono"
-                              [(ngModel)]="contract.managerData .otherNumber">
-                          </div>
-                        </div>
-                        <div class="col-md-4 pl-1">
-                          <div class="form-group">
-                            <label>Email *:</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email" required ngModel
-                              #emailField="ngModel" [(ngModel)]="contract.personalData.email">
-                            <p class="text-danger" *ngIf="emailField.touched && emailField.invalid">*campo richiesto</p>
-                          </div>
-                        </div>
-                      </div>
+                                            <div class="row">
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Cellulare *:</label>
+                                                        <input type="text" name="number" class="form-control" placeholder="Cellulare" required ngModel #phoneNumber="ngModel" [(ngModel)]="contract.personalData.phoneNumber">
+                                                        <p class="text-danger" *ngIf="phoneNumber.touched && phoneNumber.invalid">*campo richiesto
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Altro Telefono:</label>
+                                                        <input type="text" class="form-control" name="otherNumber" placeholder="Altro Telefono" [(ngModel)]="contract.managerData .otherNumber">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Email *:</label>
+                                                        <input type="email" name="email" class="form-control" placeholder="Email" required ngModel #emailField="ngModel" [(ngModel)]="contract.personalData.email">
+                                                        <p class="text-danger" *ngIf="emailField.touched && emailField.invalid">*campo richiesto</p>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                      <hr>
+                                            <hr>
 
-                      <div class="row">
-                        <div class=" col-md-2 mb-3 pr-1">
-                          <div class="form-group">
-                            <label>Tipo Documento *:</label>
-                            <select class="custom-select" name="document" required ngModel #docType="ngModel"
-                              [(ngModel)]="contract.personalData.documentType">
-                              <option selected>scegli</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+                                            <div class="row">
+                                                <div class=" col-md-2 mb-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Tipo Documento *:</label>
+                                                        <select class="custom-select" name="document" required ngModel #docType="ngModel" [(ngModel)]="contract.personalData.documentType">
+                              <option value="">Seleziona</option>
+                              <option *ngFor="let docTypeKey of docTypeKeys" [ngValue]="docTypeKey">
+                                {{docTypes[docTypeKey]}}</option>
                             </select>
-                            <p class="text-danger" *ngIf="docType.touched && docType.invalid">*campo richiesto</p>
-                          </div>
-                        </div>
+                                                        <p class="text-danger" *ngIf="docType.touched && docType.invalid">*campo richiesto</p>
+                                                    </div>
+                                                </div>
 
-                        <div class="col-md-3 pl-1">
-                          <div class="form-group">
-                            <label>N° Documento *:</label>
-                            <input type="text" class="form-control" name="doc-number" placeholder="N° Documento"
-                              required ngModel #docNumber="ngModel" [(ngModel)]="contract.personalData.documentNumber">
-                            <p class="text-danger" *ngIf="docNumber.touched && docNumber.invalid">*campo richiesto</p>
-                          </div>
-                        </div>
-                        <div class="col-md-3 pl-1">
-                          <div class="form-group">
-                            <label>Luogo Emissione *:</label>
-                            <input type="text" class="form-control" name="issue" placeholder="Luogo Emissione" required
-                              ngModel #placeIssued="ngModel" [(ngModel)]="contract.personalData.placeOfIssue">
-                            <p class="text-danger" *ngIf="placeIssued.touched && placeIssued.invalid">*campo richiesto
-                            </p>
-                          </div>
-                        </div>
-                        <div class="col-md-2 pl-1">
-                          <div class="form-group">
-                            <label>Data Emissione *:</label>
-                            <input type="date" class="form-control" name="emission-date" placeholder="N° Documento"
-                              required ngModel #emissionDate="ngModel" [(ngModel)]="contract.personalData.dateOfIssue">
-                            <p class="text-danger" *ngIf="emissionDate.touched && emissionDate.invalid">*campo richiesto
-                            </p>
-                          </div>
-                        </div>
-                        <div class="col-md-2 pl-1">
-                          <div class="form-group">
-                            <label>Data Scadenza *:</label>
-                            <input type="date" class="form-control" name="expiry-date" placeholder="N° Documento"
-                              required ngModel #expiryDate="ngModel" [(ngModel)]="contract.personalData.expiryDate">
-                            <p class="text-danger" *ngIf="expiryDate.touched && expiryDate.invalid">*campo richiesto</p>
-                          </div>
-                        </div>
-                      </div>
+                                                <div class="col-md-3 pl-1">
+                                                    <div class="form-group">
+                                                        <label>N° Documento *:</label>
+                                                        <input type="text" class="form-control" name="doc-number" placeholder="N° Documento" required ngModel #docNumber="ngModel" [(ngModel)]="contract.personalData.documentNumber">
+                                                        <p class="text-danger" *ngIf="docNumber.touched && docNumber.invalid">*campo richiesto</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Luogo Emissione *:</label>
+                                                        <input type="text" class="form-control" name="issue" placeholder="Luogo Emissione" required ngModel #placeIssued="ngModel" [(ngModel)]="contract.personalData.placeOfIssue">
+                                                        <p class="text-danger" *ngIf="placeIssued.touched && placeIssued.invalid">*campo richiesto
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Data Emissione *:</label>
+                                                        <input type="date" class="form-control" name="emission-date" placeholder="N° Documento" required ngModel #emissionDate="ngModel" [(ngModel)]="contract.personalData.dateOfIssue">
+                                                        <p class="text-danger" *ngIf="emissionDate.touched && emissionDate.invalid">*campo richiesto
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Data Scadenza *:</label>
+                                                        <input type="date" class="form-control" name="expiry-date" placeholder="N° Documento" required ngModel #expiryDate="ngModel" [(ngModel)]="contract.personalData.expiryDate">
+                                                        <p class="text-danger" *ngIf="expiryDate.touched && expiryDate.invalid">*campo richiesto</p>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                    </div>
-                  </div>
-                </div>
-              </ng-template>
-            </ngb-tab>
-            <ngb-tab title="Dati Gestore" id="gestore">
-              <ng-template ngbTabContent>
-                <div class="col-md-12">
-                  <div class="card card-user">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-6 mb-3 pr-1">
-                          <label>Gestore *:</label>
-                          <select class="custom-select" name="gestore" (ngModelChange)="output($event)" required ngModel
-                            #gestore="ngModel" [(ngModel)]="contract.managerData.manager">
-                            <option selected>via...</option>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Dati Gestore" id="gestore">
+                            <ng-template ngbTabContent>
+                                <div class="col-md-12">
+                                    <div class="card card-user">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3 pr-1">
+                                                    <label>Gestore *:</label>
+                                                    <select class="custom-select" name="gestore" required ngModel #gestore="ngModel" (ngModelChange)="changedManager($event)">
+                            <option value="">seleziona</option>
+                            <option *ngFor="let item of gestori" [ngValue]="item" >{{item.name}}</option>
+
+                          </select>
+                                                    <p class="text-danger" *ngIf="gestore.touched && gestore.invalid">*campo richiesto</p>
+                                                </div>
+                                                <div class="col-md-6 mb-3 pl-1">
+                                                    <label>Pacchetto *:</label>
+                                                    <select class="custom-select" name="pacchetto" required ngModel #pacchetto="ngModel" [(ngModel)]="contract.managerData.package">
+                            <option value="">seleziona</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                           </select>
-                          <p class="text-danger" *ngIf="gestore.touched && gestore.invalid">*campo richiesto</p>
-                        </div>
-                        <div class="col-md-6 mb-3 pl-1">
-                          <label>Pacchetto *:</label>
-                          <select class="custom-select" name="pacchetto" required ngModel #pacchetto="ngModel"
-                            [(ngModel)]="contract.managerData.package">
-                            <option selected>via...</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </select>
-                          <p class="text-danger" *ngIf="pacchetto.touched && pacchetto.invalid">*campo richiesto</p>
-                        </div>
-                      </div>
+                                                    <p class="text-danger" *ngIf="pacchetto.touched && pacchetto.invalid">*campo richiesto</p>
+                                                </div>
+                                            </div>
 
-                      <div class="form-extra">
-                        <div class="row">
-                          <div class="col-md-6 pr-1">
-                            <div class="form-group">
-                              <label>Copertura :</label>
-                              <select class="custom-select" name="copertura" [(ngModel)]="contract.managerData.coverage">
-                                <option selected>via...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-md-6 pl-1">
-                            <div class="form-group">
-                              <label>Opzioni Aggiuntive :</label>
-                              <select class="custom-select" name="opzioni-aggiuntive" [(ngModel)]="contract.managerData.additionalOptions">
-                                <option selected>via...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 pr-1">
-                            <div class="form-group">
-                              <label>Portabilità :</label>
-                              <select class="custom-select" name="portabilità" [(ngModel)]="contract.managerData.portability">
-                                <option selected>via...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-md-6 pl-1">
-                            <div class="form-group">
-                              <label>Num. da portare:</label>
-                              <input type="text" class="form-control" name="fornitore-precedente" placeholder=""
-                                [(ngModel)]="contract.managerData .portabilityNumber">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 pr-1">
-                            <div class="form-group">
-                              <label>Seiale SIM Vodafone Station :</label>
-                              <input type="text" class="form-control" name="vodafone-sim-serial" placeholder=""
-                                [(ngModel)]="contract.managerData.vodafoneStationSerial">
-                            </div>
-                          </div>
-                          <div class="col-md-6 pl-1">
-                            <div class="form-group">
-                              <label>Stato SIM :</label>
-                              <select class="custom-select" name="sim-status" [(ngModel)]="contract.managerData.simStatus">
-                                <option selected>via...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 pr-1">
-                            <div class="form-group">
-                              <label>Data Attivazione :</label>
-                              <input type="text" name="activation-date" class="form-control" placeholder=""
-                                [(ngModel)]="contract.managerData.activationDate">
-                            </div>
-                          </div>
-                          <div class="col-md-6 pl-1">
-                            <div class="form-group">
-                              <label>Seriale SIM Operatore :</label>
-                              <input type="text" name="serial-sim-operator" class="form-control" placeholder=""
-                                [(ngModel)]="contract.managerData.serialSimOperator">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 pr-1">
-                            <div class="form-group">
-                              <label>Gestore di Provenienza :</label>
-                              <input type="text" name="gestore-di-provenienza" class="form-control" placeholder=""
-                                [(ngModel)]="contract.managerData.managerOfOrigin">
-                            </div>
-                          </div>
-                          <div class="col-md-6 pl-1">
-                            <div class="form-group">
-                              <label>Seriale Nuova SIM Voce :</label>
-                              <input type="text" name="seiale-nuova-sim" class="form-control" placeholder=""
-                                [(ngModel)]="contract.managerData.newSimSerial">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 pr-1">
-                            <div class="form-group">
-                              <label>Codice Migrazione :</label>
-                              <input type="text" name="codice-migrazione" class="form-control" placeholder=""
-                                [(ngModel)]="contract.managerData.migrationCode">
-                            </div>
-                          </div>
-                          <div class="col-md-6 pl-1">
-                            <div class="form-group">
-                              <label>Tipo SIM :</label>
-                              <select class="custom-select" name="tipo-sim" [(ngModel)]="contract.managerData.simType">
-                                <option selected>via...</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                                            <ng-container *ngIf="panel1Shown">
+                                                <div class="form-extra">
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Copertura :</label>
+                                                                <select class="custom-select" name="copertura" [(ngModel)]="contract.managerData.coverage">
+                                  <option value="">Seleziona</option>
+                                  <option *ngFor="let item of coperture" [ngValue]="item">{{item}}</option>
 
-                      <div class="form-extra-2">
-                        <div class="row">
-                          <div class="col-md-6 pr-1">
-                            <div class="form-group">
-                              <label>POD :</label>
-                              <input type="text" name="pod" class="form-control" placeholder=""
-                                [(ngModel)]="contract.managerData.pod">
-                            </div>
-                          </div>
-                          <div class="col-md-6 pl-1">
-                            <div class="form-group">
-                              <label>PDR :</label>
-                              <input type="text" name="pdr" class="form-control" placeholder=""
-                                [(ngModel)]="contract.managerData.pdr">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6 pr-1">
-                            <div class="form-group">
-                              <label>Matricola :</label>
-                              <input type="text" name="matricola" class="form-control" placeholder=""
-                                [(ngModel)]="contract.managerData.serialNumber">
-                            </div>
-                          </div>
-                          <div class="col-md-6 pl-1">
-                            <div class="form-group">
-                              <label>Precedente Fornitore:</label>
-                              <input type="text" name="precedente-fornitore" class="form-control" placeholder=""
-                                [(ngModel)]="contract.managerData.previousSupplier">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Opzioni Aggiuntive :</label>
+                                                                <select class="custom-select" name="opzioni-aggiuntive" [(ngModel)]="contract.managerData.additionalOptions">
+                                  <option value="">Seleziona</option>
+                                  <option *ngFor="let item of opzioniAggiuntive" [ngValue]="item">{{item}}</option>
 
-                      <hr>
-                      <div class="">
-                        <small class="text-white bg-success font-weight-bold px-1">Indirizzo sede impianto</small>
-                        <div class="row">
-                          <div class="col-md-2 mb-3 pr-1">
-                            <label>Tipo Indirizzo *:</label>
-                            <select class="custom-select" name="location-address-type" required ngModel #addressType="ngModel"
-                              [(ngModel)]="contract.addressData.plantLocationAddressType">
+                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Portabilità :</label>
+                                                                <select class="custom-select" name="portabilità" [(ngModel)]="contract.managerData.portability">
+                                  <option value="">Seleziona</option>
+                                  <option *ngFor="let item of portabilita" [ngValue]="item">{{item}}</option>
+
+                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Num. da portare:</label>
+                                                                <input type="text" class="form-control" name="fornitore-precedente" placeholder="Num. da portare" [(ngModel)]="contract.managerData .portabilityNumber">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Seiale SIM Vodafone Station :</label>
+                                                                <input type="text" class="form-control" name="vodafone-sim-serial" placeholder="Seiale SIM Vodafone Station" [(ngModel)]="contract.managerData.vodafoneStationSerial">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Stato SIM :</label>
+                                                                <select class="custom-select" name="sim-status" [(ngModel)]="contract.managerData.simStatus">
+                                  <option value="">Seleziona</option>
+                                  <option *ngFor="let key of EStatoSimKeys" [ngValue]="key">{{EStatoSims[key]}}</option>
+
+                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Data Attivazione :</label>
+                                                                <input type="date" name="activation-date" class="form-control" placeholder="" required ngModel #dataAttivazione="ngModel" [(ngModel)]="contract.managerData.activationDate">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Seriale SIM Operatore :</label>
+                                                                <input type="text" name="serial-sim-operator" class="form-control" placeholder="" [(ngModel)]="contract.managerData.serialSimOperator">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Gestore di Provenienza :</label>
+                                                                <input type="text" name="gestore-di-provenienza" class="form-control" placeholder="" [(ngModel)]="contract.managerData.managerOfOrigin">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Seriale Nuova SIM Voce :</label>
+                                                                <input type="text" name="seiale-nuova-sim" class="form-control" placeholder="" [(ngModel)]="contract.managerData.newSimSerial">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Codice Migrazione :</label>
+                                                                <input type="text" name="codice-migrazione" class="form-control" placeholder="" [(ngModel)]="contract.managerData.migrationCode">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Tipo SIM :</label>
+                                                                <select class="custom-select" name="tipo-sim" [(ngModel)]="contract.managerData.simType">
+                                  <option value="">Seleziona</option>
+                                  <option *ngFor="let item of tipoSim" [ngValue]="item">{{item}}</option>
+
+                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="panel2Shown">
+                                                <div class="form-extra-2">
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>POD :</label>
+                                                                <input type="text" name="pod" class="form-control" placeholder="" [(ngModel)]="contract.managerData.pod">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>PDR :</label>
+                                                                <input type="text" name="pdr" class="form-control" placeholder="" [(ngModel)]="contract.managerData.pdr">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Matricola :</label>
+                                                                <input type="text" name="matricola" class="form-control" placeholder="" [(ngModel)]="contract.managerData.serialNumber">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Precedente Fornitore:</label>
+                                                                <input type="text" name="precedente-fornitore" class="form-control" placeholder="" [(ngModel)]="contract.managerData.previousSupplier">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+
+
+
+
+                                            <div class="">
+                                                <small class="text-white bg-success font-weight-bold px-1">Indirizzo sede impianto</small>
+                                                <div class="row">
+                                                    <div class="col-md-2 mb-3 pr-1">
+                                                        <label>Tipo Indirizzo *:</label>
+                                                        <select class="custom-select" name="location-address-type" required ngModel #addressType="ngModel" [(ngModel)]="contract.managerData.plantLocationAddress.addressType">
+                              <option value="">Seleziona</option>
                               <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
                             </select>
-                            <p class="text-danger" *ngIf="addressType.touched && addressType.invalid">*campo richiesto
-                            </p>
-                          </div>
-                          <div class="col-md-4 px-1">
-                            <div class="form-group">
-                              <label>Indirizzo:</label>
-                              <input type="text" class="form-control" name="location-address" placeholder="Indirizzo" required
-                                ngModel #address="ngModel" [(ngModel)]="contract.addressData.plantLocationAddress">
-                              <p class="text-danger" *ngIf="address.touched && address.invalid">*campo richiesto</p>
-                            </div>
-                          </div>
-                          <div class="col-md-2 pl-1">
-                            <div class="form-group">
-                              <label>N°</label>
-                              <input type="text" name="location-address-number" class="form-control" placeholder="Numero Civico"
-                                required ngModel #plantLocationAddressNumber="ngModel"
-                                [(ngModel)]="contract.addressData.plantLocationAddressNumber">
-                              <p class="text-danger" *ngIf="plantLocationAddressNumber.touched && plantLocationAddressNumber.invalid">*campo richiesto</p>
-                            </div>
-                          </div>
-                          <div class="col-md-2 pl-1">
-                            <div class="form-group">
-                              <label>C.A.P. *:</label>
-                              <input type="text" class="form-control" name="location-zip" placeholder="C.A.P." required ngModel
-                                #zipCode="ngModel" [(ngModel)]="contract.addressData.plantLocationAddressZipCode">
-                              <p class="text-danger" *ngIf="zipCode.touched && zipCode.invalid">*campo richiesto</p>
-                            </div>
-                          </div>
-                          <div class="col-md-2 pl-1">
-                            <div class="form-group">
-                              <label>Località *:</label>
-                              <input type="text" class="form-control" name="plant-location" placeholder="Località" required
-                                ngModel #location="ngModel"
-                                [(ngModel)]="contract.addressData.plantLocationAddressLocation">
-                              <p class="text-danger" *ngIf="location.touched && location.invalid">*campo richiesto</p>
-                            </div>
-                          </div>
-                        </div>
-                        <button class="btn bg-info m-0 mb-1" (click)="copyToPalnt($event)">Copia da Dati Anagrafici</button>
-                      </div>
+                                                        <p class="text-danger" *ngIf="addressType.touched && addressType.invalid">*campo richiesto
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 px-1">
+                                                        <div class="form-group">
+                                                            <label>Indirizzo:</label>
+                                                            <input type="text" class="form-control" name="location-address" placeholder="Indirizzo" required ngModel #address="ngModel" [(ngModel)]="contract.managerData.plantLocationAddress.address">
+                                                            <p class="text-danger" *ngIf="address.touched && address.invalid">*campo richiesto</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 pl-1">
+                                                        <div class="form-group">
+                                                            <label>N°</label>
+                                                            <input type="text" name="location-address-number" class="form-control" placeholder="Numero Civico" required ngModel #plantLocationAddressNumber="ngModel" [(ngModel)]="contract.managerData.plantLocationAddress.addressNumber">
+                                                            <p class="text-danger" *ngIf="plantLocationAddressNumber.touched && plantLocationAddressNumber.invalid">*campo richiesto
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 pl-1">
+                                                        <div class="form-group">
+                                                            <label>C.A.P. *:</label>
+                                                            <input type="text" class="form-control" name="location-zip" placeholder="C.A.P." required ngModel #zipCode="ngModel" [(ngModel)]="contract.managerData.plantLocationAddress.zipCode">
+                                                            <p class="text-danger" *ngIf="zipCode.touched && zipCode.invalid">*campo richiesto</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 pl-1">
+                                                        <div class="form-group">
+                                                            <label>Località *:</label>
+                                                            <input type="text" class="form-control" name="plant-location" placeholder="Località" required ngModel #location="ngModel" [(ngModel)]="contract.managerData.plantLocationAddress.location">
+                                                            <p class="text-danger" *ngIf="location.touched && location.invalid">*campo richiesto</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn bg-info m-0 mb-1" (click)="copyToPalnt($event)">Copia da Dati
+                          Anagrafici</button>
+                                            </div>
 
-                      <hr>
-                      <div class="">
-                        <small class="text-white bg-success font-weight-bold px-1">Indirizzo spedizione merce</small>
-                        <div class="row">
-                          <div class="col-md-2 mb-3 pr-1">
-                            <label>Tipo Indirizzo *:</label>
-                            <select class="custom-select" name="shipping-address" required ngModel #shippingAddressType="ngModel"
-                              [(ngModel)]="contract.addressData.shippingAddressType">
+                                            <hr>
+                                            <div class="">
+                                                <small class="text-white bg-success font-weight-bold px-1">Indirizzo spedizione merce</small>
+                                                <div class="row">
+                                                    <div class="col-md-2 mb-3 pr-1">
+                                                        <label>Tipo Indirizzo *:</label>
+                                                        <select class="custom-select" name="shipping-address" required ngModel #shippingAddressType="ngModel" [(ngModel)]="contract.managerData.shippingAddress.addressType">
+                              <option value="">Seleziona</option>
                               <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
                             </select>
-                            <p class="text-danger" *ngIf="shippingAddressType.touched && shippingAddressType.invalid">*campo richiesto
-                            </p>
-                          </div>
-                          <div class="col-md-4 px-1">
-                            <div class="form-group">
-                              <label>Indirizzo:</label>
-                              <input type="text" class="form-control" name="shippingAddress" placeholder="Indirizzo" required
-                                ngModel #shippingAddress="ngModel" [(ngModel)]="contract.addressData.shippingAddress">
-                              <p class="text-danger" *ngIf="shippingAddress.touched && shippingAddress.invalid">*campo richiesto</p>
-                            </div>
-                          </div>
-                          <div class="col-md-2 pl-1">
-                            <div class="form-group">
-                              <label>N°</label>
-                              <input type="text" name="shippingAddressNumber" class="form-control" placeholder="Numero Civico"
-                                required ngModel #shippingAddressNumber="ngModel"
-                                [(ngModel)]="contract.addressData.shippingAddressNumber">
-                              <p class="text-danger" *ngIf="shippingAddressNumber.touched && shippingAddressNumber.invalid">*campo richiesto</p>
-                            </div>
-                          </div>
-                          <div class="col-md-2 pl-1">
-                            <div class="form-group">
-                              <label>C.A.P. *:</label>
-                              <input type="text" class="form-control" name="shippingAddressZipCode" placeholder="C.A.P." required
-                                ngModel #shippingAddressZipCode="ngModel" [(ngModel)]="contract.addressData.shippingAddressZipCode">
-                              <p class="text-danger" *ngIf="shippingAddressZipCode.touched && shippingAddressZipCode.invalid">*campo richiesto</p>
-                            </div>
-                          </div>
-                          <div class="col-md-2 pl-1">
-                            <div class="form-group">
-                              <label>Località *:</label>
-                              <input type="text" name="shippingAddressLocation" class="form-control" placeholder="Località" required
-                                ngModel #shippingAddressLocation="ngModel" [(ngModel)]="contract.addressData.shippingAddressLocation">
-                              <p class="text-danger" *ngIf="shippingAddressLocation.touched && shippingAddressLocation.invalid">*campo richiesto</p>
-                            </div>
-                          </div>
-                        </div>
-                        <button class="btn bg-info m-0 mb-1" (click)="copyToPalnt()">Copia da Dati Anagrafici</button>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Note</label>
-                            <textarea class="form-control textarea"></textarea>
-                          </div>
-                        </div>
-                      </div>
+                                                        <p class="text-danger" *ngIf="shippingAddressType.touched && shippingAddressType.invalid">
+                                                            *campo richiesto
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 px-1">
+                                                        <div class="form-group">
+                                                            <label>Indirizzo:</label>
+                                                            <input type="text" class="form-control" name="shippingAddress" placeholder="Indirizzo" required ngModel #shippingAddress="ngModel" [(ngModel)]="contract.managerData.shippingAddress.address">
+                                                            <p class="text-danger" *ngIf="shippingAddress.touched && shippingAddress.invalid">*campo richiesto
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 pl-1">
+                                                        <div class="form-group">
+                                                            <label>N°</label>
+                                                            <input type="text" name="shippingAddressNumber" class="form-control" placeholder="Numero Civico" required ngModel #shippingAddressNumber="ngModel" [(ngModel)]="contract.managerData.shippingAddress.addressNumber">
+                                                            <p class="text-danger" *ngIf="shippingAddressNumber.touched && shippingAddressNumber.invalid">*campo richiesto
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 pl-1">
+                                                        <div class="form-group">
+                                                            <label>C.A.P. *:</label>
+                                                            <input type="text" class="form-control" name="shippingAddressZipCode" placeholder="C.A.P." required ngModel #shippingAddressZipCode="ngModel" [(ngModel)]="contract.managerData.shippingAddress.zipCode">
+                                                            <p class="text-danger" *ngIf="shippingAddressZipCode.touched && shippingAddressZipCode.invalid">*campo richiesto
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 pl-1">
+                                                        <div class="form-group">
+                                                            <label>Località *:</label>
+                                                            <input type="text" name="shippingAddressLocation" class="form-control" placeholder="Località" required ngModel #shippingAddressLocation="ngModel" [(ngModel)]="contract.managerData.shippingAddress.location">
+                                                            <p class="text-danger" *ngIf="shippingAddressLocation.touched && shippingAddressLocation.invalid">*campo richiesto
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn bg-info m-0 mb-1" (click)="copyToPalnt()">Copia da Dati Anagrafici</button>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Note</label>
+                                                        <textarea class="form-control textarea"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                    </div>
-                  </div>
-                </div>
-              </ng-template>
-            </ngb-tab>
-            <ngb-tab title="Dati contabili" id="contabili">
-              <ng-template ngbTabContent>
-                <div>
-                  <div class="col-md-12">
-                    <div class="card card-user">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class=" col-md-6 mb-3 pr-1">
-                            <div class="form-group">
-                              <label>Stato Pratica:</label>
-                              <select class="custom-select" name="fileStatus" [(ngModel)]="contract.accountingData.fileStatus">
-                                <option selected>Bozza</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Dati contabili" id="contabili">
+                            <ng-template ngbTabContent>
+                                <div>
+                                    <div class="col-md-12">
+                                        <div class="card card-user">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Stato Pratica:</label>
+                                                            <select class="custom-select" name="fileStatus" [(ngModel)]="contract.accountingData.fileStatus">
+                                <option value="">Seleziona</option>
+                                <option *ngFor="let key of EStatoPraticaTypeKeys" [ngValue]="key">
+                                  {{EStatoPraticaTypes[key]}}</option>
+
                               </select>
-                            </div>
-                          </div>
-                          <div class=" col-md-6 mb-3 pr-1">
-                            <div class="form-group">
-                              <label>Tipo di Pagamento:</label>
-                              <select class="custom-select" name="paymentType" [(ngModel)]="contract.accountingData.paymentType">
-                                <option selected>Seleziona</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Tipo di Pagamento:</label>
+                                                            <select class="custom-select" name="paymentType" [(ngModel)]="contract.accountingData.paymentType">
+                                <option value="">Seleziona</option>
+                                <option *ngFor="let key of paymentTypeKeys" [ngValue]="key">{{paymentTypes[key]}}
+                                </option>
+
                               </select>
-                            </div>
-                          </div>
-                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                        <div class="card-user-details">
-                          <div class="row">
-                            <div class="col-md-4 pr-1">
-                              <div class="form-group">
-                                <label>Cognome Intestatario *: </label>
-                                <input type="text" name="cardUserSurname" class="form-control" placeholder="Cognome" required
-                                  ngModel #cardUserSurname="ngModel" [(ngModel)]="contract.accountingData.cardUserSurname">
-                                <p class="text-danger" *ngIf="cardUserSurname.touched && cardUserSurname.invalid">*campo richiesto</p>
-                              </div>
-                            </div>
-                            <div class="col-md-4 px-1">
-                              <div class="form-group">
-                                <label>Nome Intestatario *: </label>
-                                <input type="text" name="cardUserName" class="form-control" placeholder="Nome" required ngModel
-                                  #cardUserName="ngModel" [(ngModel)]="contract.accountingData.cardUserName">
-                                <p class="text-danger" *ngIf="cardUserName.touched && cardUserName.invalid">*campo richiesto
-                                </p>
-                              </div>
-                            </div>
-                            <div class="col-md-4 pl-1">
-                              <div class="form-group">
-                                <label>Codice Fiscale Intestatario *:</label>
-                                <input type="text" name="cardUserFiscalCode" class="form-control"
-                                  placeholder="Codice Fiscale" ngModel required #cardUserFiscalCode="ngModel"
-                                  [(ngModel)]="contract.accountingData.cardUserFiscalCode">
-                                <p class="text-danger" *ngIf="cardUserFiscalCode.touched && cardUserFiscalCode.invalid">*campo
-                                  richiesto
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                                                <div class="card-user-details">
+                                                    <div class="row">
+                                                        <div class="col-md-4 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Cognome Intestatario *: </label>
+                                                                <input type="text" name="cardUserSurname" class="form-control" placeholder="Cognome" required ngModel #cardUserSurname="ngModel" [(ngModel)]="contract.accountingData.cardUserSurname">
+                                                                <p class="text-danger" *ngIf="cardUserSurname.touched && cardUserSurname.invalid">*campo richiesto
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 px-1">
+                                                            <div class="form-group">
+                                                                <label>Nome Intestatario *: </label>
+                                                                <input type="text" name="cardUserName" class="form-control" placeholder="Nome" required ngModel #cardUserName="ngModel" [(ngModel)]="contract.accountingData.cardUserName">
+                                                                <p class="text-danger" *ngIf="cardUserName.touched && cardUserName.invalid">*campo richiesto
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Codice Fiscale Intestatario *:</label>
+                                                                <input type="text" name="cardUserFiscalCode" class="form-control" placeholder="Codice Fiscale" ngModel required #cardUserFiscalCode="ngModel" [(ngModel)]="contract.accountingData.cardUserFiscalCode">
+                                                                <p class="text-danger" *ngIf="cardUserFiscalCode.touched && cardUserFiscalCode.invalid">
+                                                                    *campo richiesto
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                        <div class="carta-di-credito">
-                          <div class="row">
-                            <div class="col-md-3 pr-1">
-                              <div class="form-group">
-                                <label>Tipo Carta *:</label>
-                                <select class="custom-select" name="cardType" class="form-control" placeholder=""
-                                  required ngModel #cardType="ngModel" [(ngModel)]="contract.accountingData.cardType">
-                                  <option selected>Seleziona</option>
-                                  <option value="1">One</option>
+                                                <div class="carta-di-credito">
+                                                    <div class="row">
+                                                        <div class="col-md-3 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Tipo Carta *:</label>
+                                                                <!-- <select class="custom-select" name="cardType" class="form-control" placeholder="" required ngModel #cardType="ngModel" [(ngModel)]="contract.accountingData.cardType">
+                                                                  <option value="">Seleziona</option>
+                                                                  <option value="1">One</option>
                                   <option value="2">Two</option>
                                   <option value="3">Three</option>
-                                </select>
-                                <p class="text-danger" *ngIf="cardType.touched && cardType.invalid">*campo richiesto</p>
-                              </div>
-                            </div>
-                            <div class="col-md-5 px-1">
-                              <div class="form-group">
-                                <label>Numero Carta *: </label>
-                                <input type="text" name="creditCardNumber" class="form-control" placeholder="" required
-                                  ngModel #creditCardNumber="ngModel" [(ngModel)]="contract.accountingData.creditCardNumber">
-                                <p class="text-danger" *ngIf="creditCardNumber.touched && creditCardNumber.invalid">*campo richiesto
-                                </p>
-                              </div>
-                            </div>
-                            <div class="col-md-4 pl-1">
-                              <div class="form-group">
-                                <label for="exampleInputEmail1">Data Scadenza Carta:</label>
-                                <input type="month" name="creditCardExpiryDate" class="form-control" placeholder="" ngModel
-                                  required #creditCardExpiryDate="ngModel"
-                                  [(ngModel)]="contract.accountingData.creditCardExpiryDate">
-                                <p class="text-danger" *ngIf="creditCardExpiryDate.touched && creditCardExpiryDate.invalid">*campo richiesto
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                                </select> -->
+                                                                <input type="text" name="cardType" class="form-control" placeholder="Tipo Carta" required ngModel #cardType="ngModel" [(ngModel)]="contract.accountingData.cardType">
 
-                        <div class="conto-corrente">
-                          <div class="row">
-                            <div class="col-md-6 pr-1">
-                              <div class="form-group">
-                                <label>Codice IBAN *: </label>
-                                <input type="text" name="IBANcode" class="form-control" placeholder="" required ngModel
-                                  #IBANcode="ngModel" [(ngModel)]="contract.accountingData.IBANcode">
-                                <p class="text-danger" *ngIf="IBANcode.touched && IBANcode.invalid">*campo richiesto</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                                                                <p class="text-danger" *ngIf="cardType.touched && cardType.invalid">*campo richiesto</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5 px-1">
+                                                            <div class="form-group">
+                                                                <label>Numero Carta *: </label>
+                                                                <input type="text" name="creditCardNumber" class="form-control" placeholder="Numero Carta" required ngModel #creditCardNumber="ngModel" [(ngModel)]="contract.accountingData.creditCardNumber">
+                                                                <p class="text-danger" *ngIf="creditCardNumber.touched && creditCardNumber.invalid">
+                                                                    *campo richiesto
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 pl-1">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Data Scadenza Carta:</label>
+                                                                <input type="month" name="creditCardExpiryDate" class="form-control" placeholder="" ngModel required #creditCardExpiryDate="ngModel" [(ngModel)]="contract.accountingData.creditCardExpiryDate">
+                                                                <p class="text-danger" *ngIf="creditCardExpiryDate.touched && creditCardExpiryDate.invalid">*campo richiesto
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                        <div class="row">
-                          <div class=" col-md-6 mb-3 pr-1">
-                            <div class="form-group">
-                              <label>Pagata:</label>
-                              <select class="custom-select" name="paymentStatus" [(ngModel)]="contract.accountingData.paymentStatus">
-                                <option selected>No</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class=" col-md-6 mb-3 pr-1">
-                            <div class="form-group">
-                              <label>Incassato Da Brand:</label>
-                              <select class="custom-select" name="cashedByBrand" [(ngModel)]="contract.accountingData.cashedByBrand">
-                                <option selected>No</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class=" col-md-6 mb-3 pr-1">
-                            <div class="form-group">
-                              <label>Probabile Provvigione Agente:</label>
-                              <select class="custom-select" name="commissionAgent" [(ngModel)]="contract.accountingData.commissionAgent">
-                                <option selected>No</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class=" col-md-6 mb-3 pr-1">
-                            <div class="form-group">
-                              <label>Agenzia:</label>
-                              <select class="custom-select" name="agent" [(ngModel)]="contract.accountingData.agent">
-                                <option selected>Seleziona</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="">
+                                                <div class="conto-corrente">
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Codice IBAN *: </label>
+                                                                <input type="text" name="IBANcode" class="form-control" placeholder="Codice IBAN" required ngModel #IBANcode="ngModel" [(ngModel)]="contract.accountingData.IBANcode">
+                                                                <p class="text-danger" *ngIf="IBANcode.touched && IBANcode.invalid">*campo richiesto</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                        </div>
-                      </div>
+                                                <div class="row">
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Pagata:</label>
+                                                            <select class="custom-select" name="paymentStatus" [(ngModel)]="contract.accountingData.paymentStatus">
+                                <option value="">Seleziona</option>
+                                <option value="No">No</option>
+                                <option value="Yes">Si</option>
+                              </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Incassato Da Brand:</label>
+                                                            <select class="custom-select" name="cashedByBrand" [(ngModel)]="contract.accountingData.cashedByBrand">
+                                <option value="">Seleziona</option>
+                                <option value="No">No</option>
+                                <option value="Yes">Si</option>
+                              </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Probabile Provvigione Agente:</label>
+                                                            <!-- <select class="custom-select" name="commissionAgent" [(ngModel)]="contract.accountingData.commissionAgent">
+                                                              <option value="">Seleziona</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select> -->
+                                                            <input class="form-control" name="commissionAgent" id="commissionAgent" type="number" value="42" min="0" max="9999" step="0.01" placeholder="0" [(ngModel)]="contract.accountingData.commissionAgent">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Agenzia:</label>
+                                                            <select class="custom-select" name="agent" [(ngModel)]="contract.accountingData.agent">
+                                <option value="">Seleziona</option>
+                                <option *ngFor="let agenzia of agenzie" [ngValue]="agenzia">{{agenzia}}</option>
+
+                              </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Allegati" id="allegati">
+                            <ng-template ngbTabContent>
+                                <div>
+                                    <div class="col-md-12">
+                                        <div class="card card-user">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-4 mb-3 pr-1">
+                                                        <div class="custom-file">
+                                                            <label class="custom-file-label">Nessun file selezionato</label>
+                                                            <input type="file" class="custom-file-input">
+                                                        </div>
+                                                        <div class="btn btn-default"> Carica PDA
+                                                            <input type="submit" hidden>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-md-8 mb-3 pr-1">
+                                                        <div class="custom-file">
+                                                            <label class="custom-file-label">Nessun file selezionato</label>
+                                                            <input type="file" class="custom-file-input">
+                                                        </div>
+                                                        <div class="btn btn-default">Carica Modulo Avvenuto Incontro Col Cliente
+                                                            <input type="submit" hidden>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="custom-file">
+                                                            <label class="custom-file-label">Nessun file selezionato</label>
+                                                            <input type="file" class="custom-file-input">
+                                                        </div>
+                                                        <div class="btn btn-default">Altro File 1
+                                                            <input type="submit" hidden>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="custom-file">
+                                                            <label class="custom-file-label">Nessun file selezionato</label>
+                                                            <input type="file" class="custom-file-input">
+                                                        </div>
+                                                        <div class="btn btn-default">Altro File 2
+                                                            <input type="submit" hidden>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                    <div class="">
+                        <button type="submit" class="btn btn-primary">Registra</button>
+                        <button (click)="registraBozza($event)" class="btn btn-primary">Registra Bozza</button>
+                        <button class="btn btn-primary" (click)="print($event)">Stampa</button>
                     </div>
-                  </div>
-                </div>
-              </ng-template>
-            </ngb-tab>
-            <ngb-tab title="Allegati" id="allegati">
-              <ng-template ngbTabContent>
-                <div>
-                  <div class="col-md-12">
-                    <div class="card card-user">
-                      <div class="card-body">
-                        <div class="row">
-                          <div class="col-md-4 mb-3 pr-1">
-                            <div class="custom-file">
-                              <label class="custom-file-label">Nessun file selezionato</label>
-                              <input type="file" class="custom-file-input">
-                            </div>
-                            <div class="btn btn-default"> Carica PDA
-                              <input type="submit" hidden>
-                            </div>
-                          </div>
-                          <div class=" col-md-8 mb-3 pr-1">
-                            <div class="custom-file">
-                              <label class="custom-file-label">Nessun file selezionato</label>
-                              <input type="file" class="custom-file-input">
-                            </div>
-                            <div class="btn btn-default">Carica Modulo Avvenuto Incontro Col Cliente
-                              <input type="submit" hidden>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class=" col-md-6 mb-3 pr-1">
-                            <div class="custom-file">
-                              <label class="custom-file-label">Nessun file selezionato</label>
-                              <input type="file" class="custom-file-input">
-                            </div>
-                            <div class="btn btn-default">Altro File 1
-                              <input type="submit" hidden>
-                            </div>
-                          </div>
-                          <div class=" col-md-6 mb-3 pr-1">
-                            <div class="custom-file">
-                              <label class="custom-file-label">Nessun file selezionato</label>
-                              <input type="file" class="custom-file-input">
-                            </div>
-                            <div class="btn btn-default">Altro File 2
-                              <input type="submit" hidden>
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ng-template>
-            </ngb-tab>
-          </ngb-tabset>
-          <div class="">
-            <button type="submit" class="btn btn-primary">Registra</button>
-            <button (click)="registraBozza($event)" class="btn btn-primary">Registra Bozza</button>
-            <button class="btn btn-primary" (click)="print($event)">Stampa</button>
-          </div>
-        </form>
-      </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

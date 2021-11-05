@@ -1,3 +1,4 @@
+import { Address } from './address.model';
 export class PersonalData {
 
   private _surname: string;
@@ -14,6 +15,8 @@ export class PersonalData {
   private _placeOfIssue: string;
   private _dateOfIssue: string;
   private _expiryDate: string;
+  private _address: Address;
+
 
   constructor() {
 
@@ -31,6 +34,7 @@ export class PersonalData {
     this._placeOfIssue = '';
     this._dateOfIssue = '';
     this._expiryDate = '';
+    this._address = new Address;
   }
 
   public get surname(): string {
@@ -119,6 +123,16 @@ export class PersonalData {
   public set expiryDate(value: string) {
     this._expiryDate = value;
   }
+
+  public get address(): Address {
+    return this._address;
+  }
+
+  public set address(address: Address) {
+    this._address = address;
+  }
+
+
 
   toJSon() {
     return {

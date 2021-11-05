@@ -1,1 +1,0 @@
-{ "portabilita": ["Numero Nuovo", "Sim Mobile", "Rete Fissa"] }

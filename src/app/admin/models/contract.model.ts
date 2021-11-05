@@ -1,20 +1,17 @@
 import { PersonalData } from 'app/admin/models/personalData';
 import { ManagerData } from 'app/admin/models/managerData';
 import { AccountingData } from 'app/admin/models/accountingData';
-import { AddressData } from 'app/admin/models/addressData';
 
 export class ContractModel {
 
   private _personalData: PersonalData;
   private _managerData: ManagerData;
   private _accountingData: AccountingData;
-  private _addressData: AddressData;
 
   constructor() {
     this.personalData = new PersonalData;
     this.managerData = new ManagerData;
     this.accountingData = new AccountingData;
-    this.addressData = new AddressData;
   }
 
   public get personalData(): PersonalData {
@@ -35,15 +32,13 @@ export class ContractModel {
   public set accountingData(value: AccountingData) {
     this._accountingData = value;
   }
-  public get addressData(): AddressData {
-    return this._addressData;
-  }
-  public set addressData(value: AddressData) {
-    this._addressData = value;
-  }
 
   toJSon() {
-    return {};
+    return {
+      personalData: this.personalData.toJSon(),
+      managerData: this.managerData.toJSon(),
+      accountingData: this.accountingData.toJSon()
+    };
   }
 
 }
