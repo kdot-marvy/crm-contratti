@@ -1,118 +1,102 @@
 <div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title"> Elenco Contratti</h4>
-                <button type="button" class="btn btn-primary btn-round" (click)="goToNew()"><i class="nc-icon nc-simple-add"></i> aggiungi</button>
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Elenco Contratti</h4>
+        <button type="button" class="btn btn-primary btn-round" (click)="goToNew()"><i
+            class="nc-icon nc-simple-add"></i> aggiungi</button>
+      </div>
+      <div class="table">
+        <div class="card-body">
+          <div class="row table-header bg-light text-center align-items-center">
+            <div class="col-1">Sel
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                  </svg>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead class=" text-primary">
-                            <th>
-                                Sel
-                            </th>
-                            <th>
-                                Agente
-                            </th>
-                            <th>
-                                Cod.Contr.
-                            </th>
-                            <th>
-                                Gestore/Pacchetto
-                            </th>
-                            <th>
-                                Note
-                            </th>
-                            <th>
-                                Data Pratica
-                            </th>
-                            <th>
-                                Stato Pratica
-                            </th>
-                            <th>
-                                Nominativo
-                            </th>
-                            <th>
-                                Codice Fiscale
-                            </th>
-                            <th>
-                                Sim V.F.
-                            </th>
-                            <th class="text-right">
-                                Azioni
-                            </th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Dakota Rice
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Oud-Turnhout
-                                </td>
-                                <td class="text-right">
-                                    $36,738
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="table-header row">
-                    <div class="col">Sel</div>
-                    <div class="col">Agente</div>
-                    <div class="col">Cod.Contr.</div>
-                    <div class="col">Gestore/Pacchetto</div>
-                    <div class="col">Note</div>
-                    <div class="col">Data Pratica</div>
-                    <div class="col">Stato Pratica</div>
-                    <div class="col">Nominativo</div>
-                    <div class="col">Codice Fiscale</div>
-                    <div class="col">Sim V.F.</div>
-                    <div class="col">Azioni</div>
-                </div>
-                <div class="tabel-content row">
-                    <div class="col">Sel</div>
-                    <div class="col">Agente</div>
-                    <div class="col">Cod.Contr.</div>
-                    <div class="col">Gestore/Pacchetto</div>
-                    <div class="col">Note</div>
-                    <div class="col">Data Pratica</div>
-                    <div class="col">Stato Pratica</div>
-                    <div class="col">Nominativo</div>
-                    <div class="col">Codice Fiscale</div>
-                    <div class="col">Sim V.F.</div>
-                    <div class="col">Azioni</div>
-                </div>
+            <div class="col-1 border-right border-left">Agente
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                  </svg>
             </div>
+            <div class="col-1">Cod.Contr.
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                  </svg>
+            </div>
+            <div class="col-2 border-right border-left">Gestore/Pacchetto
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                  </svg>
+            </div>
+            <div class="col-1">Note
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                  </svg>
+            </div>
+            <div class="col-1 border-right border-left">Data Pratica
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                  </svg>
+            </div>
+            <div class="col-1">Stato Pratica
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                  </svg>
+            </div>
+            <div class="col-1 border-right border-left">Nominativo
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                  </svg>
+            </div>
+            <div class="col-1">Codice Fiscale
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                  </svg>
+            </div>
+            <div class="col-1 border-right border-left">Sim V.F.
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                  </svg>
+            </div>
+            <div class="col-1">Azioni
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                  </svg>
+            </div>
+          </div>
+          <div class="row table-filter py-1 bg-light text-center justify-content-center">
+            <input type="text" class="col-1 form-control-sm border-0" name="" id="" placeholder="Sel">
+            <input type="text" class="col-1 form-control-sm border-0" name="" id="" placeholder="Agente">
+            <input type="text" class="col-1 form-control-sm border-0" name="" id="" placeholder="Cod.Contr.">
+            <input type="text" class="col-2 form-control-sm border-0" name="" id="" placeholder="Gestore/Pacchetto">
+            <input type="text" class="col-1 form-control-sm border-0" name="" id="" placeholder="Note">
+            <input type="text" class="col-1 form-control-sm border-0" name="" id="" placeholder="Data Pratica">
+            <input type="text" class="col-1 form-control-sm border-0" name="" id="" placeholder="Stato Pratica">
+            <input type="text" class="col-1 form-control-sm border-0" name="" id="" placeholder="Nominativo">
+            <input type="text" class="col-1 form-control-sm border-0" name="" id="" placeholder="Codice Fiscale">
+            <input type="text" class="col-1 form-control-sm border-0" name="" id="" placeholder="Sim V.F.">
+            <input type="text" class="col-1 form-control-sm border-0" name="" id="" placeholder="Azioni">
+          </div>
+          <div class="row tabel-content py-1 text-center" *ngFor="let contract of contracts">
+            <input type="checkbox" name="" id="" class="col-1">
+            <div class="col-1">{{contract.name}}</div>
+            <div class="col-1"></div>
+            <div class="col-2">Gestore/Pacchetto</div>
+            <div class="col-1">Note</div>
+            <div class="col-1">Data Pratica</div>
+            <div class="col-1">Stato Pratica</div>
+            <div class="col-1">Nominativo</div>
+            <div class="col-1">Codice Fiscale</div>
+            <div class="col-1">Sim V.F.</div>
+            <div class="col-1">Azioni</div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
-<ng-template class=""  #noDato>
-    <div class="" style="background: #E3E3E3;">Nessun dato disponibile</div>
+<ng-template class="" #noDato>
+  <div class="" style="background: #E3E3E3;">Nessun dato disponibile</div>
 </ng-template>

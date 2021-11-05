@@ -1,0 +1,10 @@
+.table-header{
+    font-weight: bold;
+}
+.table-filter input{
+    text-align: center;
+}
+.tabel-content .btn{
+    padding: .5rem 1rem;
+    width: 2rem;
+}

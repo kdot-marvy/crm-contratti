@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AGENTE, CONTRACTS } from 'assets/data/contratti-mockup';
+import { Agent } from 'http';
 
 @Component({
   selector: 'app-elenco-contract',
@@ -9,7 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ElencoContractComponent implements OnInit {
 
-  data = false
+  public contracts = AGENTE;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,

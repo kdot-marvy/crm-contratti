@@ -39,7 +39,8 @@ import { SharedModule } from './shared/shared.module';
     FixedPluginModule,
     HttpClientModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

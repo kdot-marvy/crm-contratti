@@ -1,0 +1,18 @@
+.table-header div{
+    font-weight: bold;
+    padding-right: .2rem;
+    padding-left: .2rem;
+}
+
+.table-filter input{
+    text-align: center;
+    border-radius: .5rem;
+}
+.tabel-content div{
+    text-align: center;
+    padding-right: .2rem;
+    padding-left: .2rem;
+}
+.tabel-content{
+    align-items: center;
+}

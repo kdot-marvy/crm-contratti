@@ -1,67 +1,69 @@
-<div class="container-fluid">
-  <div class="login-card card-body auth-body">
-    <div class="card-header border-0">
-      <h5 class="card-title text-center m-0">Sign Up</h5>
-    </div>
-    <div class="card-body">
-      <form #signUpUserForm="ngForm" class="md-float-material" (submit)="onSubmit(signUpUserForm.valid)">
-        <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Username" [(ngModel)]="registration.username"
-                name="username" required>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <input type="password" class="form-control" placeholder="Nome" [(ngModel)]="registration.firstName"
-                name="password" required>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <input type="password" class="form-control" placeholder="Cognome" [(ngModel)]="registration.lastName"
-                name="password" required>
-            </div>
-          </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card col-md-8 align-self-center justify-content-md-center">
+        <div class="card-header">
+          <h4 class="card-title text-center">Sign Up</h4>
         </div>
-        <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
-              <input type="email" class="form-control" placeholder="Email" [(ngModel)]="registration.email"
-                name="username" required>
+        <div class="card-body">
+          <form #signUpUserForm="ngForm" class="md-float-material" (submit)="onSubmit(signUpUserForm.valid)">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Nome" [(ngModel)]="registration.firstName"
+                    name="nome" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Cognome" [(ngModel)]="registration.lastName"
+                    name="cognome" required>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <input type="password" class="form-control" placeholder="Password" [(ngModel)]="registration.password"
-                name="password" required>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Username" [(ngModel)]="registration.username"
+                    name="username" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="email" class="form-control" placeholder="Email" [(ngModel)]="registration.email"
+                    name="email" required>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <input type="password" class="form-control" placeholder="Conferma Password" [(ngModel)]="registration.confirmPassword"
-                name="password" required>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="password" class="form-control" placeholder="Password" [(ngModel)]="registration.password"
+                    name="password" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="password" class="form-control" placeholder="Conferma Password"
+                    [(ngModel)]="registration.confirmPassword" name="password-check" required>
+                </div>
+              </div>
             </div>
-          </div>
+            <div class="row">
+              <div class="col-md-12">
+                <p class="text-right text-danger">
+                  {{passwordError}}
+                </p>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-md-3">
+                <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign
+                  up</button>
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="row m-t-30">
-          <div class="col-md-2">
-            <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign
-              up</button>
-          </div>
-        </div>
-        <hr />
-      </form>
+      </div>
     </div>
   </div>
-</div>
-
-<!-- constructor() {
-    this._username = '';
-    this._password = '';
-    this._firstName = '';
-    this._email = '';
-    this._lastName = '';
-    this._confirmPassword = '';
-  } -->
