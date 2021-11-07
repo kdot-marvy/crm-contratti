@@ -1,118 +1,82 @@
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title"> Elenco Contratti</h4>
-                <button type="button" class="btn btn-primary btn-round" (click)="goToNew()"><i class="nc-icon nc-simple-add"></i> aggiungi</button>
+<div class="container-fluid">
+    <!-- Starts upper section [Search box and Records per page] -->
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <div class="flex-grow-1 w-100">
+            <div class="search">
+                <form [formGroup]="form" (ngSubmit)="submitForm()">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6">
+                            <div class="input-group">
+                                <input type="text" formControlName="term" class="c-f h-45 form-control" required placeholder="Search students" (keydown)="clearSearchResult()" />
+                                <span>
+                  <i class="bx bx-fw bx-search"></i>
+                </span>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-6">
+                            <div class="d-flex align-items-center justify-content-end">
+                                <div class="form-group">
+                                    <label class="pr-3">Records per page</label>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control custom-shadow" formControlName="recordsPerPage" (change)="
+                      recordsPerPage = form.controls.recordsPerPage.value
+                    ">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="50">50</option>
+                  </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead class=" text-primary">
-                            <th>
-                                Sel
-                            </th>
-                            <th>
-                                Agente
-                            </th>
-                            <th>
-                                Cod.Contr.
-                            </th>
-                            <th>
-                                Gestore/Pacchetto
-                            </th>
-                            <th>
-                                Note
-                            </th>
-                            <th>
-                                Data Pratica
-                            </th>
-                            <th>
-                                Stato Pratica
-                            </th>
-                            <th>
-                                Nominativo
-                            </th>
-                            <th>
-                                Codice Fiscale
-                            </th>
-                            <th>
-                                Sim V.F.
-                            </th>
-                            <th class="text-right">
-                                Azioni
-                            </th>
+        </div>
+    </div>
+    <!-- End upper section -->
+
+    <!-- Starts table -->
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Students</h3>
+            <div class="card">
+                <div class="pt-0 card-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="bt-none">Name</th>
+                                <th class="bt-none">Email</th>
+                                <th class="bt-none">Department</th>
+                            </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    Dakota Rice
+                            <tr *ngIf="!students.length && !isLoadingStudents" class="text-center">
+                                <td colSpan="3">No students</td>
+                            </tr>
+                            <tr *ngIf="isLoadingStudents" class="text-center">
+                                <td colSpan="3">
+                                    <span>Loading...</span>
                                 </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Niger
-                                </td>
-                                <td>
-                                    Oud-Turnhout
-                                </td>
-                                <td class="text-right">
-                                    $36,738
-                                </td>
+                            </tr>
+                            <tr *ngFor="let student of students">
+                                <td>{{ student.name }}</td>
+                                <td>{{ student.email }}</td>
+                                <td>{{ student.department }}</td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="table-header row">
-                    <div class="col">Sel</div>
-                    <div class="col">Agente</div>
-                    <div class="col">Cod.Contr.</div>
-                    <div class="col">Gestore/Pacchetto</div>
-                    <div class="col">Note</div>
-                    <div class="col">Data Pratica</div>
-                    <div class="col">Stato Pratica</div>
-                    <div class="col">Nominativo</div>
-                    <div class="col">Codice Fiscale</div>
-                    <div class="col">Sim V.F.</div>
-                    <div class="col">Azioni</div>
-                </div>
-                <div class="tabel-content row">
-                    <div class="col">Sel</div>
-                    <div class="col">Agente</div>
-                    <div class="col">Cod.Contr.</div>
-                    <div class="col">Gestore/Pacchetto</div>
-                    <div class="col">Note</div>
-                    <div class="col">Data Pratica</div>
-                    <div class="col">Stato Pratica</div>
-                    <div class="col">Nominativo</div>
-                    <div class="col">Codice Fiscale</div>
-                    <div class="col">Sim V.F.</div>
-                    <div class="col">Azioni</div>
+                    <app-pagination (responseData)="students = $event" (loading)="isLoadingStudents = $event" [apiRoute]="'http://localhost:4000/api/students'" [searchTerm]="searchTerm" [reload]="reload" [recordsPerPage]="recordsPerPage">
+                    </app-pagination>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Ends table -->
 </div>
-
-<ng-template class=""  #noDato>
-    <div class="" style="background: #E3E3E3;">Nessun dato disponibile</div>
-</ng-template>

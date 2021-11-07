@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdminRoutes } from './admin.routing';
 
@@ -21,13 +21,16 @@ import { NewContractComponent } from './components/elenco-contracts/new-contract
 import { ElencoDocumentComponent } from './components/elenco-document/elenco-document.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(AdminRoutes),
     FormsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     DashboardComponent,
@@ -44,6 +47,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     NewContractComponent,
     ElencoDocumentComponent,
     SignUpComponent,
+    PaginationComponent,
   ]
 })
 

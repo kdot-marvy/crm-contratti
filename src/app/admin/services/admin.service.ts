@@ -87,4 +87,7 @@ export class AdminService {
     return this.http.get('assets/js/gestori.json');
   }
 
+  getContructPager(params: any){
+
+  }
 }
