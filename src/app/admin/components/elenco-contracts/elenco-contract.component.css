@@ -1,17 +1,35 @@
-
-th{
-cursor: pointer;
+.header{
+    font-size: .7rem;
+    padding-left: 0;
+    padding-right: 0;
 }
+th {
+  cursor: pointer;
+}
+
 /* th:nth-child(even){
     background-color: rgba(211, 211, 211, 0.466);
 }
 th:nth-child(even) input{
     background-color: #ffffff;
 } */
-th input{
-    margin-top: .3rem;
-    border: none;
-    border-radius: .5rem;
-    background: #e8eaeb8f;
-    text-align: center;
+th input {
+  margin-top: .3rem;
+  border: none;
+  border-radius: .5rem;
+  background: #e8eaeb8f;
+  text-align: center;
 }
+
+.edit-content, .delete-content {
+    cursor: pointer;
+}
+
+th:focus svg {
+    animation: rotate 1s ease-in-out 0s;
+  }
+  
+  @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(180deg); }
+  }

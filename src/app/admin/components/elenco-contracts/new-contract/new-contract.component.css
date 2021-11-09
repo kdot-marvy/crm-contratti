@@ -45,5 +45,6 @@ h2{
   margin: 0;
   background: rgba(0, 0, 0, 0.308);
   transition: 0.5s;
+  z-index: 9999;
 }
 /* modal ends here */

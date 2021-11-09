@@ -1,11 +1,12 @@
 import { EPaymentType } from './../../../models/EPaymentType.enum';
 import { AdminService } from './../../../services/admin.service';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ContractModel } from 'app/admin/models/contract.model';
 import { EAddressType } from 'app/admin/models/EAddressType.enum';
 import { EDocType } from 'app/admin/models/EDocType.enum';
 import { EStatoSim } from 'app/admin/models/EStatoSim.enum';
 import { EStatoPraticaType } from 'app/admin/models/EStatoPraticaType.enum';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 
 
 @Component({
@@ -127,14 +128,6 @@ export class NewContractComponent implements OnInit {
     window.print()
   }
 
-  // output(event: any) {
-  //   if (event === "1" || "2") {
-  //     this.isShown = true;
-  //   } else {
-  //     this.isShown = false;
-  //   }
-  // }
-
   onKeydown(event) {
 
     this.contract.accountingData.fileStatus = 'mamma';
@@ -186,7 +179,7 @@ export class NewContractComponent implements OnInit {
     this.contract.personalData.surname = 'mamma';
     this.contract.personalData.name = 'mamma';
     this.contract.personalData.placeOfBirth = 'mamma';
-    // this.contract.personalData.dateOfBirth = 'mamma';
+    // this.contract.personalData.dateOfBirth = "'12/03/2021'";
     this.contract.personalData.fiscalCode = 'mamma';
     this.contract.personalData.partitaIVA = 'mamma';
     this.contract.personalData.phoneNumber = 'mamma';
@@ -206,6 +199,7 @@ export class NewContractComponent implements OnInit {
   }
 
   changedManager(gestore) {
+
     this.contract.managerData.manager = gestore.name;
 
     this.panel1Shown = false;
@@ -228,30 +222,20 @@ export class NewContractComponent implements OnInit {
     }
   }
 
-  changedAccounting(accounting) {
-    this.contract.accountingData.paymentType = accounting.key;
+  changedAccounting(event: any) {
 
-    this.panel1Shown = false;
-    this.panel2Shown = false;
-    this.panel3Shown = false;
-
-    switch (accounting.panel) {
-      case '2': {
-        this.panel2Shown = true;
-        this.panel3Shown = true;
-        break;
-      }
-      case '3': {
-        this.panel1Shown = true;
-        this.panel3Shown = true;
-        break;
-      }
-      default: {
-        this.panel1Shown = false;
-        this.panel2Shown = false;
-        this.panel3Shown = false;
-        break;
-      }
+    if(event === 'TYPE_ACCOUNT'){
+      this.panel2Shown = true;
+      this.panel3Shown = true;
+      this.panel1Shown = false;    
+    } else if(event === 'TYPE_CREDITCARD'){
+      this.panel1Shown = true;
+      this.panel2Shown = false;
+      this.panel3Shown = true;
+    }else{
+      this.panel1Shown = false;
+      this.panel2Shown = false;
+      this.panel3Shown = false;
     }
   }
 

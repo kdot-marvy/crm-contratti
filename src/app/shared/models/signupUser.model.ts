@@ -40,14 +40,14 @@ export class SignupUserModel {
   public get firstName(): string {
     return this._firstName;
   }
-  public set firstname(value: string) {
+  public set firstName(value: string) {
     this._firstName = value;
   }
 
   public get lastName(): string {
     return this._lastName;
   }
-  public set lastname(value: string) {
+  public set lastName(value: string) {
     this._lastName = value;
   }
 

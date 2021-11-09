@@ -5,7 +5,7 @@
                 <h4 class="card-title"> Nuovo <input (keydown.i)="onKeydown($event)"></h4>
             </div>
             <div class="card-body">
-                <form #contractForm="ngForm" (submit)="onSubmit(contractForm.valid)">
+                <form #contractForm="ngForm" method="post" (ngSubmit)="onSubmit(contractForm.valid)">
                     <ngb-tabset>
                         <ngb-tab title="Dati Anagrafici" id="anagrafici">
                             <ng-template ngbTabContent>
@@ -18,7 +18,6 @@
                                                         <label>Rag.Soc./Cognome *: </label>
                                                         <input type="text" name="cognome" class="form-control" placeholder="Ragione Sociale / Cognome" required ngModel #cognome="ngModel" [(ngModel)]="contract.personalData.surname">
                                                         <p class="text-danger" *ngIf="cognome.touched && cognome.invalid">*campo richiesto</p>
-                                                        <p class="text-danger" *ngIf="contractForm.errors?.required">*campo richiesto</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
@@ -485,7 +484,7 @@
                                                     <div class=" col-md-6 mb-3 pr-1">
                                                         <div class="form-group">
                                                             <label>Tipo di Pagamento:</label>
-                                                            <select class="custom-select" name="paymentType" [(ngModel)]="contract.accountingData.paymentType">
+                                                            <select class="custom-select" name="paymentType" [(ngModel)]="contract.accountingData.paymentType" (ngModelChange)="changedAccounting($event)">
                                 <option value="">Seleziona</option>
                                 <option *ngFor="let key of paymentTypeKeys" [ngValue]="key">{{paymentTypes[key]}}
                                 </option>
@@ -684,7 +683,7 @@
                         </ngb-tab>
                     </ngb-tabset>
                     <div class="">
-                        <button type="submit"class="btn btn-primary">Registra</button>
+                        <button type="submit"class="btn btn-primary" [disabled]="!contractForm.valid">Registra</button>
                         <button (click)="registraBozza($event)" class="btn btn-primary">Registra Bozza</button>
                         <button class="btn btn-primary" (click)="print($event)">Stampa</button>
                     </div>
@@ -695,7 +694,7 @@
 </div>
 
 
-<div class="overlay" aria-hidden="true" *ngIf="modal">
+<div class="overlay" aria-hidden="true" aria-labelledby="staticBackdropLabel" *ngIf="modal">
     <div class="container text-center pt-2">
       <h5 class="display-6">Vuoi salvare l'utente?</h5>
      <div class="button d-flex justify-content-around">
