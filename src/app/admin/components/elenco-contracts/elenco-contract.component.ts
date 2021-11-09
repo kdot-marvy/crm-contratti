@@ -14,8 +14,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ElencoContractComponent implements OnInit,   AfterViewChecked {
 
-  data = false
-
   // Defaults
   form!: FormGroup;
   students: any = [];
@@ -41,10 +39,6 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
   goToNew() {
     this.router.navigate(['nuovo-contratto']);
   }
-
-
-
-
 
 
   // On After view checked, detect changes manually

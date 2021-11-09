@@ -18,7 +18,7 @@ export class NewContractComponent implements OnInit {
 
   private contract: ContractModel = new ContractModel();
   private submitted = false;
-
+  public modal: boolean = false;
 
   panel1Shown = false;
   panel2Shown = false;
@@ -99,6 +99,7 @@ export class NewContractComponent implements OnInit {
   onSubmit(valid: boolean) {
     this.submitted = true;
     if (valid) {
+      this.modal=true;
       console.log(this.contract);
       this.adminService.addContract(this.contract).subscribe(
         (res) => {
@@ -216,5 +217,15 @@ export class NewContractComponent implements OnInit {
         break;
       }
     }
+  }
+
+  showModal(event: Event){
+    event.preventDefault();
+    this.modal=true;
+  }
+
+  closeModal(event: Event){
+    event.preventDefault();
+    this.modal = false;
   }
 }

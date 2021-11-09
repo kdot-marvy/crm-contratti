@@ -1,0 +1,17 @@
+
+th{
+cursor: pointer;
+}
+/* th:nth-child(even){
+    background-color: rgba(211, 211, 211, 0.466);
+}
+th:nth-child(even) input{
+    background-color: #ffffff;
+} */
+th input{
+    margin-top: .3rem;
+    border: none;
+    border-radius: .5rem;
+    background: #e8eaeb8f;
+    text-align: center;
+}

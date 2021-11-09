@@ -18,6 +18,7 @@
                                                         <label>Rag.Soc./Cognome *: </label>
                                                         <input type="text" name="cognome" class="form-control" placeholder="Ragione Sociale / Cognome" required ngModel #cognome="ngModel" [(ngModel)]="contract.personalData.surname">
                                                         <p class="text-danger" *ngIf="cognome.touched && cognome.invalid">*campo richiesto</p>
+                                                        <p class="text-danger" *ngIf="contractForm.errors?.required">*campo richiesto</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
@@ -47,7 +48,7 @@
                                                 <div class="col-md-4 pl-1">
                                                     <div class="form-group">
                                                         <label>Codice Fiscale *:</label>
-                                                        <input type="text" name="codice-fiscale" class="form-control" placeholder="Codice Fiscale" required ngModel #codiceFiscale="ngModel" [(ngModel)]="contract.personalData.fiscalCode">
+                                                        <input type="text" name="codice-fiscale" class="form-control text-uppercase" placeholder="Codice Fiscale" required ngModel #codiceFiscale="ngModel" [(ngModel)]="contract.personalData.fiscalCode">
                                                         <p class="text-danger" *ngIf="codiceFiscale.touched && codiceFiscale.invalid">*campo richiesto
                                                         </p>
                                                     </div>
@@ -368,14 +369,14 @@
                                                     </div>
                                                     <div class="col-md-4 px-1">
                                                         <div class="form-group">
-                                                            <label>Indirizzo:</label>
+                                                            <label>Indirizzo *:</label>
                                                             <input type="text" class="form-control" name="location-address" placeholder="Indirizzo" required ngModel #address="ngModel" [(ngModel)]="contract.managerData.plantLocationAddress.address">
                                                             <p class="text-danger" *ngIf="address.touched && address.invalid">*campo richiesto</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2 pl-1">
                                                         <div class="form-group">
-                                                            <label>N°</label>
+                                                            <label>N° *:</label>
                                                             <input type="text" name="location-address-number" class="form-control" placeholder="Numero Civico" required ngModel #plantLocationAddressNumber="ngModel" [(ngModel)]="contract.managerData.plantLocationAddress.addressNumber">
                                                             <p class="text-danger" *ngIf="plantLocationAddressNumber.touched && plantLocationAddressNumber.invalid">*campo richiesto
                                                             </p>
@@ -396,7 +397,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button class="btn bg-info m-0 mb-1" (click)="copyToPalnt($event)">Copia da Dati
+                                                <button class="btn bg-info m-0 mb-1" (click)="copyToPlant($event)">Copia da Dati
                           Anagrafici</button>
                                             </div>
 
@@ -416,7 +417,7 @@
                                                     </div>
                                                     <div class="col-md-4 px-1">
                                                         <div class="form-group">
-                                                            <label>Indirizzo:</label>
+                                                            <label>Indirizzo *:</label>
                                                             <input type="text" class="form-control" name="shippingAddress" placeholder="Indirizzo" required ngModel #shippingAddress="ngModel" [(ngModel)]="contract.managerData.shippingAddress.address">
                                                             <p class="text-danger" *ngIf="shippingAddress.touched && shippingAddress.invalid">*campo richiesto
                                                             </p>
@@ -424,7 +425,7 @@
                                                     </div>
                                                     <div class="col-md-2 pl-1">
                                                         <div class="form-group">
-                                                            <label>N°</label>
+                                                            <label>N° *:</label>
                                                             <input type="text" name="shippingAddressNumber" class="form-control" placeholder="Numero Civico" required ngModel #shippingAddressNumber="ngModel" [(ngModel)]="contract.managerData.shippingAddress.addressNumber">
                                                             <p class="text-danger" *ngIf="shippingAddressNumber.touched && shippingAddressNumber.invalid">*campo richiesto
                                                             </p>
@@ -447,7 +448,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button class="btn bg-info m-0 mb-1" (click)="copyToPalnt()">Copia da Dati Anagrafici</button>
+                                                <button class="btn bg-info m-0 mb-1" (click)="copyToShipping()">Copia da Dati Anagrafici</button>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
@@ -515,7 +516,7 @@
                                                         <div class="col-md-4 pl-1">
                                                             <div class="form-group">
                                                                 <label>Codice Fiscale Intestatario *:</label>
-                                                                <input type="text" name="cardUserFiscalCode" class="form-control" placeholder="Codice Fiscale" ngModel required #cardUserFiscalCode="ngModel" [(ngModel)]="contract.accountingData.cardUserFiscalCode">
+                                                                <input type="text" name="cardUserFiscalCode" class="form-control text-uppercase" placeholder="Codice Fiscale" ngModel required #cardUserFiscalCode="ngModel" [(ngModel)]="contract.accountingData.cardUserFiscalCode">
                                                                 <p class="text-danger" *ngIf="cardUserFiscalCode.touched && cardUserFiscalCode.invalid">
                                                                     *campo richiesto
                                                                 </p>
@@ -551,7 +552,7 @@
                                                         </div>
                                                         <div class="col-md-4 pl-1">
                                                             <div class="form-group">
-                                                                <label for="exampleInputEmail1">Data Scadenza Carta:</label>
+                                                                <label for="exampleInputEmail1">Data Scadenza Carta *:</label>
                                                                 <input type="month" name="creditCardExpiryDate" class="form-control" placeholder="" ngModel required #creditCardExpiryDate="ngModel" [(ngModel)]="contract.accountingData.creditCardExpiryDate">
                                                                 <p class="text-danger" *ngIf="creditCardExpiryDate.touched && creditCardExpiryDate.invalid">*campo richiesto
                                                                 </p>
@@ -565,7 +566,7 @@
                                                         <div class="col-md-6 pr-1">
                                                             <div class="form-group">
                                                                 <label>Codice IBAN *: </label>
-                                                                <input type="text" name="IBANcode" class="form-control" placeholder="Codice IBAN" required ngModel #IBANcode="ngModel" [(ngModel)]="contract.accountingData.IBANcode">
+                                                                <input type="text" name="IBANcode" class="form-control text-uppercase" placeholder="Codice IBAN" required ngModel #IBANcode="ngModel" [(ngModel)]="contract.accountingData.IBANcode">
                                                                 <p class="text-danger" *ngIf="IBANcode.touched && IBANcode.invalid">*campo richiesto</p>
                                                             </div>
                                                         </div>
@@ -683,7 +684,7 @@
                         </ngb-tab>
                     </ngb-tabset>
                     <div class="">
-                        <button type="submit" class="btn btn-primary">Registra</button>
+                        <button type="submit"class="btn btn-primary">Registra</button>
                         <button (click)="registraBozza($event)" class="btn btn-primary">Registra Bozza</button>
                         <button class="btn btn-primary" (click)="print($event)">Stampa</button>
                     </div>
@@ -692,3 +693,14 @@
         </div>
     </div>
 </div>
+
+
+<div class="overlay" aria-hidden="true" *ngIf="modal">
+    <div class="container text-center pt-2">
+      <h5 class="display-6">Vuoi salvare l'utente?</h5>
+     <div class="button d-flex justify-content-around">
+         <button class="modal-button btn btn-danger " (click)="closeModal($event)">Cancel</button>
+         <button class="modal-button btn btn btn-primary">Salva</button>
+     </div>
+    </div>
+  </div>
