@@ -22,6 +22,7 @@ export class NewContractComponent implements OnInit {
 
   panel1Shown = false;
   panel2Shown = false;
+  panel3Shown = false;
 
   addresTypes = EAddressType;
   addressTypeKeys = [];
@@ -126,6 +127,14 @@ export class NewContractComponent implements OnInit {
     window.print()
   }
 
+  // output(event: any) {
+  //   if (event === "1" || "2") {
+  //     this.isShown = true;
+  //   } else {
+  //     this.isShown = false;
+  //   }
+  // }
+
   onKeydown(event) {
 
     this.contract.accountingData.fileStatus = 'mamma';
@@ -214,6 +223,33 @@ export class NewContractComponent implements OnInit {
       default: {
         this.panel1Shown = false;
         this.panel2Shown = false;
+        break;
+      }
+    }
+  }
+
+  changedAccounting(accounting) {
+    this.contract.accountingData.paymentType = accounting.key;
+
+    this.panel1Shown = false;
+    this.panel2Shown = false;
+    this.panel3Shown = false;
+
+    switch (accounting.panel) {
+      case '2': {
+        this.panel2Shown = true;
+        this.panel3Shown = true;
+        break;
+      }
+      case '3': {
+        this.panel1Shown = true;
+        this.panel3Shown = true;
+        break;
+      }
+      default: {
+        this.panel1Shown = false;
+        this.panel2Shown = false;
+        this.panel3Shown = false;
         break;
       }
     }
