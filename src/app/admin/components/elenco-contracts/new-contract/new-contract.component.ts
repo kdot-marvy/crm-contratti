@@ -91,7 +91,10 @@ export class NewContractComponent implements OnInit {
 
   }
 
+  submit() {
+    console.log(this.contractForm);
 
+  }
 
   onSubmit(valid: boolean) {
     this.submitted = true;
@@ -258,7 +261,7 @@ export class NewContractComponent implements OnInit {
     }),
 
     phoneNumber: ['', [Validators.required]],
-    otherPhoneNumber: [''],
+    otherNumber: [''],
     email: ['', [Validators.required, Validators.email]],
 
     document: this.formBuilder.group({
@@ -296,7 +299,7 @@ export class NewContractComponent implements OnInit {
         plantZipCode: ['', [Validators.required]],
         plantLocation: ['', [Validators.required]],
       }),
-  
+
       shippingAddressGroup: this.formBuilder.group({
         shippingAddressType: ['', [Validators.required]],
         shippingAddress: ['', [Validators.required]],
@@ -307,6 +310,22 @@ export class NewContractComponent implements OnInit {
 
       note: [''],
     }),
+
+    accountingData: this.formBuilder.group({
+      fileStatus: [''],
+      paymentType: [''],
+      cardUserSurname: [''],
+      cardUserName: [''],
+      cardUserFiscalCode: [''],
+      cardType: [''],
+      creditCardNumber: [''],
+      creditCardExpiryDate: [''],
+      IBANcode: [''],
+      paymentStatus: [''],
+      cashedByBrand: [''],
+      commissionAgent: [''],
+      agent: [''],
+    })
 
   })
 
