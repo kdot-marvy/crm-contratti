@@ -10,6 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class IconsComponent{
 
+    public modal: boolean = false;
+
+
     constructor(
         private activatedRoute: ActivatedRoute,
         private router: Router
@@ -18,4 +21,15 @@ export class IconsComponent{
     goToNew(){
         this.router.navigate(['signup'])
     }
+
+    showModal(event: Event){
+        event.preventDefault();
+        this.modal=true;
+      }
+    
+      closeModal(event: Event){
+        event.preventDefault();
+        this.modal = false;
+      }
+
 }

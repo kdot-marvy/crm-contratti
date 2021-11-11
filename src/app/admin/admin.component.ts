@@ -6,6 +6,7 @@ import { AuthenticationService } from 'app/shared/services/authentication.servic
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
+  styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminComponent implements OnInit {
 

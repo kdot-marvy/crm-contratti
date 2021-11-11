@@ -6,7 +6,8 @@ import { EAddressType } from 'app/admin/models/EAddressType.enum';
 import { EDocType } from 'app/admin/models/EDocType.enum';
 import { EStatoSim } from 'app/admin/models/EStatoSim.enum';
 import { EStatoPraticaType } from 'app/admin/models/EStatoPraticaType.enum';
-import { invalid } from '@angular/compiler/src/render3/view/util';
+import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { Address } from 'app/admin/models/address.model';
 
 
 @Component({
@@ -50,13 +51,7 @@ export class NewContractComponent implements OnInit {
   gestori: any = [];
 
 
-  // private addressType: AddressData;
-  // private address: AddressData;
-  // private addressNumber: AddressData;
-  // private zipCode: AddressData;
-  // private location: AddressData;
-
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 
@@ -101,7 +96,7 @@ export class NewContractComponent implements OnInit {
   onSubmit(valid: boolean) {
     this.submitted = true;
     if (valid) {
-      this.modal=true;
+      this.modal = true;
       console.log(this.contract);
       this.adminService.addContract(this.contract).subscribe(
         (res) => {
@@ -113,10 +108,12 @@ export class NewContractComponent implements OnInit {
     }
   }
 
-  copyToPlant() {
+  copyToPlant(event: Event) {
+    event.preventDefault();
     this.contract.managerData.plantLocationAddress = this.contract.personalData.address;
   }
-  copyToShipping() {
+  copyToShipping(event: Event) {
+    event.preventDefault();
     this.contract.managerData.shippingAddress = this.contract.personalData.address;
   }
 
@@ -224,28 +221,177 @@ export class NewContractComponent implements OnInit {
 
   changedAccounting(event: any) {
 
-    if(event === 'TYPE_ACCOUNT'){
+    if (event === 'TYPE_ACCOUNT') {
       this.panel2Shown = true;
       this.panel3Shown = true;
-      this.panel1Shown = false;    
-    } else if(event === 'TYPE_CREDITCARD'){
+      this.panel1Shown = false;
+    } else if (event === 'TYPE_CREDITCARD') {
       this.panel1Shown = true;
       this.panel2Shown = false;
       this.panel3Shown = true;
-    }else{
+    } else {
       this.panel1Shown = false;
       this.panel2Shown = false;
       this.panel3Shown = false;
     }
   }
 
-  showModal(event: Event){
-    event.preventDefault();
-    this.modal=true;
-  }
-
-  closeModal(event: Event){
+  closeModal(event: Event) {
     event.preventDefault();
     this.modal = false;
+  }
+
+  contractForm = this.formBuilder.group({
+    surname: ['', [Validators.required]],
+    name: [''],
+    placeOfBirth: ['', [Validators.required]],
+    dateOfBirth: ['', [Validators.required]],
+    fiscalCode: ['', [Validators.required, Validators.maxLength(16), Validators.minLength(16)]],
+    partitaIVA: ['', [Validators.required]],
+
+    addressGroup: this.formBuilder.group({
+      addressType: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      addressNumber: ['', [Validators.required]],
+      zipCode: ['', [Validators.required]],
+      location: ['', [Validators.required]],
+    }),
+
+    phoneNumber: ['', [Validators.required]],
+    otherPhoneNumber: [''],
+    email: ['', [Validators.required, Validators.email]],
+
+    document: this.formBuilder.group({
+      documentType: ['', [Validators.required]],
+      documentNumber: ['', [Validators.required]],
+      placeOfIssue: ['', [Validators.required]],
+      dateOfIssue: ['', [Validators.required]],
+      expiryDate: ['', [Validators.required]],
+    }),
+
+    managerData: this.formBuilder.group({
+      manager: ['', [Validators.required]],
+      package: ['', [Validators.required]],
+      coverage: [''],
+      additionalOptions: [''],
+      portability: [''],
+      portabilityNumber: [''],
+      vodafoneStationSerial: [''],
+      simStatus: [''],
+      activationDate: [''],
+      serialSimOperator: [''],
+      managerOfOrigin: [''],
+      newSimSerial: [''],
+      migrationCode: [''],
+      simType: [''],
+      pod: [''],
+      pdr: [''],
+      serialNumber: [''],
+      previousSupplier: [''],
+
+      plantAddressGroup: this.formBuilder.group({
+        plantAddressType: ['', [Validators.required]],
+        plantAddress: ['', [Validators.required]],
+        plantAddressNumber: ['', [Validators.required]],
+        plantZipCode: ['', [Validators.required]],
+        plantLocation: ['', [Validators.required]],
+      }),
+  
+      shippingAddressGroup: this.formBuilder.group({
+        shippingAddressType: ['', [Validators.required]],
+        shippingAddress: ['', [Validators.required]],
+        shippingAddressNumber: ['', [Validators.required]],
+        shippingZipCode: ['', [Validators.required]],
+        shippingLocation: ['', [Validators.required]],
+      }),
+
+      note: [''],
+    }),
+
+  })
+
+  get surname(): AbstractControl {
+    return this.contractForm.get('surname') as AbstractControl;
+  }
+  get placeOfBirth(): AbstractControl {
+    return this.contractForm.get('placeOfBirth') as AbstractControl;
+  }
+  get dateOfBirth(): AbstractControl {
+    return this.contractForm.get('dateOfBirth') as AbstractControl;
+  }
+  get fiscalCode(): AbstractControl {
+    return this.contractForm.get('fiscalCode') as AbstractControl;
+  }
+  get partitaIVA(): AbstractControl {
+    return this.contractForm.get('partitaIVA') as AbstractControl;
+  }
+  get addressType(): AbstractControl {
+    return this.contractForm.get('addressType') as AbstractControl;
+  }
+  get address(): AbstractControl {
+    return this.contractForm.get('address') as AbstractControl;
+  }
+  get addressNumber(): AbstractControl {
+    return this.contractForm.get('addressNumber') as AbstractControl;
+  }
+  get location(): AbstractControl {
+    return this.contractForm.get('location') as AbstractControl;
+  }
+  get phoneNumber(): AbstractControl {
+    return this.contractForm.get('phoneNumber') as AbstractControl;
+  }
+  get email(): AbstractControl {
+    return this.contractForm.get('email') as AbstractControl;
+  }
+  get documentType(): AbstractControl {
+    return this.contractForm.get('documentType') as AbstractControl;
+  }
+  get documentNumber(): AbstractControl {
+    return this.contractForm.get('documentNumber') as AbstractControl;
+  }
+  get placeOfIssue(): AbstractControl {
+    return this.contractForm.get('placeOfIssue') as AbstractControl;
+  }
+  get dateOfIssue(): AbstractControl {
+    return this.contractForm.get('dateOfIssue') as AbstractControl;
+  }
+  get expiryDate(): AbstractControl {
+    return this.contractForm.get('expiryDate') as AbstractControl;
+  }
+  get manager(): AbstractControl {
+    return this.contractForm.get('manager') as AbstractControl;
+  }
+  get package(): AbstractControl {
+    return this.contractForm.get('package') as AbstractControl;
+  }
+  get plantAddressType(): AbstractControl {
+    return this.contractForm.get('plantAddressType') as AbstractControl;
+  }
+  get plantAddress(): AbstractControl {
+    return this.contractForm.get('plantAddress') as AbstractControl;
+  }
+  get plantAddressNumber(): AbstractControl {
+    return this.contractForm.get('plantAddressNumber') as AbstractControl;
+  }
+  get plantZipCode(): AbstractControl {
+    return this.contractForm.get('plantZipCode') as AbstractControl;
+  }
+  get plantLocation(): AbstractControl {
+    return this.contractForm.get('plantLocation') as AbstractControl;
+  }
+  get shippingAddressType(): AbstractControl {
+    return this.contractForm.get('shippingAddressType') as AbstractControl;
+  }
+  get shippingAddress(): AbstractControl {
+    return this.contractForm.get('shippingAddress') as AbstractControl;
+  }
+  get shippingAddressNumber(): AbstractControl {
+    return this.contractForm.get('shippingAddressNumber') as AbstractControl;
+  }
+  get shippingZipCode(): AbstractControl {
+    return this.contractForm.get('shippingZipCode') as AbstractControl;
+  }
+  get shippingLocation(): AbstractControl {
+    return this.contractForm.get('shippingLocation') as AbstractControl;
   }
 }

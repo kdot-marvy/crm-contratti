@@ -21,6 +21,7 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
   reload: EventEmitter<boolean> = new EventEmitter();
   isLoadingStudents: boolean = false;
   recordsPerPage: number = 5;
+  public modal: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -75,7 +76,15 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
   }
 
 
+  showModal(event: Event){
+    event.preventDefault();
+    this.modal=true;
+  }
 
+  closeModal(event: Event){
+    event.preventDefault();
+    this.modal = false;
+  }
 
 
 
