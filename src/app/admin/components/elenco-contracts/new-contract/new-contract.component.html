@@ -429,7 +429,7 @@
                                 </div>
                             </ng-template>
                         </ngb-tab>
-                        <ngb-tab title="Dati contabili" id="contabili">
+                        <ngb-tab title="Dati contabili" id="contabili" formGroupName="accountingData">
                             <ng-template ngbTabContent>
                                 <div>
                                     <div class="col-md-12">
@@ -439,7 +439,7 @@
                                                     <div class=" col-md-6 mb-3 pr-1">
                                                         <div class="form-group">
                                                             <label>Stato Pratica:</label>
-                                                            <select class="custom-select">
+                                                            <select class="custom-select" formControlName="fileStatus">
                                 <option value="">Seleziona</option>
                                 <option *ngFor="let key of EStatoPraticaTypeKeys" [ngValue]="key">
                                   {{EStatoPraticaTypes[key]}}</option>
@@ -450,7 +450,7 @@
                                                     <div class=" col-md-6 mb-3 pr-1">
                                                         <div class="form-group">
                                                             <label>Tipo di Pagamento:</label>
-                                                            <select class="custom-select" (ngModelChange)="changedAccounting($event)">
+                                                            <select class="custom-select" formControlName="paymentType" (ngModelChange)="changedAccounting($event)">
                                 <option value="">Seleziona</option>
                                 <option *ngFor="let key of paymentTypeKeys" [ngValue]="key">{{paymentTypes[key]}}
                                 </option>
@@ -465,19 +465,19 @@
                                                         <div class="col-md-4 pr-1">
                                                             <div class="form-group">
                                                                 <label>Cognome Intestatario : </label>
-                                                                <input type="text" class="form-control" placeholder="Cognome">
+                                                                <input type="text" class="form-control" placeholder="Cognome" formControlName="cardUserSurname">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 px-1">
                                                             <div class="form-group">
                                                                 <label>Nome Intestatario : </label>
-                                                                <input type="text" name="cardUserName" class="form-control" placeholder="Nome">
+                                                                <input type="text" name="cardUserName" class="form-control" placeholder="Nome" formControlName="cardUserName">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 pl-1">
                                                             <div class="form-group">
                                                                 <label>Codice Fiscale Intestatario :</label>
-                                                                <input type="text" name="cardUserFiscalCode" class="form-control text-uppercase" placeholder="Codice Fiscale">
+                                                                <input type="text" name="cardUserFiscalCode" class="form-control text-uppercase" placeholder="Codice Fiscale" formControlName="cardUserFiscalCode">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -494,19 +494,19 @@
                                   <option value="2">Two</option>
                                   <option value="3">Three</option>
                                 </select> -->
-                                                                <input type="text" class="form-control" placeholder="Tipo Carta">
+                                                                <input type="text" class="form-control" placeholder="Tipo Carta" formControlName="cardType">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5 px-1">
                                                             <div class="form-group">
                                                                 <label>Numero Carta : </label>
-                                                                <input type="text" class="form-control" placeholder="Numero Carta">
+                                                                <input type="text" class="form-control" placeholder="Numero Carta" formControlName="creditCardNumber">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 pl-1">
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1">Data Scadenza Carta :</label>
-                                                                <input type="month" class="form-control" placeholder="">
+                                                                <input type="month" class="form-control" placeholder="" formControlName="creditCardExpiryDate">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -517,7 +517,7 @@
                                                         <div class="col-md-6 pr-1">
                                                             <div class="form-group">
                                                                 <label>Codice IBAN : </label>
-                                                                <input type="text" class="form-control text-uppercase" placeholder="Codice IBAN">
+                                                                <input type="text" class="form-control text-uppercase" placeholder="Codice IBAN" formControlName="IBANcode">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -527,7 +527,7 @@
                                                     <div class=" col-md-6 mb-3 pr-1">
                                                         <div class="form-group">
                                                             <label>Pagata:</label>
-                                                            <select class="custom-select">
+                                                            <select class="custom-select" formControlName="paymentStatus">
                                 <option value="">Seleziona</option>
                                 <option value="No">No</option>
                                 <option value="Yes">Si</option>
@@ -537,7 +537,7 @@
                                                     <div class=" col-md-6 mb-3 pr-1">
                                                         <div class="form-group">
                                                             <label>Incassato Da Brand:</label>
-                                                            <select class="custom-select">
+                                                            <select class="custom-select" formControlName="cashedByBrand">
                                 <option value="">Seleziona</option>
                                 <option value="No">No</option>
                                 <option value="Yes">Si</option>
@@ -555,14 +555,14 @@
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
                               </select> -->
-                                                            <input class="form-control" id="commissionAgent" type="number" value="42" min="0" max="9999" step="0.01" placeholder="0">
+                                                            <input class="form-control" id="commissionAgent" type="number" value="42" min="0" max="9999" step="0.01" placeholder="0" formControlName="commissionAgent">
 
                                                         </div>
                                                     </div>
                                                     <div class=" col-md-6 mb-3 pr-1">
                                                         <div class="form-group">
                                                             <label>Agenzia:</label>
-                                                            <select class="custom-select">
+                                                            <select class="custom-select" formControlName="agent">
                                 <option value="">Seleziona</option>
                                 <option *ngFor="let agenzia of agenzie" [ngValue]="agenzia">{{agenzia}}</option>
 
@@ -634,8 +634,12 @@
                         </ngb-tab>
                     </ngb-tabset>
                     <div class="">
+<<<<<<< HEAD
                         <!-- <button type="submit"class="btn btn-primary" [disabled]="!contractForm.valid">Registra</button> -->
                         <button type="submit" class="btn btn-primary">Registra</button>
+=======
+                        <button type="submit"class="btn btn-primary">Registra</button>
+>>>>>>> d4c633a7f0400f000c616bc4f849bc4da60aac5e
                         <button (click)="registraBozza($event)" class="btn btn-primary">Registra Bozza</button>
                         <button class="btn btn-primary" (click)="print($event)">Stampa</button>
                     </div>
@@ -647,6 +651,7 @@
 
 
 <div class="overlay" aria-hidden="true" aria-labelledby="staticBackdropLabel" *ngIf="modal">
+<<<<<<< HEAD
     <div class="container text-center pt-2">
         <h5 class="display-6">Vuoi salvare l'utente?</h5>
         <div class="button d-flex justify-content-around">
@@ -655,3 +660,21 @@
         </div>
     </div>
 </div>
+=======
+    <div class="container text-center pl-0 pr-0">
+      <h5 class="display-6 bg-light py-2">
+        <svg width="20" height="20" fill="currentColor" class="bi bi-exclamation-circle text-danger" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+        </svg>
+        Conferma</h5>
+      <div class="modal-description">
+        Vuoi salvare l'utente?
+      </div>
+     <div class="button d-flex justify-content-around">
+         <button class="modal-button btn btn-danger " (click)="closeModal($event)">No</button>
+         <button class="modal-button btn btn btn-primary">Sì</button>
+     </div>
+    </div>
+  </div>
+>>>>>>> d4c633a7f0400f000c616bc4f849bc4da60aac5e

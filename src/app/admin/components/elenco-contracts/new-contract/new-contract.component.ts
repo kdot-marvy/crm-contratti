@@ -91,7 +91,10 @@ export class NewContractComponent implements OnInit {
 
   }
 
+  submit() {
+    console.log(this.contractForm);
 
+  }
 
   onSubmit(valid: boolean) {
     this.submitted = true;
@@ -311,6 +314,22 @@ export class NewContractComponent implements OnInit {
 
       note: [''],
     }),
+
+    accountingData: this.formBuilder.group({
+      fileStatus: [''],
+      paymentType: [''],
+      cardUserSurname: [''],
+      cardUserName: [''],
+      cardUserFiscalCode: [''],
+      cardType: [''],
+      creditCardNumber: [''],
+      creditCardExpiryDate: [''],
+      IBANcode: [''],
+      paymentStatus: [''],
+      cashedByBrand: [''],
+      commissionAgent: [''],
+      agent: [''],
+    })
 
   })
 

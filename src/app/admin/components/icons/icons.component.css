@@ -37,6 +37,7 @@ th input {
   height: auto;
   background: #fff;
   border-radius: .5rem;
+  overflow: hidden;
 }
 h2{
   margin: 1rem 0;
