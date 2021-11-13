@@ -5,6 +5,7 @@ export class SignupUserModel {
   _email: string;
   _lastName: string;
   _confirmPassword: string;
+  _role: string;
 
   constructor() {
     this._username = '';
@@ -13,6 +14,7 @@ export class SignupUserModel {
     this._email = '';
     this._lastName = '';
     this._confirmPassword = '';
+    this._role = '';
   }
 
   public get username(): string {
@@ -56,15 +58,24 @@ export class SignupUserModel {
   }
   public set confirmPassword(value: string) {
     this._confirmPassword = value;
+}
+  public confirmedPassword(): boolean{
+    return false ? this._confirmPassword !== this._password : true;
   }
+
+  public get role(): string {
+    return this._role;
+  }
+  public set role(value: string) {
+    this._role = value;
+}
 
   toJSon() {
     return {
       username: this._username,
       password: this._password,
       email: this._email,
-      firstName: this._firstName,
-      lastName: this._lastName,
+      role: [this._role]
     };
   }
  }

@@ -5,7 +5,7 @@
 
     <nav class="pages">
         <ul class="pagination">
-            <li [ngClass]="{ disabled: currentPageNumber === 1 }" class="page-item">
+            <li [ngClass]="{ disabled: first }" class="page-item">
                 <a href="javascript:;" class="page-link" (click)="prev()">Previous</a>
             </li>
 
@@ -15,7 +15,7 @@
       }}</a>
             </li>
 
-            <li [ngClass]="{ disabled: currentPageNumber + 1 > totalPages }" class="page-item">
+            <li [ngClass]="{ disabled: last }" class="page-item">
                 <a class="page-link" href="javascript:;" (click)="next()">Next</a>
             </li>
         </ul>

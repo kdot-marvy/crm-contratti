@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdminRoutes } from './admin.routing';
 
-import { UserComponent } from './components/user/user.component';
+import { ElencoUserComponent } from './components/elenco-user/elenco-user.component';
 import { TableComponent } from './components/table/table.component';
 import { TypographyComponent } from './components/typography/typography.component';
 import { IconsComponent } from './components/icons/icons.component';
@@ -20,8 +20,8 @@ import { ElencoContractComponent } from './components/elenco-contracts/elenco-co
 import { NewContractComponent } from './components/elenco-contracts/new-contract/new-contract.component';
 import { ElencoDocumentComponent } from './components/elenco-document/elenco-document.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { NewUserComponent } from './components/elenco-user/new-user/new-user.component';
 
 
 @NgModule({
@@ -34,7 +34,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
   ],
   declarations: [
     DashboardComponent,
-    UserComponent,
+    ElencoUserComponent,
     TableComponent,
     UpgradeComponent,
     TypographyComponent,
@@ -46,7 +46,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ElencoContractComponent,
     NewContractComponent,
     ElencoDocumentComponent,
-    SignUpComponent,
+    NewUserComponent,
     PaginationComponent,
   ]
 })

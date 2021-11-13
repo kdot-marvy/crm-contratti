@@ -95,17 +95,20 @@ export class NewContractComponent implements OnInit {
 
   onSubmit(valid: boolean) {
     this.submitted = true;
-    if (valid) {
+    this.buildContract();
+    // if (valid) {
       this.modal = true;
-      console.log(this.contract);
-      this.adminService.addContract(this.contract).subscribe(
-        (res) => {
-          console.log(res)
-        }
-      );
-    } else {
-      console.log("compila tutti i campo");
-    }
+      console.log(this.contractForm.value);
+      console.log('model', this.contract);
+
+      // this.adminService.addContract(this.contract).subscribe(
+      //   (res) => {
+      //     console.log(res)
+      //   }
+      // );
+    // } else {
+    //   console.log("compila tutti i campo");
+    // }
   }
 
   copyToPlant(event: Event) {
@@ -125,73 +128,74 @@ export class NewContractComponent implements OnInit {
     window.print()
   }
 
-  onKeydown(event) {
+  buildContract() {
 
-    this.contract.accountingData.fileStatus = 'mamma';
-    this.contract.accountingData.paymentType = 'mamma';
-    this.contract.accountingData.cardUserSurname = 'mamma';
-    this.contract.accountingData.cardUserName = 'mamma';
-    this.contract.accountingData.cardUserFiscalCode = 'mamma';
-    this.contract.accountingData.cardType = 'mamma';
-    this.contract.accountingData.creditCardNumber = 'mamma';
-    this.contract.accountingData.creditCardExpiryDate = '"2012-3"';
-    this.contract.accountingData.IBANcode = 'mamma';
-    this.contract.accountingData.paymentStatus = 'mamma';
-    this.contract.accountingData.cashedByBrand = 'mamma';
-    this.contract.accountingData.commissionAgent = 'mamma';
-    this.contract.accountingData.agent = 'mamma';
+    console.log(this.contractForm.controls['surname']);
+    // this.contract.accountingData.fileStatus = this.contractForm.controls['fileStatus'].value;
+    // this.contract.accountingData.paymentType = this.contractForm.controls['paymentType'].value;
+    // this.contract.accountingData.cardUserSurname = this.contractForm.controls['cardUserSurname'].value;
+    // this.contract.accountingData.cardUserName = this.contractForm.controls['cardUserName'].value;
+    // this.contract.accountingData.cardUserFiscalCode = this.contractForm.controls['cardUserFiscalCode'].value;
+    // this.contract.accountingData.cardType = this.contractForm.controls['mamma'].value;
+    // this.contract.accountingData.creditCardNumber = this.contractForm.controls['mamma'].value;
+    // this.contract.accountingData.creditCardExpiryDate = this.contractForm.controls['mamma'].value;
+    // this.contract.accountingData.IBANcode = this.contractForm.controls['mamma'].value;
+    // this.contract.accountingData.paymentStatus = this.contractForm.controls['mamma'].value;
+    // this.contract.accountingData.cashedByBrand = this.contractForm.controls['mamma'].value;
+    // this.contract.accountingData.commissionAgent = this.contractForm.controls['mamma'].value;
+    // this.contract.accountingData.agent = this.contractForm.controls['mamma'].value;
 
-    this.contract.managerData.manager = 'mamma';
-    this.contract.managerData.package = 'mamma';
-    this.contract.managerData.coverage = 'mamma';
-    this.contract.managerData.additionalOptions = 'mamma';
-    this.contract.managerData.portability = 'mamma';
-    this.contract.managerData.portabilityNumber = 'mamma';
-    this.contract.managerData.vodafoneStationSerial = 'mamma';
-    this.contract.managerData.simStatus = 'mamma';
-    this.contract.managerData.activationDate = '"3/23/2012"';
-    this.contract.managerData.serialSimOperator = 'mamma';
-    this.contract.managerData.managerOfOrigin = 'mamma';
-    this.contract.managerData.newSimSerial = 'mamma';
-    this.contract.managerData.migrationCode = 'mamma';
-    this.contract.managerData.simType = 'mamma';
-    this.contract.managerData.pod = 'mamma';
-    this.contract.managerData.pdr = 'mamma';
-    this.contract.managerData.serialNumber = 'mamma';
-    this.contract.managerData.previousSupplier = 'mamma';
+    // this.contract.managerData.manager = this.contractForm.controls['mamma'].value;
+    // this.contract.managerData.package = this.contractForm.controls['package'].value;
+    // this.contract.managerData.coverage = this.contractForm.controls['coverage'].value;
+    // this.contract.managerData.additionalOptions = this.contractForm.controls['additionalOptions'].value;
+    // this.contract.managerData.portability = this.contractForm.controls['portability'].value;
+    // this.contract.managerData.portabilityNumber = this.contractForm.controls['portabilityNumber'].value;
+    // this.contract.managerData.vodafoneStationSerial = this.contractForm.controls['vodafoneStationSerial'].value;
+    // this.contract.managerData.simStatus = this.contractForm.controls['simStatus'].value;
+    // this.contract.managerData.activationDate = this.contractForm.controls['activationDate'].value;
+    // this.contract.managerData.serialSimOperator = this.contractForm.controls['serialSimOperator'].value;
+    // this.contract.managerData.managerOfOrigin = this.contractForm.controls['managerOfOrigin'].value;
+    // this.contract.managerData.newSimSerial = this.contractForm.controls['newSimSerial'].value;
+    // this.contract.managerData.migrationCode = this.contractForm.controls['migrationCode'].value;
+    // this.contract.managerData.simType = this.contractForm.controls['simType'].value;
+    // this.contract.managerData.pod = this.contractForm.controls['pod'].value;
+    // this.contract.managerData.pdr = this.contractForm.controls['pdr'].value;
+    // this.contract.managerData.serialNumber = this.contractForm.controls['serialNumber'].value;
+    // this.contract.managerData.previousSupplier = this.contractForm.controls['previousSupplier'].value;
 
-    this.contract.managerData.plantLocationAddress.addressType = this.addresTypes.TYPE_VIA;
-    this.contract.managerData.plantLocationAddress.address = 'mamma';
-    this.contract.managerData.plantLocationAddress.addressNumber = 'mamma';
-    this.contract.managerData.plantLocationAddress.zipCode = 'mamma';
-    this.contract.managerData.plantLocationAddress.location = 'mamma';
+    // this.contract.managerData.plantLocationAddress.addressType = this.contractForm.controls['plantAddressType'].value;
+    // this.contract.managerData.plantLocationAddress.address = this.contractForm.controls['plantAddress'].value;
+    // this.contract.managerData.plantLocationAddress.addressNumber = this.contractForm.controls['plantAddressNumber'].value;
+    // this.contract.managerData.plantLocationAddress.zipCode = this.contractForm.controls['plantZipCode'].value;
+    // this.contract.managerData.plantLocationAddress.location = this.contractForm.controls['plantLocation'].value;
 
-    this.contract.managerData.shippingAddress.addressType = this.addresTypes['TYPE_VIA'];
-    this.contract.managerData.shippingAddress.address = 'mamma';
-    this.contract.managerData.shippingAddress.addressNumber = 'mamma';
-    this.contract.managerData.shippingAddress.zipCode = 'mamma';
-    this.contract.managerData.shippingAddress.location = 'mamma';
+    // this.contract.managerData.shippingAddress.addressType = this.contractForm.controls['shippingAddressType'].value;
+    // this.contract.managerData.shippingAddress.address = this.contractForm.controls['shippingAddress'].value;
+    // this.contract.managerData.shippingAddress.addressNumber = this.contractForm.controls['shippingAddressNumber'].value;
+    // this.contract.managerData.shippingAddress.zipCode = this.contractForm.controls['shippingZipCode'].value;
+    // this.contract.managerData.shippingAddress.location = this.contractForm.controls['shippingLocation'].value;
 
 
-    this.contract.personalData.surname = 'mamma';
-    this.contract.personalData.name = 'mamma';
-    this.contract.personalData.placeOfBirth = 'mamma';
-    // this.contract.personalData.dateOfBirth = "'12/03/2021'";
-    this.contract.personalData.fiscalCode = 'mamma';
-    this.contract.personalData.partitaIVA = 'mamma';
-    this.contract.personalData.phoneNumber = 'mamma';
-    this.contract.personalData.otherNumber = 'mamma';
-    this.contract.personalData.email = 'mamma';
-    this.contract.personalData.documentType = this.docTypes.TYPE_IDCARD;
-    this.contract.personalData.documentNumber = 'mamma';
-    this.contract.personalData.placeOfIssue = 'mamma';
-    // this.contract.personalData.dateOfIssue = 'mamma';
-    // this.contract.personalData.expiryDate = 'mamma';
-    this.contract.personalData.address.address = 'mamma';
-    this.contract.personalData.address.addressNumber = 'mamma';
-    this.contract.personalData.address.addressType = this.addressTypeKeys[0];
-    this.contract.personalData.address.location = 'mamma';
-    this.contract.personalData.address.zipCode = 'mamma';
+     this.contract.personalData.surname = this.contractForm.controls['surname'].value;
+     this.contract.personalData.name = this.contractForm.controls['name'].value;
+     this.contract.personalData.placeOfBirth = this.contractForm.controls['placeOfBirth'].value;
+      this.contract.personalData.dateOfBirth = this.contractForm.controls['dateOfBirth'].value;
+     this.contract.personalData.fiscalCode = this.contractForm.controls['fiscalCode'].value;
+     this.contract.personalData.partitaIVA = this.contractForm.controls['partitaIVA'].value;
+     this.contract.personalData.phoneNumber = this.contractForm.controls['phoneNumber'].value;
+     this.contract.personalData.otherNumber = this.contractForm.controls['otherNumber'].value;
+     this.contract.personalData.email = this.contractForm.controls['email'].value;
+     //this.contract.personalData.documentType = this.contractForm.controls['documentType'].value;
+     //this.contract.personalData.documentNumber = this.contractForm.controls['documentNumber'].value;
+     //this.contract.personalData.placeOfIssue = this.contractForm.controls['placeOfIssue'].value;
+     // this.contract.personalData.dateOfIssue = this.contractForm.controls['dateOfIssue'].value;
+     // this.contract.personalData.expiryDate = this.contractForm.controls['expiryDate'].value;
+     //this.contract.personalData.address.address = this.contractForm.controls['address'].value;
+     //this.contract.personalData.address.addressNumber = this.contractForm.controls['addressNumber'].value;
+     //this.contract.personalData.address.addressType = this.contractForm.controls['addressType'].value;
+     //this.contract.personalData.address.location = this.contractForm.controls['location'].value;
+     //this.contract.personalData.address.zipCode = this.contractForm.controls['zipCode'].value;
 
   }
 
@@ -258,7 +262,7 @@ export class NewContractComponent implements OnInit {
     }),
 
     phoneNumber: ['', [Validators.required]],
-    otherPhoneNumber: [''],
+    otherNumber: [''],
     email: ['', [Validators.required, Validators.email]],
 
     document: this.formBuilder.group({
@@ -296,7 +300,7 @@ export class NewContractComponent implements OnInit {
         plantZipCode: ['', [Validators.required]],
         plantLocation: ['', [Validators.required]],
       }),
-  
+
       shippingAddressGroup: this.formBuilder.group({
         shippingAddressType: ['', [Validators.required]],
         shippingAddress: ['', [Validators.required]],

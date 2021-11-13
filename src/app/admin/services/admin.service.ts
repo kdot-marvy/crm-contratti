@@ -3,6 +3,7 @@ import { ContractModel } from 'app/admin/models/contract.model';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { SignupUserModel } from '../models/signupUser.model';
 
 
 
@@ -13,6 +14,7 @@ export class AdminService {
 
   managerUrl = '/api/managers';
   contractUrl = '/api/contracts';
+  userUrl = '/api/users';
 
   constructor(private http: HttpClient) {
   }
@@ -53,6 +55,7 @@ export class AdminService {
   getAllContracts(){
     return this.http.get(`${environment.apiUrl}` + this.contractUrl);
   }
+
   deleteContract(){
     return this.http.delete(`${environment.apiUrl}` + this.contractUrl);
 
@@ -89,5 +92,21 @@ export class AdminService {
 
   getContructPager(params: any){
 
+  }
+
+  //users
+
+  deleteUser(){
+    return this.http.delete(`${environment.apiUrl}` + this.userUrl);
+  }
+
+  addUser(userDetails: SignupUserModel) {
+
+    console.log(userDetails.toJSon());
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json;charset=UTF-8'
+      });
+
+    return this.http.post(`${environment.apiUrl}` + this.userUrl, userDetails.toJSon(), {headers : headers});
   }
 }

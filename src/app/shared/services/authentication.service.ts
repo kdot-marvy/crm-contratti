@@ -3,7 +3,7 @@ import { User } from '../models/user';
 import { Observable, BehaviorSubject} from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { SignupUserModel } from '../models/signupUser.model';
+import { SignupUserModel } from '../../admin/models/signupUser.model';
 import { map } from 'rxjs/operators';
 import { LoginUserModel } from '../models/loginUser.model';
 
@@ -16,6 +16,7 @@ export class AuthenticationService {
   // holds the current user  notify other components when the user object is changed
   public currentUser: Observable<User>;
   private currentUserSubject: BehaviorSubject<User>;
+
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -51,5 +52,6 @@ export class AuthenticationService {
   signup(signupUser: SignupUserModel) {
     return this.http.post(`${environment.apiUrl}/api/auth/signup`, signupUser.toJSon());
   }
+
 
 }

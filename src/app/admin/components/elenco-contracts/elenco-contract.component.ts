@@ -1,3 +1,5 @@
+import { AuthenticationService } from 'app/shared/services/authentication.service';
+import { AdminService } from './../../services/admin.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, EventEmitter, SimpleChange, Input, Output,  AfterViewChecked,
   ChangeDetectorRef, } from '@angular/core';
@@ -5,6 +7,7 @@ import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PagerService } from 'app/admin/services/pager.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { environment } from 'environments/environment';
 
 
 @Component({
@@ -14,12 +17,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class ElencoContractComponent implements OnInit,   AfterViewChecked {
 
+  apiRoute = `${environment.apiUrl}` + '/api/contracts';
+
+
   // Defaults
   form!: FormGroup;
-  students: any = [];
+  contracts: any = [];
   searchTerm: string = '';
   reload: EventEmitter<boolean> = new EventEmitter();
-  isLoadingStudents: boolean = false;
+  isLoadingContracts: boolean = false;
   recordsPerPage: number = 5;
   public modal: boolean = false;
 
@@ -28,7 +34,9 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
     private router: Router,
     private pagerService: PagerService,
     private http: HttpClient,
-    private fb: FormBuilder, private cdr: ChangeDetectorRef
+    private fb: FormBuilder,
+    private cdr: ChangeDetectorRef,
+    private adminService: AdminService,
   ) { }
 
 
@@ -36,6 +44,9 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
   // On init
   ngOnInit(): void {
     this.buildForm();
+    this.adminService.getAllContracts().subscribe((contratti) =>{
+
+    });
   }
   goToNew() {
     this.router.navigate(['nuovo-contratto']);

@@ -13,7 +13,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/gestori',     title: 'Gestori',         icon:'nc-circle-10',       class: '' },
     { path: '/contratti',     title: 'Contratti',         icon:'nc-paper',       class: '' },
     { path: '/documenti',     title: 'Documenti',         icon:'nc-single-copy-04',       class: '' },
-     { path: '/icons',         title: 'Utenti',             icon:'nc-single-02',    class: '' },
+     { path: '/utenti',         title: 'Utenti',             icon:'nc-single-02',    class: '' },
      { path: '/upgrade',       title: 'Versione 0.0.0',    icon:'nc-spaceship',  class: 'active-pro' },
     // { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
     // { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },

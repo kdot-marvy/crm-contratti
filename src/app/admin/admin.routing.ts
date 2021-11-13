@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { UserComponent } from './components/user/user.component';
+import { ElencoUserComponent } from './components/elenco-user/elenco-user.component';
 import { TableComponent } from './components/table/table.component';
 import { TypographyComponent } from './components/typography/typography.component';
 import { IconsComponent } from './components/icons/icons.component';
@@ -13,7 +13,7 @@ import { ElencoContractComponent } from './components/elenco-contracts/elenco-co
 import { NewContractComponent } from './components/elenco-contracts/new-contract/new-contract.component';
 import { ElencoDocumentComponent } from './components/elenco-document/elenco-document.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { NewUserComponent } from './components/elenco-user/new-user/new-user.component';
 
 export const AdminRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -26,12 +26,12 @@ export const AdminRoutes: Routes = [
     {path: 'nuovo-gestore', component: NewManagerComponent},
     {path: 'nuovo-contratto', component: NewContractComponent},
     {path: 'documenti', component: ElencoDocumentComponent},
-    { path: 'user',           component: UserComponent },
+    { path: 'utenti',           component: ElencoUserComponent },
     { path: 'table',          component: TableComponent },
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'upgrade',        component: UpgradeComponent },
-    { path: 'signup', component: SignUpComponent}
+    { path: 'nuovo-utente', component: NewUserComponent}
 ];

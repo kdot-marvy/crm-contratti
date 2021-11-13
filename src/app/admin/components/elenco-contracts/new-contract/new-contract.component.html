@@ -23,7 +23,7 @@
                                                 <div class="col-md-3 px-1">
                                                     <div class="form-group">
                                                         <label>Nome : </label>
-                                                        <input type="text" class="form-control" placeholder="Nome" formControlName="name" >
+                                                        <input type="text" class="form-control" placeholder="Nome" formControlName="name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 pl-1">
@@ -39,7 +39,7 @@
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
                                                         <label>Data Di Nascita *:</label>
-                                                        <input type="date" class="form-control" placeholder="" formControlName="dateOfBirth" >
+                                                        <input type="date" class="form-control" placeholder="" formControlName="dateOfBirth">
                                                         <p class="text-danger" *ngIf="dateOfBirth.touched && dateOfBirth.invalid">*campo richiesto
                                                         </p>
                                                     </div>
@@ -110,7 +110,7 @@
                                                 <div class="col-md-4 pl-1">
                                                     <div class="form-group">
                                                         <label>Altro Telefono:</label>
-                                                        <input type="text" class="form-control" placeholder="Altro Telefono" formControlName="otherPhoneNumber">
+                                                        <input type="text" class="form-control" placeholder="Altro Telefono" formControlName="otherNumber">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 pl-1">
@@ -344,7 +344,7 @@
                               <option value="">Seleziona</option>
                               <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
                             </select>
-                                                   
+
                                                     </div>
                                                     <div class="col-md-4 px-1">
                                                         <div class="form-group">
@@ -356,7 +356,7 @@
                                                         <div class="form-group">
                                                             <label>N° *:</label>
                                                             <input type="text" class="form-control" placeholder="Numero Civico" formControlName="plantAddressNumber">
-                                                 
+
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2 pl-1">
@@ -386,7 +386,7 @@
                               <option value="">Seleziona</option>
                               <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
                             </select>
-                                                     
+
                                                     </div>
                                                     <div class="col-md-4 px-1">
                                                         <div class="form-group">
@@ -634,7 +634,8 @@
                         </ngb-tab>
                     </ngb-tabset>
                     <div class="">
-                        <button type="submit"class="btn btn-primary" [disabled]="!contractForm.valid">Registra</button>
+                        <!-- <button type="submit"class="btn btn-primary" [disabled]="!contractForm.valid">Registra</button> -->
+                        <button type="submit" class="btn btn-primary">Registra</button>
                         <button (click)="registraBozza($event)" class="btn btn-primary">Registra Bozza</button>
                         <button class="btn btn-primary" (click)="print($event)">Stampa</button>
                     </div>
@@ -647,10 +648,10 @@
 
 <div class="overlay" aria-hidden="true" aria-labelledby="staticBackdropLabel" *ngIf="modal">
     <div class="container text-center pt-2">
-      <h5 class="display-6">Vuoi salvare l'utente?</h5>
-     <div class="button d-flex justify-content-around">
-         <button class="modal-button btn btn-danger " (click)="closeModal($event)">Cancel</button>
-         <button class="modal-button btn btn btn-primary">Salva</button>
-     </div>
+        <h5 class="display-6">Vuoi salvare l'utente?</h5>
+        <div class="button d-flex justify-content-around">
+            <button class="modal-button btn btn-danger " (click)="closeModal($event)">Cancel</button>
+            <button class="modal-button btn btn btn-primary">Salva</button>
+        </div>
     </div>
-  </div>
+</div>

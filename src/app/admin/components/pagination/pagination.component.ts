@@ -11,14 +11,19 @@ export class PaginationComponent implements OnInit {
 
 
   // Current page number
-  currentPageNumber: number = 1;
+  currentPageNumber: number = 0;
   // Total records count
   totalRecordsCount: number = 0;
   // Total pages
   totalPages: number = 0;
+
   // Pager
   pager: any = {};
 
+  first = false;
+  empty = false;
+  last = false;
+  numberOfElements = 0;
   // API route
   @Input() apiRoute: string = '';
   // Search term
@@ -58,18 +63,22 @@ export class PaginationComponent implements OnInit {
     this.loading.emit(true);
     this.responseData.emit([]);
     this.currentPageNumber = Number(pageNo);
-    let finalPath = `${this.apiRoute}?pageNumber=${this.currentPageNumber}&recordsPerPage=${this.recordsPerPage}`;
+    let finalPath = `${this.apiRoute}?pageNumber=${this.currentPageNumber}&pageSize=${this.recordsPerPage}`;
 
     // add search term only if search available
     if (this.searchTerm && this.searchTerm.length) {
       finalPath = `${finalPath}&searchTerm=${this.searchTerm}`;
     }
 
-    this.http.get('assets/js/contracts.json').subscribe(
+    this.http.get(finalPath).subscribe(
       (response: any) => {
-        this.totalRecordsCount = response.count;
-        this.responseData.emit(response.data);
-        this.totalPages = Math.ceil(response.count / this.recordsPerPage);
+        this.totalRecordsCount = response.totalElements;
+        this.responseData.emit(response.content);
+        this.totalPages = response.totalPages;
+        this.first = response.first;
+        this.empty = response.empty;
+        this.last = response.last;
+this.numberOfElements = response.numberOfElements;
         this.setPagination(this.currentPageNumber);
         this.loading.emit(false);
       },
