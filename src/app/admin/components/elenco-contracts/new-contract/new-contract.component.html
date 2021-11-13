@@ -634,14 +634,11 @@
                         </ngb-tab>
                     </ngb-tabset>
                     <div class="">
-<<<<<<< HEAD
-                        <!-- <button type="submit"class="btn btn-primary" [disabled]="!contractForm.valid">Registra</button> -->
-                        <button type="submit" class="btn btn-primary">Registra</button>
-=======
-                        <button type="submit"class="btn btn-primary">Registra</button>
->>>>>>> d4c633a7f0400f000c616bc4f849bc4da60aac5e
-                        <button (click)="registraBozza($event)" class="btn btn-primary">Registra Bozza</button>
-                        <button class="btn btn-primary" (click)="print($event)">Stampa</button>
+                        <<<<<<< HEAD <!-- <button type="submit" class="btn btn-primary" [disabled]="!contractForm.valid">Registra</button> -->
+                            <button type="submit" class="btn btn-primary">Registra</button> =======
+                            <button type="submit" class="btn btn-primary">Registra</button> >>>>>>> d4c633a7f0400f000c616bc4f849bc4da60aac5e
+                            <button (click)="registraBozza($event)" class="btn btn-primary">Registra Bozza</button>
+                            <button class="btn btn-primary" (click)="print($event)">Stampa</button>
                     </div>
                 </form>
             </div>
@@ -651,30 +648,19 @@
 
 
 <div class="overlay" aria-hidden="true" aria-labelledby="staticBackdropLabel" *ngIf="modal">
-<<<<<<< HEAD
-    <div class="container text-center pt-2">
-        <h5 class="display-6">Vuoi salvare l'utente?</h5>
+    <div class="container text-center pl-0 pr-0">
+        <h5 class="display-6 bg-light py-2">
+            <svg width="20" height="20" fill="currentColor" class="bi bi-exclamation-circle text-danger" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+        </svg> Conferma
+        </h5>
+        <div class="modal-description">
+            Vuoi salvare l'utente?
+        </div>
         <div class="button d-flex justify-content-around">
-            <button class="modal-button btn btn-danger " (click)="closeModal($event)">Cancel</button>
-            <button class="modal-button btn btn btn-primary">Salva</button>
+            <button class="modal-button btn btn-danger " (click)="closeModal($event)">No</button>
+            <button class="modal-button btn btn btn-primary">Sì</button>
         </div>
     </div>
 </div>
-=======
-    <div class="container text-center pl-0 pr-0">
-      <h5 class="display-6 bg-light py-2">
-        <svg width="20" height="20" fill="currentColor" class="bi bi-exclamation-circle text-danger" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-          <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-        </svg>
-        Conferma</h5>
-      <div class="modal-description">
-        Vuoi salvare l'utente?
-      </div>
-     <div class="button d-flex justify-content-around">
-         <button class="modal-button btn btn-danger " (click)="closeModal($event)">No</button>
-         <button class="modal-button btn btn btn-primary">Sì</button>
-     </div>
-    </div>
-  </div>
->>>>>>> d4c633a7f0400f000c616bc4f849bc4da60aac5e

@@ -1,6 +1,7 @@
 import { AdminService } from './../../../services/admin.service';
 import { Component, OnInit } from '@angular/core';
 import { SignupUserModel } from 'app/admin/models/signupUser.model';
+import { AuthenticationService } from 'app/shared/services/authentication.service';
 
 @Component({
   selector: 'app-new-user',
@@ -12,7 +13,7 @@ export class NewUserComponent implements OnInit {
   public registration: SignupUserModel = new SignupUserModel();
   public passwordError;
   private submitted: boolean = false;
-  constructor(private adminService: AdminService) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
 
   Roles: Array<string>;
@@ -26,7 +27,7 @@ export class NewUserComponent implements OnInit {
       this.submitted = true;
 
       if(this.registration.confirmedPassword){
-        this.adminService.addUser(this.registration).subscribe(
+        this.authenticationService.signup(this.registration).subscribe(
           (res: any) => {
             alert(res.message);
           },
