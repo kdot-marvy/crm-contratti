@@ -9,7 +9,7 @@
               class="nc-icon nc-simple-add"></i> aggiungi</button>
                 </div>
                 <div class="col-md-6 justify-content-start col-lg-6 mb-2">
-                    <button type="button" class="btn btn-primary bg-success btn-round">Excel</button>
+                    <button type="button" class="btn btn-primary bg-success btn-round" (click)="exportExcel()">Excel</button>
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="d-flex align-items-center justify-content-end">
@@ -127,15 +127,15 @@
                             </tr>
                             <tr *ngFor="let contract of contracts">
                                 <td><input type="checkbox"></td>
-                                <td>{{ contract.email }}</td>
+                                <td>{{ contract.agent }}</td>
                                 <td>{{ contract.department }}</td>
+                                <td>{{ contract.manager.nome }}</td>
+                                <td>{{ contract.note }}</td>
                                 <td>{{ contract.department }}</td>
-                                <td>{{ contract.department }}</td>
-                                <td>{{ contract.department }}</td>
-                                <td>{{ contract.department }}</td>
-                                <td>{{ contract.department }}</td>
-                                <td>{{ contract.department }}</td>
-                                <td>{{ contract.department }}</td>
+                                <td>{{ contract.fileStatus }}</td>
+                                <td>{{ contract.nome }}</td>
+                                <td>{{ contract.codiceFiscale }}</td>
+                                <td>{{ contract.simStatus }}</td>
                                 <td><span class="edit-content">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -162,7 +162,6 @@
 </div>
 
 <div class="overlay" aria-hidden="true" aria-labelledby="staticBackdropLabel" *ngIf="modal">
-<<<<<<< HEAD
     <div class="container text-center pt-2">
         <h5 class="display-6">Vuoi eliminare il contratto?</h5>
         <div class="button d-flex justify-content-around">
@@ -170,21 +169,20 @@
             <button class="modal-button btn btn btn-primary">Sì</button>
         </div>
     </div>
-=======
-  <div class="container text-center pl-0 pr-0">
-    <h5 class="display-6 bg-light py-2">
-      <svg width="20" height="20" fill="currentColor" class="bi bi-exclamation-circle text-danger" viewBox="0 0 16 16">
+    =======
+    <div class="container text-center pl-0 pr-0">
+        <h5 class="display-6 bg-light py-2">
+            <svg width="20" height="20" fill="currentColor" class="bi bi-exclamation-circle text-danger" viewBox="0 0 16 16">
         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
         <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-      </svg>
-      Conferma</h5>
-    <div class="modal-description">
-      Vuoi eliminare il contratto?
+      </svg> Conferma
+        </h5>
+        <div class="modal-description">
+            Vuoi eliminare il contratto?
+        </div>
+        <div class="button d-flex justify-content-around">
+            <button class="modal-button btn btn-danger " (click)="closeModal($event)">No</button>
+            <button class="modal-button btn btn btn-primary">Sì</button>
+        </div>
     </div>
-   <div class="button d-flex justify-content-around">
-       <button class="modal-button btn btn-danger " (click)="closeModal($event)">No</button>
-       <button class="modal-button btn btn btn-primary">Sì</button>
-   </div>
-  </div>
->>>>>>> d4c633a7f0400f000c616bc4f849bc4da60aac5e
 </div>

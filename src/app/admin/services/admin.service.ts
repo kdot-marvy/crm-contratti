@@ -109,4 +109,12 @@ export class AdminService {
 
     return this.http.post(`${environment.apiUrl}` + this.userUrl, userDetails.toJSon(), {headers : headers});
   }
+
+  exportExcel() {
+
+    return this.http.get(`${environment.apiUrl}` + this.contractUrl + '/export/excel', {
+      observe: 'response',
+      responseType: 'blob'
+    })
+  }
 }

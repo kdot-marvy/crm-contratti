@@ -97,6 +97,18 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
     this.modal = false;
   }
 
+  exportExcel(){
+    // this.adminService.exportExcel().subscribe(
+    //   ( response) => {
+    //     this.downloadFile(response);
+    //   }
+    // );
+  }
 
+  // downloadFile(data: Response) {
+  //   const blob = new Blob([data], { type: 'application/octet-stream' });
+  //   const url = window.URL.createObjectURL(blob);
+  //   window.open(url);
+  // }
 
 }

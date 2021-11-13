@@ -65,9 +65,9 @@
                                                     <div class="form-group">
                                                         <label>Tipo Indirizzo *:</label>
                                                         <select class="custom-select" name="addressType" formControlName="addressType">
-                              <option value="" selected>Seleziona</option>
-                              <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
-                            </select>
+                            <option value="" selected>Seleziona</option>
+                            <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
+                          </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 px-1">
@@ -129,10 +129,10 @@
                                                     <div class="form-group">
                                                         <label>Tipo Documento *:</label>
                                                         <select class="custom-select" formControlName="documentType">
-                              <option value="" selected>Seleziona</option>
-                              <option *ngFor="let docTypeKey of docTypeKeys" [ngValue]="docTypeKey">
-                                {{docTypes[docTypeKey]}}</option>
-                            </select>
+                            <option value="" selected>Seleziona</option>
+                            <option *ngFor="let docTypeKey of docTypeKeys" [ngValue]="docTypeKey">
+                              {{docTypes[docTypeKey]}}</option>
+                          </select>
                                                     </div>
                                                 </div>
 
@@ -177,19 +177,19 @@
                                                 <div class="col-md-6 mb-3 pr-1">
                                                     <label>Gestore *:</label>
                                                     <select class="custom-select" formControlName="manager" (ngModelChange)="changedManager($event)">
-                            <option value="" selected>seleziona</option>
-                            <option *ngFor="let item of gestori" [ngValue]="item" >{{item.name}}</option>
+                          <option value="" selected>seleziona</option>
+                          <option *ngFor="let item of gestori" [ngValue]="item" >{{item.name}}</option>
 
-                          </select>
+                        </select>
                                                 </div>
                                                 <div class="col-md-6 mb-3 pl-1">
                                                     <label>Pacchetto *:</label>
                                                     <select class="custom-select" formControlName="package">
-                            <option value="" selected>seleziona</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </select>
+                          <option value="" selected>seleziona</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
                                                 </div>
                                             </div>
 
@@ -200,20 +200,20 @@
                                                             <div class="form-group">
                                                                 <label>Copertura :</label>
                                                                 <select class="custom-select" formControlName="coverage">
-                                  <option value="" selected>Seleziona</option>
-                                  <option *ngFor="let item of coperture" [ngValue]="item">{{item}}</option>
+                                <option value="" selected>Seleziona</option>
+                                <option *ngFor="let item of coperture" [ngValue]="item">{{item}}</option>
 
-                                </select>
+                              </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 pl-1">
                                                             <div class="form-group">
                                                                 <label>Opzioni Aggiuntive :</label>
                                                                 <select class="custom-select" formControlName="additionalOptions">
-                                  <option value="" selected>Seleziona</option>
-                                  <option *ngFor="let item of opzioniAggiuntive" [ngValue]="item">{{item}}</option>
+                                <option value="" selected>Seleziona</option>
+                                <option *ngFor="let item of opzioniAggiuntive" [ngValue]="item">{{item}}</option>
 
-                                </select>
+                              </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -222,10 +222,10 @@
                                                             <div class="form-group">
                                                                 <label>Portabilità :</label>
                                                                 <select class="custom-select" formControlName="portability">
-                                  <option value="" selected>Seleziona</option>
-                                  <option *ngFor="let item of portabilita" [ngValue]="item">{{item}}</option>
+                                <option value="" selected>Seleziona</option>
+                                <option *ngFor="let item of portabilita" [ngValue]="item">{{item}}</option>
 
-                                </select>
+                              </select>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6 pl-1">
@@ -246,10 +246,10 @@
                                                             <div class="form-group">
                                                                 <label>Stato SIM :</label>
                                                                 <select class="custom-select" formControlName="simStatus">
-                                  <option value="">Seleziona</option>
-                                  <option *ngFor="let key of EStatoSimKeys" [ngValue]="key">{{EStatoSims[key]}}</option>
+                                <option value="">Seleziona</option>
+                                <option *ngFor="let key of EStatoSimKeys" [ngValue]="key">{{EStatoSims[key]}}</option>
 
-                                </select>
+                              </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -293,10 +293,10 @@
                                                             <div class="form-group">
                                                                 <label>Tipo SIM :</label>
                                                                 <select class="custom-select" formControlName="simType">
-                                  <option value="">Seleziona</option>
-                                  <option *ngFor="let item of tipoSim" [ngValue]="item">{{item}}</option>
+                                <option value="">Seleziona</option>
+                                <option *ngFor="let item of tipoSim" [ngValue]="item">{{item}}</option>
 
-                                </select>
+                              </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -341,9 +341,9 @@
                                                     <div class="col-md-2 mb-3 pr-1">
                                                         <label>Tipo Indirizzo *:</label>
                                                         <select class="custom-select" formControlName="plantAddressType">
-                              <option value="">Seleziona</option>
-                              <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
-                            </select>
+                            <option value="">Seleziona</option>
+                            <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
+                          </select>
 
                                                     </div>
                                                     <div class="col-md-4 px-1">
@@ -373,7 +373,7 @@
                                                     </div>
                                                 </div>
                                                 <button class="btn bg-info m-0 mb-1" (click)="copyToPlant($event)">Copia da Dati
-                          Anagrafici</button>
+                        Anagrafici</button>
                                             </div>
 
                                             <hr>
@@ -383,9 +383,9 @@
                                                     <div class="col-md-2 mb-3 pr-1">
                                                         <label>Tipo Indirizzo *:</label>
                                                         <select class="custom-select" formControlName="shippingAddressType">
-                              <option value="">Seleziona</option>
-                              <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
-                            </select>
+                            <option value="">Seleziona</option>
+                            <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
+                          </select>
 
                                                     </div>
                                                     <div class="col-md-4 px-1">
@@ -440,22 +440,22 @@
                                                         <div class="form-group">
                                                             <label>Stato Pratica:</label>
                                                             <select class="custom-select" formControlName="fileStatus">
-                                <option value="">Seleziona</option>
-                                <option *ngFor="let key of EStatoPraticaTypeKeys" [ngValue]="key">
-                                  {{EStatoPraticaTypes[key]}}</option>
+                              <option value="">Seleziona</option>
+                              <option *ngFor="let key of EStatoPraticaTypeKeys" [ngValue]="key">
+                                {{EStatoPraticaTypes[key]}}</option>
 
-                              </select>
+                            </select>
                                                         </div>
                                                     </div>
                                                     <div class=" col-md-6 mb-3 pr-1">
                                                         <div class="form-group">
                                                             <label>Tipo di Pagamento:</label>
                                                             <select class="custom-select" formControlName="paymentType" (ngModelChange)="changedAccounting($event)">
-                                <option value="">Seleziona</option>
-                                <option *ngFor="let key of paymentTypeKeys" [ngValue]="key">{{paymentTypes[key]}}
-                                </option>
+                              <option value="">Seleziona</option>
+                              <option *ngFor="let key of paymentTypeKeys" [ngValue]="key">{{paymentTypes[key]}}
+                              </option>
 
-                              </select>
+                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -489,11 +489,11 @@
                                                             <div class="form-group">
                                                                 <label>Tipo Carta :</label>
                                                                 <!-- <select class="custom-select" name="cardType" class="form-control" placeholder="" required ngModel #cardType="ngModel" [(ngModel)]="contract.accountingData.cardType">
-                                                                  <option value="">Seleziona</option>
-                                                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
-                                </select> -->
+                                                                <option value="">Seleziona</option>
+                                                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select> -->
                                                                 <input type="text" class="form-control" placeholder="Tipo Carta" formControlName="cardType">
                                                             </div>
                                                         </div>
@@ -528,20 +528,20 @@
                                                         <div class="form-group">
                                                             <label>Pagata:</label>
                                                             <select class="custom-select" formControlName="paymentStatus">
-                                <option value="">Seleziona</option>
-                                <option value="No">No</option>
-                                <option value="Yes">Si</option>
-                              </select>
+                              <option value="">Seleziona</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Si</option>
+                            </select>
                                                         </div>
                                                     </div>
                                                     <div class=" col-md-6 mb-3 pr-1">
                                                         <div class="form-group">
                                                             <label>Incassato Da Brand:</label>
                                                             <select class="custom-select" formControlName="cashedByBrand">
-                                <option value="">Seleziona</option>
-                                <option value="No">No</option>
-                                <option value="Yes">Si</option>
-                              </select>
+                              <option value="">Seleziona</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Si</option>
+                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -550,11 +550,11 @@
                                                         <div class="form-group">
                                                             <label>Probabile Provvigione Agente:</label>
                                                             <!-- <select class="custom-select" name="commissionAgent" [(ngModel)]="contract.accountingData.commissionAgent">
-                                                              <option value="">Seleziona</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                              </select> -->
+                                                            <option value="">Seleziona</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select> -->
                                                             <input class="form-control" id="commissionAgent" type="number" value="42" min="0" max="9999" step="0.01" placeholder="0" formControlName="commissionAgent">
 
                                                         </div>
@@ -563,10 +563,10 @@
                                                         <div class="form-group">
                                                             <label>Agenzia:</label>
                                                             <select class="custom-select" formControlName="agent">
-                                <option value="">Seleziona</option>
-                                <option *ngFor="let agenzia of agenzie" [ngValue]="agenzia">{{agenzia}}</option>
+                              <option value="">Seleziona</option>
+                              <option *ngFor="let agenzia of agenzie" [ngValue]="agenzia">{{agenzia}}</option>
 
-                              </select>
+                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -634,11 +634,9 @@
                         </ngb-tab>
                     </ngb-tabset>
                     <div class="">
-                        <<<<<<< HEAD <!-- <button type="submit" class="btn btn-primary" [disabled]="!contractForm.valid">Registra</button> -->
-                            <button type="submit" class="btn btn-primary">Registra</button> =======
-                            <button type="submit" class="btn btn-primary">Registra</button> >>>>>>> d4c633a7f0400f000c616bc4f849bc4da60aac5e
-                            <button (click)="registraBozza($event)" class="btn btn-primary">Registra Bozza</button>
-                            <button class="btn btn-primary" (click)="print($event)">Stampa</button>
+                        <button type="submit" class="btn btn-primary">Registra</button>
+                        <button (click)="registraBozza($event)" class="btn btn-primary">Registra Bozza</button>
+                        <button class="btn btn-primary" (click)="print($event)">Stampa</button>
                     </div>
                 </form>
             </div>
@@ -651,9 +649,9 @@
     <div class="container text-center pl-0 pr-0">
         <h5 class="display-6 bg-light py-2">
             <svg width="20" height="20" fill="currentColor" class="bi bi-exclamation-circle text-danger" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-          <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-        </svg> Conferma
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+      </svg> Conferma
         </h5>
         <div class="modal-description">
             Vuoi salvare l'utente?

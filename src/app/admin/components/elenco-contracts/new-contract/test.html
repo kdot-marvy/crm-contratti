@@ -1,0 +1,262 @@
+<ngb-tab title="Dati Gestore" id="gestore" formGroupName="contract_manager_data">
+    <ng-template ngbTabContent>
+        <div class="col-md-12">
+            <div class="card card-user">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 pr-1">
+                            <label>Gestore *:</label>
+                            <select class="custom-select" formControlName="manager" (ngModelChange)="changedManager($event)">
+                <option value="" selected>seleziona</option>
+                <option *ngFor="let item of gestori" [ngValue]="item">{{item.name}}</option>
+
+              </select>
+                        </div>
+                        <div class="col-md-6 mb-3 pl-1">
+                            <label>Pacchetto *:</label>
+                            <select class="custom-select" formControlName="package">
+                <option value="" selected>seleziona</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+                        </div>
+                    </div>
+
+                    <ng-container *ngIf="panel1Shown">
+                        <div class="form-extra">
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Copertura :</label>
+                                        <select class="custom-select" formControlName="coverage">
+                      <option value="" selected>Seleziona</option>
+                      <option *ngFor="let item of coperture" [ngValue]="item">{{item}}</option>
+
+                    </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Opzioni Aggiuntive :</label>
+                                        <select class="custom-select" formControlName="additionalOptions">
+                      <option value="" selected>Seleziona</option>
+                      <option *ngFor="let item of opzioniAggiuntive" [ngValue]="item">{{item}}</option>
+
+                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Portabilità :</label>
+                                        <select class="custom-select" formControlName="portability">
+                      <option value="" selected>Seleziona</option>
+                      <option *ngFor="let item of portabilita" [ngValue]="item">{{item}}</option>
+
+                    </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Num. da portare:</label>
+                                        <input type="text" class="form-control" placeholder="Num. da portare" formControlName="portabilityNumber">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Seiale SIM Vodafone Station :</label>
+                                        <input type="text" class="form-control" placeholder="Seiale SIM Vodafone Station" formControlName="vodafoneStationSerial">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Stato SIM :</label>
+                                        <select class="custom-select" formControlName="simStatus">
+                      <option value="">Seleziona</option>
+                      <option *ngFor="let key of EStatoSimKeys" [ngValue]="key">{{EStatoSims[key]}}</option>
+
+                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Data Attivazione :</label>
+                                        <input type="date" class="form-control" placeholder="" formControlName="activationDate">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Seriale SIM Operatore :</label>
+                                        <input type="text" class="form-control" placeholder="" formControlName="serialSimOperator">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Gestore di Provenienza :</label>
+                                        <input type="text" class="form-control" placeholder="" formControlName="managerOfOrigin">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Seriale Nuova SIM Voce :</label>
+                                        <input type="text" class="form-control" placeholder="" formControlName="newSimSerial">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Codice Migrazione :</label>
+                                        <input type="text" class="form-control" placeholder="" formControlName="migrationCode">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Tipo SIM :</label>
+                                        <select class="custom-select" formControlName="simType">
+                      <option value="">Seleziona</option>
+                      <option *ngFor="let item of tipoSim" [ngValue]="item">{{item}}</option>
+
+                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="panel2Shown">
+                        <div class="form-extra-2">
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>POD :</label>
+                                        <input type="text" class="form-control" placeholder="" formControlName="pod">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>PDR :</label>
+                                        <input type="text" class="form-control" placeholder="" formControlName="pdr">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Matricola :</label>
+                                        <input type="text" class="form-control" placeholder="" formControlName="serialNumber">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Precedente Fornitore:</label>
+                                        <input type="text" class="form-control" placeholder="" formControlName="previousSupplier">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <div class="">
+                        <small class="text-white bg-success font-weight-bold px-1">Indirizzo sede impianto</small>
+                        <div class="row" formGroupName="plantAddressGroup">
+                            <div class="col-md-2 mb-3 pr-1">
+                                <label>Tipo Indirizzo *:</label>
+                                <select class="custom-select" formControlName="plantAddressType">
+                  <option value="">Seleziona</option>
+                  <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
+                </select>
+
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label>Indirizzo *:</label>
+                                    <input type="text" class="form-control" placeholder="Indirizzo" formControlName="plantAddress">
+                                </div>
+                            </div>
+                            <div class="col-md-2 pl-1">
+                                <div class="form-group">
+                                    <label>N° *:</label>
+                                    <input type="text" class="form-control" placeholder="Numero Civico" formControlName="plantAddressNumber">
+
+                                </div>
+                            </div>
+                            <div class="col-md-2 pl-1">
+                                <div class="form-group">
+                                    <label>C.A.P. *:</label>
+                                    <input type="text" class="form-control" placeholder="C.A.P." formControlName="plantZipCode">
+                                </div>
+                            </div>
+                            <div class="col-md-2 pl-1">
+                                <div class="form-group">
+                                    <label>Località *:</label>
+                                    <input type="text" class="form-control" placeholder="Località" formControlName="plantLocation">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn bg-info m-0 mb-1" (click)="copyToPlant($event)">Copia da Dati
+              Anagrafici</button>
+                    </div>
+
+                    <hr>
+                    <div class="">
+                        <small class="text-white bg-success font-weight-bold px-1">Indirizzo spedizione merce</small>
+                        <div class="row" formGroupName="shippingAddressGroup">
+                            <div class="col-md-2 mb-3 pr-1">
+                                <label>Tipo Indirizzo *:</label>
+                                <select class="custom-select" formControlName="shippingAddressType">
+                  <option value="">Seleziona</option>
+                  <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
+                </select>
+
+                            </div>
+                            <div class="col-md-4 px-1">
+                                <div class="form-group">
+                                    <label>Indirizzo *:</label>
+                                    <input type="text" class="form-control" placeholder="Indirizzo" formControlName="shippingAddress">
+                                </div>
+                            </div>
+                            <div class="col-md-2 pl-1">
+                                <div class="form-group">
+                                    <label>N° *:</label>
+                                    <input type="text" class="form-control" placeholder="Numero Civico" formControlName="shippingAddressNumber">
+                                </div>
+                            </div>
+                            <div class="col-md-2 pl-1">
+                                <div class="form-group">
+                                    <label>C.A.P. *:</label>
+                                    <input type="text" class="form-control" placeholder="C.A.P." formControlName="shippingZipCode">
+                                </div>
+                            </div>
+                            <div class="col-md-2 pl-1">
+                                <div class="form-group">
+                                    <label>Località *:</label>
+                                    <input type="text" class="form-control" placeholder="Località" formControlName="shippingLocation">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn bg-info m-0 mb-1" (click)="copyToShipping()">Copia da Dati
+              Anagrafici</button>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Note</label>
+                                <textarea class="form-control textarea" formControlName="note"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</ngb-tab>

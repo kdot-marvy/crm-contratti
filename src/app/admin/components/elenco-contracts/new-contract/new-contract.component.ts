@@ -98,11 +98,10 @@ export class NewContractComponent implements OnInit {
 
   onSubmit(valid: boolean) {
     this.submitted = true;
-    this.buildContract();
+    // this.buildContract();
     // if (valid) {
-      this.modal = true;
+      // this.modal = true;
       console.log(this.contractForm.value);
-      console.log('model', this.contract);
 
       // this.adminService.addContract(this.contract).subscribe(
       //   (res) => {
@@ -248,6 +247,7 @@ export class NewContractComponent implements OnInit {
     this.modal = false;
   }
 
+
   contractForm = this.formBuilder.group({
     surname: ['', [Validators.required]],
     name: [''],
@@ -332,6 +332,7 @@ export class NewContractComponent implements OnInit {
     })
 
   })
+
 
   get surname(): AbstractControl {
     return this.contractForm.get('surname') as AbstractControl;
