@@ -2,12 +2,12 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title"> Nuovo <input (keydown.i)="onKeydown($event)"></h4>
+                <!-- <h4 class="card-title"> Nuovo <input (keydown.i)="onKeydown($event)"></h4> -->
             </div>
             <div class="card-body">
                 <form [formGroup]="contractForm" (ngSubmit)="onSubmit(contractForm.valid)">
                     <ngb-tabset>
-                        <ngb-tab title="Dati Anagrafici" id="anagrafici">
+                        <ngb-tab title="Dati Anagrafici" id="anagrafici" formGroupName="dati_anagrafici">
                             <ng-template ngbTabContent>
                                 <div class="col-md-12">
                                     <div class="card card-user">
@@ -17,7 +17,7 @@
                                                     <div class="form-group">
                                                         <label>Rag.Soc./Cognome *: </label>
                                                         <input type="text" class="form-control" placeholder="Ragione Sociale / Cognome" formControlName="surname">
-                                                        <p class="text-danger" *ngIf="surname.invalid && (surname.dirty || surname.touched)">*campo richiesto</p>
+                                                        <!-- <p class="text-danger" *ngIf="surname.invalid && (surname.dirty || surname.touched)">*campo richiesto</p> -->
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3 px-1">
@@ -30,8 +30,8 @@
                                                     <div class="form-group">
                                                         <label>Luogo di nascita:</label>
                                                         <input type="text" class="form-control" placeholder="Luogo di nascita" formControlName="placeOfBirth">
-                                                        <p class="text-danger" *ngIf="placeOfBirth.invalid && ( placeOfBirth.dirty|| placeOfBirth.touched)">*campo richiesto
-                                                        </p>
+                                                        <!-- <p class="text-danger" *ngIf="placeOfBirth.invalid && ( placeOfBirth.dirty|| placeOfBirth.touched)">*campo richiesto
+                                                        </p> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -40,33 +40,33 @@
                                                     <div class="form-group">
                                                         <label>Data Di Nascita *:</label>
                                                         <input type="date" class="form-control" placeholder="" formControlName="dateOfBirth">
-                                                        <p class="text-danger" *ngIf="dateOfBirth.touched && dateOfBirth.invalid">*campo richiesto
-                                                        </p>
+                                                        <!-- <p class="text-danger" *ngIf="dateOfBirth.touched && dateOfBirth.invalid">*campo richiesto
+                                                        </p> -->
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 pl-1">
                                                     <div class="form-group">
                                                         <label>Codice Fiscale *:</label>
                                                         <input type="text" class="form-control text-uppercase" placeholder="Codice Fiscale" formControlName="fiscalCode" maxlength="16">
-                                                        <p class="text-danger" *ngIf="fiscalCode.touched && fiscalCode.invalid">*campo richiesto
-                                                        </p>
+                                                        <!-- <p class="text-danger" *ngIf="fiscalCode.touched && fiscalCode.invalid">*campo richiesto
+                                                        </p> -->
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label>Partita IVA *:</label>
                                                         <input type="text" class="form-control" placeholder="Partita Iva" formControlName="partitaIVA">
-                                                        <p class="text-danger" *ngIf="partitaIVA.touched && partitaIVA.invalid">*campo richiesto</p>
+                                                        <!-- <p class="text-danger" *ngIf="partitaIVA.touched && partitaIVA.invalid">*campo richiesto</p> -->
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row" formGroupName="addressGroup">
+                                            <div class="row" formGroupName="address">
                                                 <div class="col-md-2 mb-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Tipo Indirizzo *:</label>
                                                         <select class="custom-select" name="addressType" formControlName="addressType">
                             <option value="" selected>Seleziona</option>
-                            <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
+                            <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addressTypes[key]}}</option>
                           </select>
                                                     </div>
                                                 </div>
@@ -86,13 +86,13 @@
                                                 <div class="col-md-2 pl-1">
                                                     <div class="form-group">
                                                         <label>C.A.P. *:</label>
-                                                        <input type="text" class="form-control" placeholder="C.A.P." formControlName="zipCode">
+                                                        <input type="text" class="form-control" placeholder="C.A.P." formControlName="codicePostale">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2 pl-1">
                                                     <div class="form-group">
                                                         <label>Località *:</label>
-                                                        <input type="text" class="form-control" placeholder="Località" formControlName="location">
+                                                        <input type="text" class="form-control" placeholder="Località" formControlName="localita">
 
                                                     </div>
                                                 </div>
@@ -103,8 +103,8 @@
                                                     <div class="form-group">
                                                         <label>Cellulare *:</label>
                                                         <input type="text" class="form-control" placeholder="Cellulare" formControlName="phoneNumber">
-                                                        <p class="text-danger" *ngIf="phoneNumber.touched && phoneNumber.invalid">*campo richiesto
-                                                        </p>
+                                                        <!-- <p class="text-danger" *ngIf="phoneNumber.touched && phoneNumber.invalid">*campo richiesto
+                                                        </p> -->
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 pl-1">
@@ -117,14 +117,14 @@
                                                     <div class="form-group">
                                                         <label>Email *:</label>
                                                         <input type="email" class="form-control" placeholder="Email" formControlName="email">
-                                                        <p class="text-danger" *ngIf="email.touched && email.invalid">*campo richiesto</p>
+                                                        <!-- <p class="text-danger" *ngIf="email.touched && email.invalid">*campo richiesto</p> -->
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <hr>
 
-                                            <div class="row" formGroupName="document">
+                                            <div class="row">
                                                 <div class=" col-md-2 mb-3 pr-1">
                                                     <div class="form-group">
                                                         <label>Tipo Documento *:</label>
@@ -168,7 +168,7 @@
                                 </div>
                             </ng-template>
                         </ngb-tab>
-                        <ngb-tab title="Dati Gestore" id="gestore" formGroupName="managerData">
+                        <ngb-tab title="Dati Gestore" id="gestore" formGroupName="contract_manager_data">
                             <ng-template ngbTabContent>
                                 <div class="col-md-12">
                                     <div class="card card-user">
@@ -176,15 +176,15 @@
                                             <div class="row">
                                                 <div class="col-md-6 mb-3 pr-1">
                                                     <label>Gestore *:</label>
-                                                    <select class="custom-select" formControlName="manager" (ngModelChange)="changedManager($event)">
+                                                    <select class="custom-select" formControlName="manager_id" (ngModelChange)="changedManager($event)">
                           <option value="" selected>seleziona</option>
-                          <option *ngFor="let item of gestori" [ngValue]="item" >{{item.name}}</option>
+                          <option *ngFor="let item of gestori" [ngValue]="item.id" >{{item.nome}}</option>
 
                         </select>
                                                 </div>
                                                 <div class="col-md-6 mb-3 pl-1">
                                                     <label>Pacchetto *:</label>
-                                                    <select class="custom-select" formControlName="package">
+                                                    <select class="custom-select" formControlName="pack">
                           <option value="" selected>seleziona</option>
                           <option value="1">One</option>
                           <option value="2">Two</option>
@@ -337,12 +337,12 @@
 
                                             <div class="">
                                                 <small class="text-white bg-success font-weight-bold px-1">Indirizzo sede impianto</small>
-                                                <div class="row" formGroupName="plantAddressGroup">
+                                                <div class="row" formGroupName="plant_location_address">
                                                     <div class="col-md-2 mb-3 pr-1">
                                                         <label>Tipo Indirizzo *:</label>
                                                         <select class="custom-select" formControlName="plantAddressType">
                             <option value="">Seleziona</option>
-                            <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
+                            <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addressTypes[key]}}</option>
                           </select>
 
                                                     </div>
@@ -362,13 +362,13 @@
                                                     <div class="col-md-2 pl-1">
                                                         <div class="form-group">
                                                             <label>C.A.P. *:</label>
-                                                            <input type="text" class="form-control" placeholder="C.A.P." formControlName="plantZipCode">
+                                                            <input type="text" class="form-control" placeholder="C.A.P." formControlName="codicePostale">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2 pl-1">
                                                         <div class="form-group">
                                                             <label>Località *:</label>
-                                                            <input type="text" class="form-control" placeholder="Località" formControlName="plantLocation">
+                                                            <input type="text" class="form-control" placeholder="Località" formControlName="localita">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -379,12 +379,12 @@
                                             <hr>
                                             <div class="">
                                                 <small class="text-white bg-success font-weight-bold px-1">Indirizzo spedizione merce</small>
-                                                <div class="row" formGroupName="shippingAddressGroup">
+                                                <div class="row" formGroupName="shipping_address">
                                                     <div class="col-md-2 mb-3 pr-1">
                                                         <label>Tipo Indirizzo *:</label>
                                                         <select class="custom-select" formControlName="shippingAddressType">
                             <option value="">Seleziona</option>
-                            <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addresTypes[key]}}</option>
+                            <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addressTypes[key]}}</option>
                           </select>
 
                                                     </div>
@@ -403,13 +403,13 @@
                                                     <div class="col-md-2 pl-1">
                                                         <div class="form-group">
                                                             <label>C.A.P. *:</label>
-                                                            <input type="text" class="form-control" placeholder="C.A.P." formControlName="shippingZipCode">
+                                                            <input type="text" class="form-control" placeholder="C.A.P." formControlName="codicePostale">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2 pl-1">
                                                         <div class="form-group">
                                                             <label>Località *:</label>
-                                                            <input type="text" class="form-control" placeholder="Località" formControlName="shippingLocation">
+                                                            <input type="text" class="form-control" placeholder="Località" formControlName="localita">
                                                         </div>
                                                     </div>
                                                 </div>

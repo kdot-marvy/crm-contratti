@@ -25,6 +25,7 @@ export const AdminRoutes: Routes = [
     },
     {path: 'nuovo-gestore', component: NewManagerComponent},
     {path: 'nuovo-contratto', component: NewContractComponent},
+    {path: 'edit/:id', component: NewContractComponent},
     {path: 'documenti', component: ElencoDocumentComponent},
     { path: 'utenti',           component: ElencoUserComponent },
     { path: 'table',          component: TableComponent },

@@ -8,6 +8,7 @@ import { EStatoSim } from 'app/admin/models/EStatoSim.enum';
 import { EStatoPraticaType } from 'app/admin/models/EStatoPraticaType.enum';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Address } from 'app/admin/models/address.model';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -21,12 +22,13 @@ export class NewContractComponent implements OnInit {
   private contract: ContractModel = new ContractModel();
   private submitted = false;
   public modal: boolean = false;
+  private selectedContract;
 
   panel1Shown = false;
   panel2Shown = false;
   panel3Shown = false;
 
-  addresTypes = EAddressType;
+  addressTypes = EAddressType;
   addressTypeKeys = [];
 
   docTypeKeys = [];
@@ -51,15 +53,28 @@ export class NewContractComponent implements OnInit {
   gestori: any = [];
 
 
-  constructor(private adminService: AdminService, private formBuilder: FormBuilder) { }
+  constructor(private route: ActivatedRoute, private adminService: AdminService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
 
-    this.addressTypeKeys = Object.keys(this.addresTypes);
+    this.addressTypeKeys = Object.keys(this.addressTypes);
     this.docTypeKeys = Object.keys(this.docTypes);
     this.EStatoSimKeys = Object.keys(this.EStatoSims);
     this.paymentTypeKeys = Object.keys(this.paymentTypes);
     this.EStatoPraticaTypeKeys = Object.keys(this.EStatoPraticaTypes);
+    // this.route.queryParams.subscribe((param)=> {
+    //   this.selectedContract = param;
+    //   if(this.selectedContract != null){
+    //     this.contractForm.controls['address'].setValue(this.selectedContract.id)
+    //   }
+    // })
+
+    // this.route.paramMap.subscribe(params => {
+    //   const contractId = + params.get('id');
+    //   if (contractId) {
+    //     this.getContract(contractId);
+    //   }
+    // })
 
 
 
@@ -83,8 +98,8 @@ export class NewContractComponent implements OnInit {
       this.agenzie = data.agenzie;
     });
 
-    this.adminService.getGestori().subscribe((data: any) => {
-      this.gestori = data;
+    this.adminService.getAllManagers().subscribe((data: any) => {
+      this.gestori = data.content;
     });
 
 
@@ -96,26 +111,55 @@ export class NewContractComponent implements OnInit {
 
   }
 
+  getContract(id, detail: any) {
+    this.adminService.updateContract(id,detail).subscribe(
+      (contract: ContractModel) => this.editContract(contract),
+      (err: any) => console.log(err)
+    );
+  }
+
+  editContract(contract: ContractModel) {
+    this.contractForm.patchValue({
+
+      dati_anagrafici: {
+        surname: contract.personalData.surname,
+        name: contract.personalData.name,
+        placeOfBirth: contract.personalData.placeOfBirth,
+        dateOfBirth: contract.personalData.dateOfBirth,
+        fiscalCode: contract.personalData.fiscalCode,
+        partitaIVA: contract.personalData.partitaIVA,
+        address: {
+          addressType: contract.personalData.address.addressType,
+          address: contract.personalData.address.address,
+          addressNumber: contract.personalData.address.addressNumber,
+          codicePostale: contract.personalData.address.zipCode,
+          localita: contract.personalData.address.location,
+        }
+
+      }
+
+      })
+  }
+
   onSubmit(valid: boolean) {
     this.submitted = true;
-    // this.buildContract();
-    // if (valid) {
+    if (valid) {
       // this.modal = true;
       console.log(this.contractForm.value);
 
-      // this.adminService.addContract(this.contract).subscribe(
-      //   (res) => {
-      //     console.log(res)
-      //   }
-      // );
-    // } else {
-    //   console.log("compila tutti i campo");
-    // }
+      this.adminService.addContract(JSON.stringify(this.contractForm.getRawValue())).subscribe(
+        (res) => {
+          console.log(res)
+        }
+      );
+    } else {
+      alert("compila tutti i campi");
+    }
   }
 
   copyToPlant(event: Event) {
     event.preventDefault();
-    this.contract.managerData.plantLocationAddress = this.contract.personalData.address;
+
   }
   copyToShipping(event: Event) {
     event.preventDefault();
@@ -128,77 +172,6 @@ export class NewContractComponent implements OnInit {
   print(event: Event) {
     event.preventDefault();
     window.print()
-  }
-
-  buildContract() {
-
-    console.log(this.contractForm.controls['surname']);
-    // this.contract.accountingData.fileStatus = this.contractForm.controls['fileStatus'].value;
-    // this.contract.accountingData.paymentType = this.contractForm.controls['paymentType'].value;
-    // this.contract.accountingData.cardUserSurname = this.contractForm.controls['cardUserSurname'].value;
-    // this.contract.accountingData.cardUserName = this.contractForm.controls['cardUserName'].value;
-    // this.contract.accountingData.cardUserFiscalCode = this.contractForm.controls['cardUserFiscalCode'].value;
-    // this.contract.accountingData.cardType = this.contractForm.controls['mamma'].value;
-    // this.contract.accountingData.creditCardNumber = this.contractForm.controls['mamma'].value;
-    // this.contract.accountingData.creditCardExpiryDate = this.contractForm.controls['mamma'].value;
-    // this.contract.accountingData.IBANcode = this.contractForm.controls['mamma'].value;
-    // this.contract.accountingData.paymentStatus = this.contractForm.controls['mamma'].value;
-    // this.contract.accountingData.cashedByBrand = this.contractForm.controls['mamma'].value;
-    // this.contract.accountingData.commissionAgent = this.contractForm.controls['mamma'].value;
-    // this.contract.accountingData.agent = this.contractForm.controls['mamma'].value;
-
-    // this.contract.managerData.manager = this.contractForm.controls['mamma'].value;
-    // this.contract.managerData.package = this.contractForm.controls['package'].value;
-    // this.contract.managerData.coverage = this.contractForm.controls['coverage'].value;
-    // this.contract.managerData.additionalOptions = this.contractForm.controls['additionalOptions'].value;
-    // this.contract.managerData.portability = this.contractForm.controls['portability'].value;
-    // this.contract.managerData.portabilityNumber = this.contractForm.controls['portabilityNumber'].value;
-    // this.contract.managerData.vodafoneStationSerial = this.contractForm.controls['vodafoneStationSerial'].value;
-    // this.contract.managerData.simStatus = this.contractForm.controls['simStatus'].value;
-    // this.contract.managerData.activationDate = this.contractForm.controls['activationDate'].value;
-    // this.contract.managerData.serialSimOperator = this.contractForm.controls['serialSimOperator'].value;
-    // this.contract.managerData.managerOfOrigin = this.contractForm.controls['managerOfOrigin'].value;
-    // this.contract.managerData.newSimSerial = this.contractForm.controls['newSimSerial'].value;
-    // this.contract.managerData.migrationCode = this.contractForm.controls['migrationCode'].value;
-    // this.contract.managerData.simType = this.contractForm.controls['simType'].value;
-    // this.contract.managerData.pod = this.contractForm.controls['pod'].value;
-    // this.contract.managerData.pdr = this.contractForm.controls['pdr'].value;
-    // this.contract.managerData.serialNumber = this.contractForm.controls['serialNumber'].value;
-    // this.contract.managerData.previousSupplier = this.contractForm.controls['previousSupplier'].value;
-
-    // this.contract.managerData.plantLocationAddress.addressType = this.contractForm.controls['plantAddressType'].value;
-    // this.contract.managerData.plantLocationAddress.address = this.contractForm.controls['plantAddress'].value;
-    // this.contract.managerData.plantLocationAddress.addressNumber = this.contractForm.controls['plantAddressNumber'].value;
-    // this.contract.managerData.plantLocationAddress.zipCode = this.contractForm.controls['plantZipCode'].value;
-    // this.contract.managerData.plantLocationAddress.location = this.contractForm.controls['plantLocation'].value;
-
-    // this.contract.managerData.shippingAddress.addressType = this.contractForm.controls['shippingAddressType'].value;
-    // this.contract.managerData.shippingAddress.address = this.contractForm.controls['shippingAddress'].value;
-    // this.contract.managerData.shippingAddress.addressNumber = this.contractForm.controls['shippingAddressNumber'].value;
-    // this.contract.managerData.shippingAddress.zipCode = this.contractForm.controls['shippingZipCode'].value;
-    // this.contract.managerData.shippingAddress.location = this.contractForm.controls['shippingLocation'].value;
-
-
-     this.contract.personalData.surname = this.contractForm.controls['surname'].value;
-     this.contract.personalData.name = this.contractForm.controls['name'].value;
-     this.contract.personalData.placeOfBirth = this.contractForm.controls['placeOfBirth'].value;
-      this.contract.personalData.dateOfBirth = this.contractForm.controls['dateOfBirth'].value;
-     this.contract.personalData.fiscalCode = this.contractForm.controls['fiscalCode'].value;
-     this.contract.personalData.partitaIVA = this.contractForm.controls['partitaIVA'].value;
-     this.contract.personalData.phoneNumber = this.contractForm.controls['phoneNumber'].value;
-     this.contract.personalData.otherNumber = this.contractForm.controls['otherNumber'].value;
-     this.contract.personalData.email = this.contractForm.controls['email'].value;
-     //this.contract.personalData.documentType = this.contractForm.controls['documentType'].value;
-     //this.contract.personalData.documentNumber = this.contractForm.controls['documentNumber'].value;
-     //this.contract.personalData.placeOfIssue = this.contractForm.controls['placeOfIssue'].value;
-     // this.contract.personalData.dateOfIssue = this.contractForm.controls['dateOfIssue'].value;
-     // this.contract.personalData.expiryDate = this.contractForm.controls['expiryDate'].value;
-     //this.contract.personalData.address.address = this.contractForm.controls['address'].value;
-     //this.contract.personalData.address.addressNumber = this.contractForm.controls['addressNumber'].value;
-     //this.contract.personalData.address.addressType = this.contractForm.controls['addressType'].value;
-     //this.contract.personalData.address.location = this.contractForm.controls['location'].value;
-     //this.contract.personalData.address.zipCode = this.contractForm.controls['zipCode'].value;
-
   }
 
   changedManager(gestore) {
@@ -248,90 +221,91 @@ export class NewContractComponent implements OnInit {
   }
 
 
-  contractForm = this.formBuilder.group({
-    surname: ['', [Validators.required]],
-    name: [''],
-    placeOfBirth: ['', [Validators.required]],
-    dateOfBirth: ['', [Validators.required]],
-    fiscalCode: ['', [Validators.required, Validators.maxLength(16), Validators.minLength(16)]],
-    partitaIVA: ['', [Validators.required]],
 
-    addressGroup: this.formBuilder.group({
-      addressType: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      addressNumber: ['', [Validators.required]],
-      zipCode: ['', [Validators.required]],
-      location: ['', [Validators.required]],
-    }),
+  contractForm = this.formBuilder.group(
+    {
 
-    phoneNumber: ['', [Validators.required]],
-    otherNumber: [''],
-    email: ['', [Validators.required, Validators.email]],
 
-    document: this.formBuilder.group({
-      documentType: ['', [Validators.required]],
-      documentNumber: ['', [Validators.required]],
-      placeOfIssue: ['', [Validators.required]],
-      dateOfIssue: ['', [Validators.required]],
-      expiryDate: ['', [Validators.required]],
-    }),
-
-    managerData: this.formBuilder.group({
-      manager: ['', [Validators.required]],
-      package: ['', [Validators.required]],
-      coverage: [''],
-      additionalOptions: [''],
-      portability: [''],
-      portabilityNumber: [''],
-      vodafoneStationSerial: [''],
-      simStatus: [''],
-      activationDate: [''],
-      serialSimOperator: [''],
-      managerOfOrigin: [''],
-      newSimSerial: [''],
-      migrationCode: [''],
-      simType: [''],
-      pod: [''],
-      pdr: [''],
-      serialNumber: [''],
-      previousSupplier: [''],
-
-      plantAddressGroup: this.formBuilder.group({
-        plantAddressType: ['', [Validators.required]],
-        plantAddress: ['', [Validators.required]],
-        plantAddressNumber: ['', [Validators.required]],
-        plantZipCode: ['', [Validators.required]],
-        plantLocation: ['', [Validators.required]],
+      dati_anagrafici: this.formBuilder.group({
+        surname: ['', [Validators.required]],
+        name: [''],
+        placeOfBirth: ['', [Validators.required]],
+        dateOfBirth: ['', [Validators.required]],
+        fiscalCode: ['', [Validators.required, Validators.maxLength(16), Validators.minLength(16)]],
+        partitaIVA: ['', [Validators.required]],
+        address: this.formBuilder.group({
+          addressType: ['', [Validators.required]],
+          address: ['', [Validators.required]],
+          addressNumber: ['', [Validators.required]],
+          codicePostale: ['', [Validators.required]],
+          localita: ['', [Validators.required]],
+        }),
+        phoneNumber: ['', [Validators.required]],
+        otherNumber: [''],
+        email: ['', [Validators.required, Validators.email]],
+        documentType: ['', [Validators.required]],
+        documentNumber: ['', [Validators.required]],
+        placeOfIssue: ['', [Validators.required]],
+        dateOfIssue: ['', [Validators.required]],
+        expiryDate: ['', [Validators.required]],
       }),
 
-      shippingAddressGroup: this.formBuilder.group({
-        shippingAddressType: ['', [Validators.required]],
-        shippingAddress: ['', [Validators.required]],
-        shippingAddressNumber: ['', [Validators.required]],
-        shippingZipCode: ['', [Validators.required]],
-        shippingLocation: ['', [Validators.required]],
+      contract_manager_data: this.formBuilder.group({
+        manager_id: ['', [Validators.required]],
+        pack: ['', [Validators.required]],
+        coverage: [''],
+        additionalOptions: [''],
+        portability: [''],
+        portabilityNumber: [''],
+        vodafoneStationSerial: [''],
+        simStatus: [''],
+        activationDate: [''],
+        serialSimOperator: [''],
+        managerOfOrigin: [''],
+        newSimSerial: [''],
+        migrationCode: [''],
+        simType: [''],
+        pod: [''],
+        pdr: [''],
+        serialNumber: [''],
+        previousSupplier: [''],
+
+        plant_location_address: this.formBuilder.group({
+          plantAddressType: ['', [Validators.required]],
+          plantAddress: ['', [Validators.required]],
+          plantAddressNumber: ['', [Validators.required]],
+          codicePostale: ['', [Validators.required]],
+          localita: ['', [Validators.required]],
+        }),
+
+        shipping_address: this.formBuilder.group({
+          shippingAddressType: ['', [Validators.required]],
+          shippingAddress: ['', [Validators.required]],
+          shippingAddressNumber: ['', [Validators.required]],
+          codicePostale: ['', [Validators.required]],
+          localita: ['', [Validators.required]],
+        }),
+
+        note: [''],
       }),
 
-      note: [''],
-    }),
+      accountingData: this.formBuilder.group({
+        fileStatus: [''],
+        paymentType: [''],
+        cardUserSurname: [''],
+        cardUserName: [''],
+        cardUserFiscalCode: [''],
+        cardType: [''],
+        creditCardNumber: [''],
+        creditCardExpiryDate: [''],
+        IBANcode: [''],
+        paymentStatus: [''],
+        cashedByBrand: [''],
+        commissionAgent: [''],
+        agent: [''],
+      })
 
-    accountingData: this.formBuilder.group({
-      fileStatus: [''],
-      paymentType: [''],
-      cardUserSurname: [''],
-      cardUserName: [''],
-      cardUserFiscalCode: [''],
-      cardType: [''],
-      creditCardNumber: [''],
-      creditCardExpiryDate: [''],
-      IBANcode: [''],
-      paymentStatus: [''],
-      cashedByBrand: [''],
-      commissionAgent: [''],
-      agent: [''],
     })
-
-  })
 
 
   get surname(): AbstractControl {
@@ -358,8 +332,11 @@ export class NewContractComponent implements OnInit {
   get addressNumber(): AbstractControl {
     return this.contractForm.get('addressNumber') as AbstractControl;
   }
-  get location(): AbstractControl {
-    return this.contractForm.get('location') as AbstractControl;
+  get codicePostale(): AbstractControl {
+    return this.contractForm.get('codicePostale') as AbstractControl;
+  }
+  get localita(): AbstractControl {
+    return this.contractForm.get('localita') as AbstractControl;
   }
   get phoneNumber(): AbstractControl {
     return this.contractForm.get('phoneNumber') as AbstractControl;
@@ -397,12 +374,12 @@ export class NewContractComponent implements OnInit {
   get plantAddressNumber(): AbstractControl {
     return this.contractForm.get('plantAddressNumber') as AbstractControl;
   }
-  get plantZipCode(): AbstractControl {
-    return this.contractForm.get('plantZipCode') as AbstractControl;
-  }
-  get plantLocation(): AbstractControl {
-    return this.contractForm.get('plantLocation') as AbstractControl;
-  }
+  // get codicePostale(): AbstractControl {
+  //   return this.contractForm.get('codicePostale') as AbstractControl;
+  // }
+  // get localita(): AbstractControl {
+  //   return this.contractForm.get('plantLocation') as AbstractControl;
+  // }
   get shippingAddressType(): AbstractControl {
     return this.contractForm.get('shippingAddressType') as AbstractControl;
   }
@@ -412,10 +389,10 @@ export class NewContractComponent implements OnInit {
   get shippingAddressNumber(): AbstractControl {
     return this.contractForm.get('shippingAddressNumber') as AbstractControl;
   }
-  get shippingZipCode(): AbstractControl {
-    return this.contractForm.get('shippingZipCode') as AbstractControl;
-  }
-  get shippingLocation(): AbstractControl {
-    return this.contractForm.get('shippingLocation') as AbstractControl;
-  }
+  // get shippingZipCode(): AbstractControl {
+  //   return this.contractForm.get('shippingZipCode') as AbstractControl;
+  // }
+  // get shippingLocation(): AbstractControl {
+  //   return this.contractForm.get('shippingLocation') as AbstractControl;
+  // }
 }

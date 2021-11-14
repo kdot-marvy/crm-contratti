@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PagerService } from 'app/admin/services/pager.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { environment } from 'environments/environment';
+import { param } from 'jquery';
 
 
 @Component({
@@ -111,4 +112,7 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
   //   window.open(url);
   // }
 
+  editContract(contractId: number){
+    this.router.navigate(['/edit', contractId])
+  }
 }

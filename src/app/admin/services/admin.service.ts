@@ -1,5 +1,3 @@
-import { ContractModel } from 'app/admin/models/contract.model';
-
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -72,14 +70,12 @@ export class AdminService {
     return this.http.put(`${environment.apiUrl}` + this.contractUrl + '/' + contractId, contractDetails, {headers : headers});
   }
 
-  addContract(contractDetails: ContractModel) {
-
-    console.log(contractDetails.toJSon());
+  addContract(contractDetails: any) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json;charset=UTF-8'
       });
 
-    return this.http.post(`${environment.apiUrl}` + this.contractUrl, contractDetails.toJSon(), {headers : headers});
+    return this.http.post(`${environment.apiUrl}` + this.contractUrl, contractDetails, {headers : headers});
   }
 
   public getJSON(jsonURL: string) {
