@@ -1,14 +1,18 @@
+import { ContractModel } from 'app/admin/models/contract.model';
 import { AuthenticationService } from 'app/shared/services/authentication.service';
 import { AdminService } from './../../services/admin.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, EventEmitter, SimpleChange, Input, Output,  AfterViewChecked,
-  ChangeDetectorRef, } from '@angular/core';
+  ChangeDetectorRef,
+  TemplateRef, } from '@angular/core';
 import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PagerService } from 'app/admin/services/pager.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { environment } from 'environments/environment';
 import { param } from 'jquery';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
 
 
 @Component({
@@ -19,6 +23,7 @@ import { param } from 'jquery';
 export class ElencoContractComponent implements OnInit,   AfterViewChecked {
 
   apiRoute = `${environment.apiUrl}` + '/api/contracts';
+  modalRef: BsModalRef;
 
 
   // Defaults
@@ -29,6 +34,7 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
   isLoadingContracts: boolean = false;
   recordsPerPage: number = 5;
   public modal: boolean = false;
+  toDeleteId: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,19 +44,24 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private adminService: AdminService,
-  ) { }
+    private modalService: BsModalService,
+    private authenticationService: AuthenticationService
+  ) {
+   }
 
 
 
   // On init
   ngOnInit(): void {
-    this.buildForm();
-    this.adminService.getAllContracts().subscribe((contratti) =>{
 
-    });
+    this.buildForm();
+    this.getContracts()
   }
   goToNew() {
     this.router.navigate(['nuovo-contratto']);
+  }
+
+  getContracts(){
   }
 
 
@@ -93,10 +104,6 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
     this.modal=true;
   }
 
-  closeModal(event: Event){
-    event.preventDefault();
-    this.modal = false;
-  }
 
   exportExcel(){
     // this.adminService.exportExcel().subscribe(
@@ -112,7 +119,38 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
   //   window.open(url);
   // }
 
-  editContract(contractId: number){
-    this.router.navigate(['/edit', contractId])
+  editContract(contract: any){
+    this.router.navigate(['nuovo-contratto'], {queryParams: contract})
   }
+
+  deleteContract(){
+    this.closeModal();
+    if(this.toDeleteId){
+      this.adminService.deleteContract(this.toDeleteId).subscribe(
+        (res) => {
+          this.adminService.showToast('S','contratto eliminato con success');
+          this.buildForm();
+        },(err) => {
+          this.adminService.showToast('E','eliminazione contratto non riuscita');
+
+        }
+      );
+    }
+  }
+
+  openModalWithClass(event:Event, modal: TemplateRef<any>,contractId) {
+    event.preventDefault();
+    this.toDeleteId = contractId;
+        this.modalRef = this.modalService.show(
+          modal,
+          Object.assign({}, { class: 'gray modal-lg' })
+        );
+      }
+
+      closeModal() {
+        event.preventDefault();
+        this.modalRef.hide()
+      }
+
+
 }

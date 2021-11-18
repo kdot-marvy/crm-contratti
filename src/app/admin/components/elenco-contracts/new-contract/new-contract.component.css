@@ -1,6 +1,6 @@
 .custom-select.ng-touched.ng-invalid,
 .form-control.ng-invalid.ng-touched {
-  border: 1px solid red;
+    border: 1px solid red;
 }
 
 .form-extra label,
@@ -8,44 +8,72 @@
 .carta-di-credito label,
 .conto-corrente label,
 .card-user-details label {
-  font-weight: bold;
-  padding: 0 .2rem;
+    font-weight: bold;
+    padding: 0 .2rem;
 }
 
+
 /* Modal Style */
-.container{
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 25%;
-  height: auto;
-  background: #fff;
-  border-radius: .5rem;
-  overflow: hidden;
+
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 25%;
+    height: auto;
+    background: #fff;
+    border-radius: .5rem;
+    overflow: hidden;
 }
-h2{
-  margin: 1rem 0;
+
+h2 {
+    margin: 1rem 0;
 }
-.button{
-  padding: 0;
-  margin: 0.5rem 0 1rem;
-  width: 100%;
+
+.button {
+    padding: 0;
+    margin: 0.5rem 0 1rem;
+    width: 100%;
 }
-.modal-button button{
-  width: calc(100% / 2);
-  padding: 0.2rem;
+
+.modal-button button {
+    width: calc(100% / 2);
+    padding: 0.2rem;
 }
-.overlay{
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 100%;
-  min-height: 100vh;
-  padding: 0;
-  margin: 0;
-  background: rgba(0, 0, 0, 0.308);
-  transition: 0.5s;
-  z-index: 9999;
+
+.overlay {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.308);
+    transition: 0.5s;
+    z-index: 9999;
 }
+
+
 /* modal ends here */
+
+.file-input {
+    display: none;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}

@@ -15,11 +15,6 @@ export const ROUTES: RouteInfo[] = [
     { path: '/documenti',     title: 'Documenti',         icon:'nc-single-copy-04',       class: '' },
      { path: '/utenti',         title: 'Utenti',             icon:'nc-single-02',    class: '' },
      { path: '/upgrade',       title: 'Versione 0.0.0',    icon:'nc-spaceship',  class: 'active-pro' },
-    // { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
-    // { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },
-    // { path: '/user',          title: 'User Profile',      icon:'nc-single-02',  class: '' },
-    // { path: '/table',         title: 'Table List',        icon:'nc-tile-56',    class: '' },
-    // { path: '/typography',    title: 'Typography',        icon:'nc-caps-small', class: '' },
 ];
 
 @Component({

@@ -59,8 +59,8 @@ export class Address {
     return {
       address: this._address,
       addressNumber: this._addressNumber,
-      zipCode: this._zipCode,
-      location: this._location,
+      codicePostale: this._zipCode,
+      localita: this._location,
       addressType: this._addressType,
     }
   }

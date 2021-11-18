@@ -182,8 +182,8 @@ export class ManagerData {
   toJSon() {
     return {
 
-      manager: this._manager,
-      package: this._package,
+      manager_id: this._manager,
+      pack: this._package,
       coverage: this._coverage,
       additionalOptions: this._additionalOptions,
       portability: this._portability,
@@ -200,6 +200,8 @@ export class ManagerData {
       pdr: this._pdr,
       serialNumber: this._serialNumber,
       previousSupplier: this._previousSupplier,
+      plant_location_address: this.plantLocationAddress.toJSon(),
+      shipping_address : this.shippingAddress.toJSon()
     }
   }
 

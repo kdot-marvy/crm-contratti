@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, SimpleChange, Input, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PagerService } from 'app/admin/services/pager.service';
+import { AdminService } from 'app/admin/services/admin.service';
 
 @Component({
   selector: 'app-pagination',
@@ -40,12 +41,12 @@ export class PaginationComponent implements OnInit {
 
   constructor(
     private pagerService: PagerService,
-    private http: HttpClient
+    private http: HttpClient,
+    private adminService: AdminService
   ) { }
+
   ngOnInit(): void {
-
     this.watchReload();
-
   }
 
    // Fetch new page data
@@ -58,8 +59,8 @@ export class PaginationComponent implements OnInit {
     this.getData(this.currentPageNumber - 1)
   }
 
-  // Fetch data from API
-  getData(pageNo: any) {
+   // Fetch data from API
+   getData(pageNo: any) {
     this.loading.emit(true);
     this.responseData.emit([]);
     this.currentPageNumber = Number(pageNo);

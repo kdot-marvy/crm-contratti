@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { JwtInterceptor } from './shared/helper/jwt.interceptor';
+import { HeaderInterceptor } from './shared/helper/header.interceptor';
 
 
 
@@ -46,6 +47,10 @@ import { JwtInterceptor } from './shared/helper/jwt.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true
+    },{
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptor,
       multi: true
     }
   ],

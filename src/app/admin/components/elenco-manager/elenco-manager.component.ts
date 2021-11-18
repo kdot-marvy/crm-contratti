@@ -74,4 +74,12 @@ export class ElencoManagerComponent implements OnInit, AfterViewChecked {
       }, 100);
     }
   }
+
+  deleteManager(contractId: any){
+    this.adminService.deleteContract(contractId).subscribe(
+      (response)=>{
+        console.log(response);
+      }
+    );
+  }
 }

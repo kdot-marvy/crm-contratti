@@ -35,8 +35,8 @@ export class ContractModel {
 
   toJSon() {
     return {
-      personalData: this.personalData.toJSon(),
-      managerData: this.managerData.toJSon(),
+      dati_anagrafici: this.personalData.toJSon(),
+      contract_manager_data: this.managerData.toJSon(),
       accountingData: this.accountingData.toJSon()
     };
   }

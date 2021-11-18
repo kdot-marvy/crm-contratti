@@ -22,6 +22,14 @@ import { ElencoDocumentComponent } from './components/elenco-document/elenco-doc
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { NewUserComponent } from './components/elenco-user/new-user/new-user.component';
+import { ToastComponent } from './components/toast/toast.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { FiscalCodeValidatorDirective } from './directives/fiscalCodeValidator';
+import { DateValidatorDirective } from './directives/dateValidator';
+import { EmailValidatorDirective } from './directives/emailValidator';
+import { NumberValidatorDirective } from './directives/numberValidator';
 
 
 @NgModule({
@@ -31,6 +39,10 @@ import { NewUserComponent } from './components/elenco-user/new-user/new-user.com
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }), // ToastrModule added
+    ModalModule.forRoot(),
   ],
   declarations: [
     DashboardComponent,
@@ -48,6 +60,12 @@ import { NewUserComponent } from './components/elenco-user/new-user/new-user.com
     ElencoDocumentComponent,
     NewUserComponent,
     PaginationComponent,
+    MapsComponent,
+    ToastComponent,
+    DateValidatorDirective,
+    FiscalCodeValidatorDirective,
+    EmailValidatorDirective,
+    NumberValidatorDirective
   ]
 })
 

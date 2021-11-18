@@ -150,6 +150,7 @@ export class PersonalData {
       placeOfIssue: this._placeOfIssue,
       dateOfIssue: this._dateOfIssue,
       expiryDate: this._expiryDate,
+      address : this.address.toJSon()
     }
   }
 }

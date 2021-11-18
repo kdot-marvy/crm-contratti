@@ -70,4 +70,12 @@ export class ElencoUserComponent implements OnInit, AfterViewChecked{
     goToNew() {
       this.router.navigate(['nuovo-utente']);
     }
+
+    deleteContract(contractId: any){
+      this.adminService.deleteContract(contractId).subscribe(
+        (response)=>{
+          console.log(response);
+        }
+      );
+    }
 }

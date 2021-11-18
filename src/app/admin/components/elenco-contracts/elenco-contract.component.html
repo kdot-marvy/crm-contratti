@@ -2,19 +2,17 @@
     <!-- Starts table -->
     <div class="row">
         <div class="col-md-12 p-0">
-            <h3>Contratti</h3>
             <div class="row">
-                <div class="col-md-6 col-lg-2 mb-2">
-                    <button type="button" class="btn btn-primary btn-round" (click)="goToNew()"><i
-              class="nc-icon nc-simple-add"></i> aggiungi</button>
+                <div class="col-6">
+                    <button type="button" class="btn btn-primary" (click)="goToNew()"><i class="nc-icon nc-simple-add"></i> aggiungi</button>
+                    <button type="button" class="btn btn-primary bg-secondary" (click)="exportExcel()"><i class="nc-icon nc-simple-download"></i> Excel</button>
+                    <button class="btn btn-primary" (click)="print($event)"><i class="nc-icon nc-simple-remove"></i> delete</button>
                 </div>
-                <div class="col-md-6 justify-content-start col-lg-6 mb-2">
-                    <button type="button" class="btn btn-primary bg-success btn-round" (click)="exportExcel()">Excel</button>
-                </div>
+
                 <div class="col-md-6 col-lg-4">
                     <div class="d-flex align-items-center justify-content-end">
                         <div class="form-group">
-                            <label class="pr-3">Records per page</label>
+                            <label class="pr-3">Righe per page</label>
                         </div>
                         <div class="form-group">
                             <select class="form-control custom-shadow" name="recordsPerPage" (change)="
@@ -128,7 +126,7 @@
                             <tr *ngFor="let contract of contracts">
                                 <td><input type="checkbox"></td>
                                 <td>{{ contract.agent }}</td>
-                                <td>{{ contract.department }}</td>
+                                <td>{{ contract.id }}</td>
                                 <td>{{ contract.manager.nome }}</td>
                                 <td>{{ contract.note }}</td>
                                 <td>{{ contract.department }}</td>
@@ -137,18 +135,13 @@
                                 <td>{{ contract.codiceFiscale }}</td>
                                 <td>{{ contract.simStatus }}</td>
                                 <td>
-                <span class="edit-content" (click)="editContract(contract.id)">
+                                    <span class="edit-content" (click)="editContract(contract)">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                   <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                 </svg>
               </span>
-                                    <span class="delete-content" (click)="showModal($event)">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash text-danger" viewBox="0 0 16 16">
-                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                  </svg>
-                </span>
+
                                 </td>
                             </tr>
                         </tbody>
@@ -162,28 +155,20 @@
     <!-- Ends table -->
 </div>
 
-<div class="overlay" aria-hidden="true" aria-labelledby="staticBackdropLabel" *ngIf="modal">
-    <div class="container text-center pt-2">
-        <h5 class="display-6">Vuoi eliminare il contratto?</h5>
-        <div class="button d-flex justify-content-around">
-            <button class="modal-button btn btn-danger " (click)="closeModal($event)">No</button>
-            <button class="modal-button btn btn btn-primary">Sì</button>
+<ng-container>
+    <ng-template #modal>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Conferma</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+<span aria-hidden="true">×</span>
+</button>
         </div>
-    </div>
-    =======
-    <div class="container text-center pl-0 pr-0">
-        <h5 class="display-6 bg-light py-2">
-            <svg width="20" height="20" fill="currentColor" class="bi bi-exclamation-circle text-danger" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-        <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
-      </svg> Conferma
-        </h5>
-        <div class="modal-description">
-            Vuoi eliminare il contratto?
+        <div class="modal-body">
+            <p>Sicuro di volere eliminare il contratto? </p>
         </div>
-        <div class="button d-flex justify-content-around">
-            <button class="modal-button btn btn-danger " (click)="closeModal($event)">No</button>
-            <button class="modal-button btn btn btn-primary">Sì</button>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="closeModal()">Close</button>
+            <button type="submit" class="btn btn-primary" (click)="deleteContract()">Conferma</button>
         </div>
-    </div>
-</div>
+    </ng-template>
+</ng-container>

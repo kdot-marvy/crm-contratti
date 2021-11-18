@@ -3,41 +3,50 @@
         <div class="card">
             <div class=" col-md-8 align-self-center justify-content-md-center">
                 <div class="card-header">
-                    <h4 class="card-title text-center">Sign Up</h4>
+                    <h4 class="card-title text-center">Nuovo Utente</h4>
                 </div>
                 <div class="card-body">
                     <form #signUpUserForm="ngForm" class="md-float-material" (submit)="onSubmit(signUpUserForm.valid)">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Nome" [(ngModel)]="registration.firstName" name="nome" required>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Cognome" [(ngModel)]="registration.lastName" name="cognome" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Username" [(ngModel)]="registration.username" name="username" required>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="email" class="form-control" placeholder="Email" [(ngModel)]="registration.email" name="email" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Password" [(ngModel)]="registration.password" name="password" required>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Conferma Password" [(ngModel)]="registration.confirmPassword" name="password-check" required>
                                 </div>
@@ -46,9 +55,9 @@
                         <div class="row">
                             <div class="col-12">
                                 <select class="custom-select" [(ngModel)]="registration.role" name="role" required>
-                  <option value="admin">Seleziona</option>
+                  <option value="">Seleziona</option>
                   <option value="admin">Admin</option>
-
+                  <option value="mod">Base</option>
 
                 </select>
                             </div>
@@ -62,8 +71,7 @@
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-3">
-                                <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Sign
-                  up</button>
+                                <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Salva</button>
                             </div>
                         </div>
                     </form>
