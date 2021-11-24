@@ -3,616 +3,626 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title"> Nuovo
-                    <!-- <input (keydown.i)="onKeydown($event)"> -->
+                    <!-- <input ngx-google-places-autocomplete [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" /> -->
                 </h4>
             </div>
             <div class="card-body">
-                <form #contractForm="ngForm" (submit)="onSubmit(contractForm.valid,modal)">
-                    <ngb-tabset (tabChange)="onTabChange($event)">
-                        <ngb-tab title="Dati Anagrafici" id="anagrafici">
+                <form [formGroup]="contractForm" (ngSubmit)="onSubmit()">
+                    <ngb-tabset>
+                        <ngb-tab title="Dati Anagrafici" id="anagrafici" formGroupName="dati_anagrafici">
                             <ng-template ngbTabContent>
                                 <div class="col-md-12">
-
-                                    <div class="row mt-3">
-                                        <div class="col-md-5 pr-1">
-                                            <div class="form-group">
-                                                <label>Rag.Soc./Cognome *: </label>
-                                                <input type="text" name="cognome" class="form-control" placeholder="Ragione Sociale / Cognome" required ngModel #cognome="ngModel" [(ngModel)]="contract.personalData.surname">
-                                            </div>
-                                            <div *ngIf="cognome.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                        <div class="col-md-3 px-1">
-                                            <div class="form-group">
-                                                <label>Nome *: </label>
-                                                <input type="text" name="nome" class="form-control" placeholder="Nome" required ngModel #nome="ngModel" [(ngModel)]="contract.personalData.name">
-                                            </div>
-                                            <div *ngIf="nome.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                        <div class="col-md-4 pl-1">
-                                            <div class="form-group">
-                                                <label>Luogo di nascita *:</label>
-                                                <input type="text" name="luogo-di-nascita" class="form-control" placeholder="Luogo di nascita" ngModel required #luogoNascita="ngModel" [(ngModel)]="contract.personalData.placeOfBirth">
-                                            </div>
-                                            <div *ngIf="luogoNascita.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 pr-1">
-                                            <div class="form-group">
-                                                <label>Data Di Nascita *:</label>
-                                                <input type="text" name="data-di-nascita" class="form-control" placeholder="Data Di Nascita" required ngModel #dataNascita="ngModel" [(ngModel)]="contract.personalData.dateOfBirth" dateValidator>
-                                            </div>
-                                            <div *ngIf="dataNascita.invalid && submitted" class="alert alert-danger">formato data gg/mm/aaaa </div>
-                                        </div>
-                                        <div class="col-md-4 pl-1">
-                                            <div class="form-group">
-                                                <label>Codice Fiscale *:</label>
-                                                <input type="text" name="codice-fiscale" class="form-control" placeholder="Codice Fiscale" required ngModel #codiceFiscale="ngModel" [(ngModel)]="contract.personalData.fiscalCode" fiscalCodeValidator>
-                                            </div>
-                                            <div *ngIf="codiceFiscale.invalid && submitted" class="alert alert-danger">codice fiscale non valido</div>
-
-                                        </div>
-                                        <div class="col-md-4 pl-1">
-                                            <div class="form-group">
-                                                <label>Partita IVA *:</label>
-                                                <input type="text" name="partita-iva" class="form-control" placeholder="Partita Iva" ngModel required #partitaIva="ngModel" [(ngModel)]="contract.personalData.partitaIVA">
-                                            </div>
-                                            <div *ngIf="partitaIva.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-2 mb-3 pr-1">
-                                            <div class="form-group">
-                                                <label>Tipo Indirizzo *:</label>
-                                                <select class="custom-select" name="address-type" required ngModel #addressType="ngModel" [(ngModel)]="contract.personalData.address.addressType">
-                          <option value="">Seleziona</option>
-                          <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addressTypes[key]}}</option>
-                        </select>
-                                            </div>
-                                            <div *ngIf="addressType.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                        <div class="col-md-4 px-1">
-                                            <div class="form-group">
-                                                <label>Indirizzo *:</label>
-                                                <input type="text" class="form-control" name="indirizzo" placeholder="Indirizzo" required ngModel #addressField="ngModel" [(ngModel)]="contract.personalData.address.address">
-                                            </div>
-                                            <div *ngIf="addressField.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                        <div class="col-md-2 pl-1">
-                                            <div class="form-group">
-                                                <label>N° civico *:</label>
-                                                <input type="text" class="form-control" name="civico" placeholder="Numero Civico" required ngModel #numeroCivico="ngModel" [(ngModel)]="contract.personalData.address.addressNumber">
-                                            </div>
-                                            <div *ngIf="numeroCivico.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                        <div class="col-md-2 pl-1">
-                                            <div class="form-group">
-                                                <label>C.A.P. *:</label>
-                                                <input type="number" class="form-control" name="zipCode" placeholder="C.A.P." required ngModel #zipCode="ngModel" [(ngModel)]="contract.personalData.address.zipCode">
-                                            </div>
-                                            <div *ngIf="zipCode.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                        <div class="col-md-2 pl-1">
-                                            <div class="form-group">
-                                                <label>Località *:</label>
-                                                <input type="text" name="location" class="form-control" placeholder="Località" required ngModel #locationField="ngModel" [(ngModel)]="contract.personalData.address.location">
-                                            </div>
-                                            <div *ngIf="locationField.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-4 pr-1">
-                                            <div class="form-group">
-                                                <label>Cellulare *:</label>
-                                                <input type="text" name="number" class="form-control" placeholder="Cellulare" required ngModel #phoneNumber="ngModel" [(ngModel)]="contract.personalData.phoneNumber">
-                                            </div>
-                                            <div *ngIf="phoneNumber.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                        <div class="col-md-4 pl-1">
-                                            <div class="form-group">
-                                                <label>Altro Telefono:</label>
-                                                <input type="text" class="form-control" name="otherNumber" placeholder="Altro Telefono" [(ngModel)]="contract.managerData.otherNumber">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 pl-1">
-                                            <div class="form-group">
-                                                <label>Email *:</label>
-                                                <input type="email" name="email" class="form-control" placeholder="Email" required ngModel #emailField="ngModel" [(ngModel)]="contract.personalData.email" emailValidator>
-                                            </div>
-                                            <div *ngIf="emailField.invalid && submitted" class="alert alert-danger">email non valido</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class=" col-md-2 mb-3 pr-1">
-                                            <div class="form-group">
-                                                <label>Tipo Documento *:</label>
-                                                <select class="custom-select" name="document" required ngModel #docType="ngModel" [(ngModel)]="contract.personalData.documentType">
-                          <option value="">Seleziona</option>
-                          <option *ngFor="let docTypeKey of docTypeKeys" [ngValue]="docTypeKey">
-                            {{docTypes[docTypeKey]}}</option>
-                        </select>
-                                            </div>
-                                            <div *ngIf="docType.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-
-                                        </div>
-
-                                        <div class="col-md-3 pl-1">
-                                            <div class="form-group">
-                                                <label>N° Documento *:</label>
-                                                <input type="text" class="form-control" name="doc-number" placeholder="N° Documento" required ngModel #docNumber="ngModel" [(ngModel)]="contract.personalData.documentNumber">
-                                            </div>
-                                            <div *ngIf="docNumber.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                        <div class="col-md-3 pl-1">
-                                            <div class="form-group">
-                                                <label>Luogo Emissione *:</label>
-                                                <input type="text" class="form-control" name="issue" placeholder="Luogo Emissione" required ngModel #placeIssued="ngModel" [(ngModel)]="contract.personalData.placeOfIssue">
-                                            </div>
-                                            <div *ngIf="placeIssued.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                        <div class="col-md-2 pl-1">
-                                            <div class="form-group">
-                                                <label>Data Emissione *:</label>
-                                                <input type="text" class="form-control" name="emission-date" placeholder="Data Emissione" required ngModel #emissionDate="ngModel" [(ngModel)]="contract.personalData.dateOfIssue" dateValidator>
-                                            </div>
-                                            <div *ngIf="emissionDate.invalid && submitted" class="alert alert-danger">formato data gg/mm/aaaa </div>
-                                        </div>
-                                        <div class="col-md-2 pl-1">
-                                            <div class="form-group">
-                                                <label>Data Scadenza *:</label>
-                                                <input type="text" class="form-control" name="expiry-date" placeholder="Data Scadenza" required ngModel #expiryDate="ngModel" [(ngModel)]="contract.personalData.expiryDate" dateValidator>
-                                            </div>
-                                            <div *ngIf="expiryDate.invalid && submitted" class="alert alert-danger">formato data gg/mm/aaaa </div>
-
-                                        </div>
-                                    </div>
-
-                                    <!-- </div>
-                                    </div> -->
-                                </div>
-                            </ng-template>
-                        </ngb-tab>
-                        <ngb-tab title="Dati Gestore" id="gestore">
-                            <ng-template ngbTabContent>
-                                <div class="col-md-12">
-
-                                    <div class="row  mt-3">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-
-                                                <label>Gestore *:</label>
-                                                <select class="custom-select" name="3\  " required ngModel #gestore="ngModel" (ngModelChange)="changedManager($event)" [(ngModel)]="contract.managerData.manager">
-                        <option value="">seleziona</option>
-                        <option *ngFor="let item of gestori" [ngValue]="item">{{item.nome}}</option>
-
-                      </select>
-                                            </div>
-                                            <div *ngIf="gestore.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-
-                                                <label>Pacchetto *:</label>
-                                                <select class="custom-select" name="package" required ngModel #package="ngModel" [(ngModel)]="contract.managerData.package">
-                                                          <option value="">seleziona</option>
-                                                          <option *ngFor="let item of packages" [ngValue]="item.id">{{item.nome}}</option>
-
-                                                        </select>
-                                            </div>
-                                            <div *ngIf="package.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                        </div>
-                                    </div>
-
-                                    <ng-container *ngIf="panel1Shown">
-                                        <div class="form-extra">
+                                    <div class="card card-user">
+                                        <div class="card-body">
                                             <div class="row">
-                                                <div class="col-md-6 pr-1">
+                                                <div class="col-md-5 pr-1">
                                                     <div class="form-group">
-                                                        <label>Copertura :</label>
-                                                        <select class="custom-select" name="copertura" [(ngModel)]="contract.managerData.coverage">
-                              <option value="">Seleziona</option>
-                              <option *ngFor="let item of coperture" [ngValue]="item">{{item}}</option>
-
-                            </select>
+                                                        <label>Rag.Soc./Cognome *: </label>
+                                                        <input type="text" class="form-control" placeholder="Ragione Sociale / Cognome" formControlName="surname">
                                                     </div>
+                                                    <div *ngIf="surname.invalid && submitted" class="alert alert-danger">campo richiesto</div>
                                                 </div>
-                                                <div class="col-md-6 pl-1">
+                                                <div class="col-md-3 px-1">
                                                     <div class="form-group">
-                                                        <label>Opzioni Aggiuntive :</label>
-                                                        <select class="custom-select" name="opzioni-aggiuntive" [(ngModel)]="contract.managerData.additionalOptions">
-                              <option value="">Seleziona</option>
-                              <option *ngFor="let item of opzioniAggiuntive" [ngValue]="item">{{item}}</option>
-
-                            </select>
+                                                        <label>Nome : </label>
+                                                        <input type="text" class="form-control" placeholder="Nome" formControlName="name">
                                                     </div>
+
+                                                    <div *ngIf="name.invalid && submitted" class="alert alert-danger">campo richiesto</div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6 pr-1">
+                                                <div class="col-md-4 pl-1">
                                                     <div class="form-group">
-                                                        <label>Portabilità :</label>
-                                                        <select class="custom-select" name="portabilità" [(ngModel)]="contract.managerData.portability">
-                              <option value="">Seleziona</option>
-                              <option *ngFor="let item of portabilita" [ngValue]="item">{{item}}</option>
-
-                            </select>
+                                                        <label>Luogo di nascita:</label>
+                                                        <input type="text" class="form-control" placeholder="Luogo di nascita" formControlName="placeOfBirth">
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6 pl-1">
-                                                    <div class="form-group">
-                                                        <label>Num. da portare:</label>
-                                                        <input type="text" class="form-control" name="fornitore-precedente" placeholder="Num. da portare" [(ngModel)]="contract.managerData .portabilityNumber">
-                                                    </div>
+                                                    <div *ngIf="placeOfBirth.invalid && submitted" class="alert alert-danger">campo richiesto</div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Seiale SIM Vodafone Station :</label>
-                                                        <input type="text" class="form-control" name="vodafone-sim-serial" placeholder="Seiale SIM Vodafone Station" [(ngModel)]="contract.managerData.vodafoneStationSerial">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 pl-1">
-                                                    <div class="form-group">
-                                                        <label>Stato SIM :</label>
-                                                        <select class="custom-select" name="sim-status" [(ngModel)]="contract.managerData.simStatus">
-                              <option value="">Seleziona</option>
-                              <option *ngFor="let key of EStatoSimKeys" [ngValue]="key">{{EStatoSims[key]}}</option>
-
-                            </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Data Attivazione :</label>
-                                                        <input type="text" name="activation-date" class="form-control" placeholder="Data Attivazione" required ngModel #dataAttivazione="ngModel" [(ngModel)]="contract.managerData.activationDate" dateValidator>
-
-                                                    </div>
-                                                    <div *ngIf="dataAttivazione.invalid && submitted" class="alert alert-danger">formato data gg/mm/aaaa</div>
-
-                                                </div>
-                                                <div class="col-md-6 pl-1">
-                                                    <div class="form-group">
-                                                        <label>Seriale SIM Operatore :</label>
-                                                        <input type="text" name="serial-sim-operator" class="form-control" placeholder="Seriale SIM Operatore" [(ngModel)]="contract.managerData.serialSimOperator">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Gestore di Provenienza :</label>
-                                                        <input type="text" name="gestore-di-provenienza" class="form-control" placeholder="Gestore di Provenienza" [(ngModel)]="contract.managerData.managerOfOrigin">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 pl-1">
-                                                    <div class="form-group">
-                                                        <label>Seriale Nuova SIM Voce :</label>
-                                                        <input type="text" name="seiale-nuova-sim" class="form-control" placeholder="" [(ngModel)]="contract.managerData.newSimSerial">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Codice Migrazione :</label>
-                                                        <input type="text" name="codice-migrazione" class="form-control" placeholder="Codice Migrazione" [(ngModel)]="contract.managerData.migrationCode">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 pl-1">
-                                                    <div class="form-group">
-                                                        <label>Tipo SIM :</label>
-                                                        <select class="custom-select" name="tipo-sim" [(ngModel)]="contract.managerData.simType">
-                              <option value="">Seleziona</option>
-                              <option *ngFor="let item of tipoSim" [ngValue]="item">{{item}}</option>
-
-                            </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </ng-container>
-                                    <ng-container *ngIf="panel2Shown">
-                                        <div class="form-extra-2">
-                                            <div class="row">
-                                                <div class="col-md-6 pr-1">
-                                                    <div class="form-group">
-                                                        <label>POD :</label>
-                                                        <input type="text" name="pod" class="form-control" placeholder="pod" maxlength="10" [(ngModel)]="contract.managerData.pod">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 pl-1">
-                                                    <div class="form-group">
-                                                        <label>PDR :</label>
-                                                        <input type="text" name="pdr" class="form-control" maxlength="10" placeholder="pdr" [(ngModel)]="contract.managerData.pdr">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Matricola :</label>
-                                                        <input type="text" name="matricola" class="form-control" placeholder="matricola" [(ngModel)]="contract.managerData.serialNumber">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 pl-1">
-                                                    <div class="form-group">
-                                                        <label>Precedente Fornitore:</label>
-                                                        <input type="text" name="precedente-fornitore" class="form-control" placeholder="Precedente Fornitore" [(ngModel)]="contract.managerData.previousSupplier">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </ng-container>
-
-
-
-
-
-                                    <div class="">
-                                        <small class="text-white bg-success font-weight-bold px-1">Indirizzo sede impianto</small>
-                                        <div class="row">
-                                            <div class="col-md-2 mb-3 pr-1">
-                                                <div class="form-group">
-
-                                                    <label>Tipo Indirizzo *:</label>
-                                                    <select class="custom-select" name="location-address-type" required ngModel #addressType="ngModel" [(ngModel)]="contract.managerData.plantLocationAddress.addressType">
-                          <option value="">Seleziona</option>
-                          <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addressTypes[key]}}</option>
-                        </select>
-                                                </div>
-                                                <div *ngIf="addressType.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                            </div>
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label>Indirizzo *:</label>
-                                                    <input type="text" class="form-control" name="location-address" placeholder="Indirizzo" required ngModel #address="ngModel" [(ngModel)]="contract.managerData.plantLocationAddress.address">
-                                                </div>
-                                                <div *ngIf="address.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                            </div>
-                                            <div class="col-md-2 pl-1">
-                                                <div class="form-group">
-                                                    <label>N° *:</label>
-                                                    <input type="text" name="location-address-number" class="form-control" placeholder="Numero Civico" required ngModel #plantLocationAddressNumber="ngModel" [(ngModel)]="contract.managerData.plantLocationAddress.addressNumber">
-                                                </div>
-                                                <div *ngIf="plantLocationAddressNumber.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                            </div>
-                                            <div class="col-md-2 pl-1">
-                                                <div class="form-group">
-                                                    <label>C.A.P. *:</label>
-                                                    <input type="number" class="form-control" name="location-zip" placeholder="C.A.P." required ngModel #zipCode="ngModel" [(ngModel)]="contract.managerData.plantLocationAddress.zipCode">
-                                                </div>
-                                                <div *ngIf="zipCode.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                            </div>
-                                            <div class="col-md-2 pl-1">
-                                                <div class="form-group">
-                                                    <label>Località *:</label>
-                                                    <input type="text" class="form-control" name="plant-location" placeholder="Località" required ngModel #location="ngModel" [(ngModel)]="contract.managerData.plantLocationAddress.location">
-                                                </div>
-                                                <div *ngIf="location.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                            </div>
-                                        </div>
-                                        <!-- <button class="btn bg-info m-0 mb-1" (click)="copyToPalnt($event)">Copia da Dati
-                      Anagrafici</button> -->
-                                    </div>
-                                    <div class="">
-                                        <small class="text-white bg-success font-weight-bold px-1">Indirizzo spedizione merce</small>
-                                        <div class="row">
-                                            <div class="col-md-2 mb-3 pr-1">
-                                                <div class="form-group">
-                                                    <label>Tipo Indirizzo *:</label>
-                                                    <select class="custom-select" name="shipping-address" required ngModel #shippingAddressType="ngModel" [(ngModel)]="contract.managerData.shippingAddress.addressType">
-                          <option value="">Seleziona</option>
-                          <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addressTypes[key]}}</option>
-                        </select>
-                                                </div>
-                                                <div *ngIf="shippingAddressType.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                            </div>
-                                            <div class="col-md-4 px-1">
-                                                <div class="form-group">
-                                                    <label> Indirizzo *:</label>
-                                                    <input type="text" class="form-control" name="shippingAddress" placeholder="Indirizzo" required ngModel #shippingAddress="ngModel" [(ngModel)]="contract.managerData.shippingAddress.address">
-                                                </div>
-                                                <div *ngIf="shippingAddress.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-
-                                            </div>
-                                            <div class="col-md-2 pl-1">
-                                                <div class="form-group">
-                                                    <label>N° *:</label>
-                                                    <input type="text" name="shippingAddressNumber" class="form-control" placeholder="Numero Civico" required ngModel #shippingAddressNumber="ngModel" [(ngModel)]="contract.managerData.shippingAddress.addressNumber">
-
-                                                </div>
-                                                <div *ngIf="shippingAddressNumber.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-
-                                            </div>
-                                            <div class="col-md-2 pl-1">
-                                                <div class="form-group">
-                                                    <label>C.A.P. *:</label>
-                                                    <input type="number" class="form-control" name="shippingAddressZipCode" placeholder="C.A.P." required ngModel #shippingAddressZipCode="ngModel" [(ngModel)]="contract.managerData.shippingAddress.zipCode">
-                                                </div>
-                                                <div *ngIf="shippingAddressZipCode.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                            </div>
-                                            <div class="col-md-2 pl-1">
-                                                <div class="form-group">
-                                                    <label>Località *:</label>
-                                                    <input type="text" name="shippingAddressLocation" class="form-control" placeholder="Località" required ngModel #shippingAddressLocation="ngModel" [(ngModel)]="contract.managerData.shippingAddress.location">
-                                                </div>
-                                                <div *ngIf="shippingAddressLocation.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                            </div>
-                                        </div>
-                                        <!-- <button class="btn bg-info m-0 mb-1" (click)="copyToPalnt()">Copia da Dati Anagrafici</button> -->
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Note</label>
-                                                <textarea class="form-control textarea"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- </div>
-                                    </div> -->
-                                </div>
-                            </ng-template>
-                        </ngb-tab>
-                        <ngb-tab title="Dati contabili" id="contabili">
-                            <ng-template ngbTabContent>
-                                <div>
-                                    <div class="col-md-12">
-                                        <!-- <div class="">
-                                            <div class="card-body"> -->
-                                        <div class="row  mt-3">
-                                            <div class=" col-md-6 mb-3 pr-1">
-                                                <div class="form-group">
-                                                    <label>Stato Pratica:</label>
-                                                    <select class="custom-select" name="fileStatus" [(ngModel)]="contract.accountingData.fileStatus">
-                            <option value="">Seleziona</option>
-                            <option *ngFor="let key of EStatoPraticaTypeKeys" [ngValue]="key">
-                              {{EStatoPraticaTypes[key]}}</option>
-
-                          </select>
-                                                </div>
-                                            </div>
-                                            <div class=" col-md-6 mb-3 pr-1">
-                                                <div class="form-group">
-                                                    <label>Tipo di Pagamento:</label>
-                                                    <select class="custom-select" name="paymentType" [(ngModel)]="contract.accountingData.paymentType">
-                            <option value="">Seleziona</option>
-                            <option *ngFor="let key of paymentTypeKeys" [ngValue]="key">{{paymentTypes[key]}}
-                            </option>
-
-                          </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="card-user-details">
                                             <div class="row">
                                                 <div class="col-md-4 pr-1">
                                                     <div class="form-group">
-                                                        <label>Cognome Intestatario *: </label>
-                                                        <input type="text" name="cardUserSurname" class="form-control" placeholder="Cognome" required ngModel #cardUserSurname="ngModel" [(ngModel)]="contract.accountingData.cardUserSurname">
+                                                        <label>Data Di Nascita *:</label>
+                                                        <input type="date" class="form-control" placeholder="" formControlName="dateOfBirth">
+
                                                     </div>
-                                                    <div *ngIf="cardUserSurname.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+                                                    <div *ngIf="dateOfBirth.invalid && submitted" class="alert alert-danger">formato data gg/mm/aaaa </div>
+                                                </div>
+                                                <div class="col-md-4 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Codice Fiscale *:</label>
+                                                        <input type="text" (input)="calcolaCodiceFiscale()" class="form-control text-uppercase" placeholder="Codice Fiscale" formControlName="fiscalCode" maxlength="16">
+
+                                                    </div>
+                                                    <div *ngIf="fiscalCode.invalid && submitted" class="alert alert-danger">codice fiscale non valido</div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Partita IVA *:</label>
+                                                        <input type="text" class="form-control" placeholder="Partita Iva" formControlName="partitaIVA">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row" formGroupName="address">
+                                                <div class="col-md-2 mb-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Tipo Indirizzo *:</label>
+                                                        <select class="custom-select" name="addressType" formControlName="addressType">
+                            <option value="" selected>Seleziona</option>
+                            <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addressTypes[key]}}</option>
+                          </select>
+                                                    </div>
+                                                    <div *ngIf="addressType.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
                                                 </div>
                                                 <div class="col-md-4 px-1">
                                                     <div class="form-group">
-                                                        <label>Nome Intestatario *: </label>
-                                                        <input type="text" name="cardUserName" class="form-control" placeholder="Nome" required ngModel #cardUserName="ngModel" [(ngModel)]="contract.accountingData.cardUserName">
+                                                        <label>Indirizzo *:</label>
+                                                        <input class="form-control" placeholder="Indirizzo" formControlName="address">
+                                                        <!-- <input ngx-google-places-autocomplete autocomplete="off" class="form-control" placeholder="Indirizzo" [options]='options' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" /> -->
+
                                                     </div>
-                                                    <div *ngIf="cardUserName.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+                                                    <div *ngIf="address.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                </div>
+                                                <div class="col-md-2 pl-1">
+                                                    <div class="form-group">
+                                                        <label>N° civico *:</label>
+                                                        <input type="text" class="form-control" placeholder="Numero Civico" formControlName="addressNumber">
+                                                    </div>
+                                                    <div *ngIf="addressNumber.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+                                                </div>
+                                                <div class="col-md-2 pl-1">
+                                                    <div class="form-group">
+                                                        <label>C.A.P. *:</label>
+                                                        <input type="text" class="form-control" placeholder="C.A.P." formControlName="codicePostale">
+                                                    </div>
+                                                    <div *ngIf="zipCode.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+                                                </div>
+                                                <div class="col-md-2 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Località *:</label>
+                                                        <input type="text" class="form-control" placeholder="Località" formControlName="localita">
+
+                                                    </div>
+                                                    <div *ngIf="localita.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-4 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Cellulare *:</label>
+                                                        <input type="text" class="form-control" placeholder="Cellulare" formControlName="phoneNumber">
+
+                                                    </div>
+                                                    <div *ngIf="phoneNumber.invalid && submitted" class="alert alert-danger">campo richiesto</div>
                                                 </div>
                                                 <div class="col-md-4 pl-1">
                                                     <div class="form-group">
-                                                        <label>Codice Fiscale Intestatario *:</label>
-                                                        <input type="text" name="cardUserFiscalCode" class="form-control" placeholder="Codice Fiscale" ngModel required #cardUserFiscalCode="ngModel" [(ngModel)]="contract.accountingData.cardUserFiscalCode" fiscalCodeValidator>
+                                                        <label>Altro Telefono:</label>
+                                                        <input type="text" class="form-control" placeholder="Altro Telefono" formControlName="otherNumber">
                                                     </div>
-                                                    <div *ngIf="cardUserFiscalCode.invalid && submitted" class="alert alert-danger">codice fiscale non valido</div>
+                                                </div>
+                                                <div class="col-md-4 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Email *:</label>
+                                                        <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                                                        <p class="text-danger" *ngIf="email.touched && email.invalid">*campo richiesto</p>
+                                                    </div>
+                                                    <div *ngIf="email.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="carta-di-credito">
+                                            <hr>
+
                                             <div class="row">
-                                                <div class="col-md-3 pr-1">
+                                                <div class=" col-md-2 mb-3 pr-1">
                                                     <div class="form-group">
-                                                        <label>Tipo Carta *:</label>
-                                                        <!-- <select class="custom-select" name="cardType" class="form-control" placeholder="" required ngModel #cardType="ngModel" [(ngModel)]="contract.accountingData.cardType">
-                                                              <option value="">Seleziona</option>
-                                                              <option value="1">One</option>
+                                                        <label>Tipo Documento *:</label>
+                                                        <select class="custom-select" formControlName="documentType">
+                            <option value="" selected>Seleziona</option>
+                            <option *ngFor="let docTypeKey of docTypeKeys" [ngValue]="docTypeKey">
+                              {{docTypes[docTypeKey]}}</option>
+                          </select>
+                                                    </div>
+                                                    <div *ngIf="documentType.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                </div>
+
+                                                <div class="col-md-3 pl-1">
+                                                    <div class="form-group">
+                                                        <label>N° Documento *:</label>
+                                                        <input type="text" class="form-control" placeholder="N° Documento" formControlName="documentNumber">
+                                                    </div>
+                                                    <div *ngIf="documentNumber.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                </div>
+                                                <div class="col-md-3 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Luogo Emissione *:</label>
+                                                        <input type="text" class="form-control" placeholder="Luogo Emissione" formControlName="placeOfIssue">
+                                                    </div>
+                                                    <div *ngIf="placeOfIssue.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+                                                </div>
+                                                <div class="col-md-2 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Data Emissione *:</label>
+                                                        <input type="date" class="form-control" placeholder="N° Documento" formControlName="dateOfIssue">
+                                                    </div>
+                                                    <div *ngIf="dateOfIssue.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+                                                </div>
+                                                <div class="col-md-2 pl-1">
+                                                    <div class="form-group">
+                                                        <label>Data Scadenza *:</label>
+                                                        <input type="date" class="form-control" placeholder="N° Documento" formControlName="expiryDate">
+                                                    </div>
+                                                    <div *ngIf="expiryDate.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Dati Gestore" id="gestore" formGroupName="contract_manager_data">
+                            <ng-template ngbTabContent>
+                                <div class="col-md-12">
+                                    <div class="card card-user">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3 pr-1">
+                                                    <div class="form-group">
+                                                        <label>Gestore *:</label>
+                                                        <select class="custom-select" formControlName="manager_id" (ngModelChange)="changedManager($event)">
+                          <option value="" selected>seleziona</option>
+                          <option *ngFor="let item of gestori" [ngValue]="item" >{{item.nome}}</option>
+
+                        </select>
+                                                    </div>
+                                                    <div *ngIf="manager.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+                                                </div>
+
+                                                <div class="col-md-6 mb-3 pl-1">
+                                                    <label>Pacchetto :</label>
+                                                    <select class="custom-select" formControlName="pack">
+                                                                                <option value="" selected>seleziona</option>
+                                                      <option *ngFor="let item of packages" [ngValue]="item.id">{{item.nome}}</option>
+
+                        </select>
+                                                </div>
+                                            </div>
+
+                                            <ng-container *ngIf="panel1Shown">
+                                                <div class="form-extra">
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Copertura :</label>
+                                                                <select class="custom-select" formControlName="coverage">
+                                <option value="" selected>Seleziona</option>
+                                <option *ngFor="let item of coperture" [ngValue]="item">{{item}}</option>
+
+                              </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Opzioni Aggiuntive :</label>
+                                                                <select class="custom-select" formControlName="additionalOptions">
+                                <option value="" selected>Seleziona</option>
+                                <option *ngFor="let item of opzioniAggiuntive" [ngValue]="item">{{item}}</option>
+
+                              </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Portabilità :</label>
+                                                                <select class="custom-select" formControlName="portability">
+                                <option value="" selected>Seleziona</option>
+                                <option *ngFor="let item of portabilita" [ngValue]="item">{{item}}</option>
+
+                              </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Num. da portare:</label>
+                                                                <input type="text" class="form-control" placeholder="Num. da portare" formControlName="portabilityNumber">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Seiale SIM Vodafone Station :</label>
+                                                                <input type="text" class="form-control" placeholder="Seiale SIM Vodafone Station" formControlName="vodafoneStationSerial">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Stato SIM :</label>
+                                                                <select class="custom-select" formControlName="simStatus">
+                                <option value="">Seleziona</option>
+                                <option *ngFor="let key of EStatoSimKeys" [ngValue]="key">{{EStatoSims[key]}}</option>
+
+                              </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Data Attivazione :</label>
+                                                                <input type="date" class="form-control" placeholder="" formControlName="activationDate">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Seriale SIM Operatore :</label>
+                                                                <input type="text" class="form-control" placeholder="" formControlName="serialSimOperator">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Gestore di Provenienza :</label>
+                                                                <input type="text" class="form-control" placeholder="" formControlName="managerOfOrigin">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Seriale Nuova SIM Voce :</label>
+                                                                <input type="text" class="form-control" placeholder="" formControlName="newSimSerial">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Codice Migrazione :</label>
+                                                                <input type="text" class="form-control" placeholder="" formControlName="migrationCode">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Tipo SIM :</label>
+                                                                <select class="custom-select" formControlName="simType">
+                                <option value="">Seleziona</option>
+                                <option *ngFor="let item of tipoSim" [ngValue]="item">{{item}}</option>
+
+                              </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="panel2Shown">
+                                                <div class="form-extra-2">
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>POD :</label>
+                                                                <input type="text" class="form-control" placeholder="" formControlName="pod">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>PDR :</label>
+                                                                <input type="text" class="form-control" placeholder="" formControlName="pdr">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Matricola :</label>
+                                                                <input type="text" class="form-control" placeholder="" formControlName="serialNumber">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Precedente Fornitore:</label>
+                                                                <input type="text" class="form-control" placeholder="" formControlName="previousSupplier">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+                                            <div class="">
+                                                <small class="text-white bg-success font-weight-bold px-1">Indirizzo sede impianto</small>
+                                                <div class="row" formGroupName="plant_location_address">
+                                                    <div class="col-md-2 mb-3 pr-1">
+                                                        <div class="form-group">
+
+                                                            <label>Tipo Indirizzo *:</label>
+                                                            <select class="custom-select" formControlName="addressType">
+                            <option value="">Seleziona</option>
+                            <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addressTypes[key]}}</option>
+                          </select>
+                                                        </div>
+
+                                                        <div *ngIf="plantAddressType.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+                                                    </div>
+                                                    <div class="col-md-4 px-1">
+                                                        <div class="form-group">
+                                                            <label>Indirizzo *:</label>
+                                                            <input type="text" class="form-control" placeholder="Indirizzo" formControlName="address">
+                                                        </div>
+                                                        <div *ngIf="plantAddress.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+                                                    </div>
+                                                    <div class="col-md-2 pl-1">
+                                                        <div class="form-group">
+                                                            <label>N° *:</label>
+                                                            <input type="text" class="form-control" placeholder="Numero Civico" formControlName="addressNumber">
+
+                                                        </div>
+                                                        <div *ngIf="plantAddressNumber.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                    </div>
+                                                    <div class="col-md-2 pl-1">
+                                                        <div class="form-group">
+                                                            <label>C.A.P. *:</label>
+                                                            <input type="text" class="form-control" placeholder="C.A.P." formControlName="codicePostale">
+                                                        </div>
+                                                        <div *ngIf="plantAddresscodicePostale.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                    </div>
+                                                    <div class="col-md-2 pl-1">
+                                                        <div class="form-group">
+                                                            <label>Località *:</label>
+                                                            <input type="text" class="form-control" placeholder="Località" formControlName="localita">
+                                                        </div>
+                                                        <div *ngIf="plantAddresslocalita.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                    </div>
+                                                </div>
+                                                <button class="btn bg-info m-0 mb-1" (click)="copyToPlant($event)">Copia da Dati
+                        Anagrafici</button>
+                                            </div>
+
+                                            <hr>
+                                            <div class="">
+                                                <small class="text-white bg-success font-weight-bold px-1">Indirizzo spedizione merce</small>
+                                                <div class="row" formGroupName="shipping_address">
+                                                    <div class="col-md-2 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Tipo Indirizzo *:</label>
+                                                            <select class="custom-select" formControlName="addressType">
+                            <option value="">Seleziona</option>
+                            <option *ngFor="let key of addressTypeKeys" [ngValue]="key">{{addressTypes[key]}}</option>
+                          </select>
+                                                        </div>
+                                                        <div *ngIf="shippingAddressType.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                    </div>
+                                                    <div class="col-md-4 px-1">
+                                                        <div class="form-group">
+                                                            <label>Indirizzo *:</label>
+                                                            <input type="text" class="form-control" placeholder="Indirizzo" formControlName="address">
+                                                        </div>
+                                                        <div *ngIf="shippingAddress.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                    </div>
+                                                    <div class="col-md-2 pl-1">
+                                                        <div class="form-group">
+                                                            <label>N° *:</label>
+                                                            <input type="text" class="form-control" placeholder="Numero Civico" formControlName="addressNumber">
+                                                        </div>
+                                                        <div *ngIf="shippingAddressNumber.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                    </div>
+                                                    <div class="col-md-2 pl-1">
+                                                        <div class="form-group">
+                                                            <label>C.A.P. *:</label>
+                                                            <input type="text" class="form-control" placeholder="C.A.P." formControlName="codicePostale">
+                                                        </div>
+                                                        <div *ngIf="shippingZipCode.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                    </div>
+                                                    <div class="col-md-2 pl-1">
+                                                        <div class="form-group">
+                                                            <label>Località *:</label>
+                                                            <input type="text" class="form-control" placeholder="Località" formControlName="localita">
+                                                        </div>
+                                                        <div *ngIf="shippingLocation.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                    </div>
+                                                </div>
+                                                <button class="btn bg-info m-0 mb-1" (click)="copyToShipping()">Copia da Dati Anagrafici</button>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label>Note</label>
+                                                        <textarea class="form-control textarea" formControlName="note"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab title="Dati contabili" id="contabili" formGroupName="accountingData">
+                            <ng-template ngbTabContent>
+                                <div>
+                                    <div class="col-md-12">
+                                        <div class="card card-user">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Stato Pratica:</label>
+                                                            <select class="custom-select" formControlName="fileStatus">
+                              <option value="">Seleziona</option>
+                              <option *ngFor="let key of EStatoPraticaTypeKeys" [ngValue]="key">
+                                {{EStatoPraticaTypes[key]}}</option>
+
+                            </select>
+                                                        </div>
+                                                        <div *ngIf="fileStatus.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+
+                                                    </div>
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Tipo di Pagamento:</label>
+                                                            <select class="custom-select" formControlName="paymentType" (ngModelChange)="changedAccounting($event)">
+                                                            <option value="">Seleziona</option>
+                                                            <option *ngFor="let key of paymentTypeKeys" [ngValue]="key">{{paymentTypes[key]}}
+                                                            </option>
+
+                                                          </select>
+                                                        </div>
+                                                        <div *ngIf="paymentType.invalid && submitted" class="alert alert-danger">campo richiesto</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card-user-details" *ngIf="panel3Shown">
+                                                    <div class="row">
+                                                        <div class="col-md-4 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Cognome Intestatario : </label>
+                                                                <input type="text" class="form-control" placeholder="Cognome" formControlName="cardUserSurname">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 px-1">
+                                                            <div class="form-group">
+                                                                <label>Nome Intestatario : </label>
+                                                                <input type="text" name="cardUserName" class="form-control" placeholder="Nome" formControlName="cardUserName">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 pl-1">
+                                                            <div class="form-group">
+                                                                <label>Codice Fiscale Intestatario :</label>
+                                                                <input type="text" name="cardUserFiscalCode" class="form-control text-uppercase" placeholder="Codice Fiscale" formControlName="cardUserFiscalCode">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="carta-di-credito" *ngIf="panel1Shown">
+                                                    <div class="row">
+                                                        <div class="col-md-3 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Tipo Carta :</label>
+                                                                <!-- <select class="custom-select" name="cardType" class="form-control" placeholder=""  ngModel #cardType="ngModel" [(ngModel)]="contract.accountingData.cardType">
+                                                                <option value="">Seleziona</option>
+                                                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                              </select> -->
+                                                                <input type="text" class="form-control" placeholder="Tipo Carta" formControlName="cardType">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5 px-1">
+                                                            <div class="form-group">
+                                                                <label>Numero Carta : </label>
+                                                                <input type="text" class="form-control" placeholder="Numero Carta" formControlName="creditCardNumber">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 pl-1">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Data Scadenza Carta :</label>
+                                                                <input type="month" class="form-control" placeholder="" formControlName="creditCardExpiryDate">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="conto-corrente" *ngIf="panel2Shown">
+                                                    <div class="row">
+                                                        <div class="col-md-6 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Codice IBAN : </label>
+                                                                <input type="text" class="form-control text-uppercase" placeholder="Codice IBAN" formControlName="IBANcode">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Pagata:</label>
+                                                            <select class="custom-select" formControlName="paymentStatus">
+                              <option value="">Seleziona</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Si</option>
+                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Incassato Da Brand:</label>
+                                                            <select class="custom-select" formControlName="cashedByBrand">
+                              <option value="">Seleziona</option>
+                              <option value="No">No</option>
+                              <option value="Yes">Si</option>
+                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Probabile Provvigione Agente:</label>
+                                                            <!-- <select class="custom-select" name="commissionAgent" [(ngModel)]="contract.accountingData.commissionAgent">
+                                                            <option value="">Seleziona</option>
+                              <option value="1">One</option>
                               <option value="2">Two</option>
                               <option value="3">Three</option>
                             </select> -->
-                                                        <input type="text" name="cardType" class="form-control" placeholder="Tipo Carta" required ngModel #cardType="ngModel" [(ngModel)]="contract.accountingData.cardType">
+                                                            <input class="form-control" id="commissionAgent" type="number" value="42" min="0" max="9999" step="0.01" placeholder="0" formControlName="commissionAgent">
+
+                                                        </div>
                                                     </div>
-                                                    <div *ngIf="cardType.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                                </div>
-                                                <div class="col-md-5 px-1">
-                                                    <div class="form-group">
-                                                        <label>Numero Carta *: </label>
-                                                        <input type="text" name="creditCardNumber" class="form-control" placeholder="Numero Carta" required ngModel #creditCardNumber="ngModel" [(ngModel)]="contract.accountingData.creditCardNumber">
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Agenzia:</label>
+                                                            <select class="custom-select" formControlName="agent">
+                              <option value="">Seleziona</option>
+                              <option *ngFor="let agenzia of agenzie" [ngValue]="agenzia">{{agenzia}}</option>
+
+                            </select>
+                                                        </div>
                                                     </div>
-                                                    <div *ngIf="creditCardNumber.invalid && submitted" class="alert alert-danger">campo richiesto</div>
                                                 </div>
-                                                <div class="col-md-4 pl-1">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Data Scadenza Carta:</label>
-                                                        <input type="text" name="creditCardExpiryDate" class="form-control" placeholder="" ngModel required #creditCardExpiryDate="ngModel" [(ngModel)]="contract.accountingData.creditCardExpiryDate" placeholder="Data Scadenza Carta" dateValidator>
-                                                    </div>
-                                                    <div *ngIf="creditCardExpiryDate.invalid && submitted" class="alert alert-danger">formato data gg/mm/aaaa</div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="conto-corrente">
-                                            <div class="row">
-                                                <div class="col-md-6 pr-1">
-                                                    <div class="form-group">
-                                                        <label>Codice IBAN *: </label>
-                                                        <input type="text" name="IBANcode" class="form-control" placeholder="Codice IBAN" required ngModel #IBANcode="ngModel" [(ngModel)]="contract.accountingData.IBANcode">
-                                                    </div>
-                                                    <div *ngIf="cardType.invalid && submitted" class="alert alert-danger">campo richiesto</div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class=" col-md-6 mb-3 pr-1">
-                                                <div class="form-group">
-                                                    <label>Pagata:</label>
-                                                    <select class="custom-select" name="paymentStatus" [(ngModel)]="contract.accountingData.paymentStatus">
-                            <option value="">Seleziona</option>
-                            <option value="0">No</option>
-                            <option value="1">Si</option>
-                          </select>
-                                                </div>
-                                            </div>
-                                            <div class=" col-md-6 mb-3 pr-1">
-                                                <div class="form-group">
-                                                    <label>Incassato Da Brand:</label>
-                                                    <select class="custom-select" name="cashedByBrand" [(ngModel)]="contract.accountingData.cashedByBrand">
-                            <option value="">Seleziona</option>
-                            <option value="0">No</option>
-                            <option value="1">Si</option>
-                          </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class=" col-md-6 mb-3 pr-1">
-                                                <div class="form-group">
-                                                    <label>Probabile Provvigione Agente:</label>
-                                                    <!-- <select class="custom-select" name="commissionAgent" [(ngModel)]="contract.accountingData.commissionAgent">
-                                                          <option value="">Seleziona</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </select> -->
-                                                    <input class="form-control" name="commissionAgent" id="commissionAgent" type="number" value="42" min="0" max="9999" step="0.01" placeholder="0" [(ngModel)]="contract.accountingData.commissionAgent">
+                                                <div class="">
 
                                                 </div>
                                             </div>
-                                            <div class=" col-md-6 mb-3 pr-1">
-                                                <div class="form-group">
-                                                    <label>Agenzia:</label>
-                                                    <select class="custom-select" name="agent" [(ngModel)]="contract.accountingData.agent">
-                            <option value="">Seleziona</option>
-                            <option *ngFor="let agenzia of agenzie" [ngValue]="agenzia">{{agenzia}}</option>
-
-                          </select>
-                                                </div>
-                                            </div>
                                         </div>
-                                        <div class="">
-
-                                        </div>
-                                        <!-- </div>
-                                        </div> -->
                                     </div>
                                 </div>
                             </ng-template>
@@ -621,111 +631,89 @@
                             <ng-template ngbTabContent>
                                 <div>
                                     <div class="col-md-12">
-                                        <!-- <div class="">
-                                            <div class="card-body"> -->
-                                        <div class="row  mt-3">
-
-
-
-                                            <div class="col-12">
-                                                <div class="jumbotron jumbotron-flui">
-                                                    <div class="row  ml-3">
-                                                        <div class="col-12">
-                                                            <button class="btn btn-primary" (click)="fileInput.click(); $event.preventDefault()"> Seleziona file</button>
-
-                                                            <input style="display: none" #attachments type="file" class="custom-file-input" (change)="onFileChanged($event)" #fileInput multiple="true">
-
+                                        <div class="card card-user">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-4 mb-3 pr-1">
+                                                        <div class="custom-file">
+                                                            <label class="custom-file-label">Nessun file selezionato</label>
+                                                            <input type="file" class="custom-file-input">
+                                                        </div>
+                                                        <div class="btn btn-default"> Carica PDA
+                                                            <input type="submit" hidden>
                                                         </div>
                                                     </div>
-                                                    <ng-container *ngIf="listOfFiles.length >0">
-
-                                                        <div class="row  ml-3">
-                                                            <div class="col-12">
-
-
-                                                                <div *ngFor="let selected of listOfFiles;let index = index">
-                                                                    <div class="btn btn-default">{{selected}}
-                                                                    </div>
-                                                                    <button class="btn btn-secondary" (click)="removeSelectedFile(index)"><i class="nc-icon nc-simple-remove"></i></button>
-
-                                                                </div>
-                                                            </div>
+                                                    <div class=" col-md-8 mb-3 pr-1">
+                                                        <div class="custom-file">
+                                                            <label class="custom-file-label">Nessun file selezionato</label>
+                                                            <input type="file" class="custom-file-input">
                                                         </div>
-                                                    </ng-container>
-
-                                                    <ng-container *ngIf="!listOfFiles.length >0">
-                                                        <div class="row  ml-3">
-                                                            <div class="col-12">
-
-                                                                Nessun file selezionato
-                                                            </div>
+                                                        <div class="btn btn-default">Carica Modulo Avvenuto Incontro Col Cliente
+                                                            <input type="submit" hidden>
                                                         </div>
-                                                    </ng-container>
-                                                </div>
-                                                <!--
-                                                <div *ngIf="currentFile" class="progress">
-                                                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{ width: progress + '%' }">
-                                                        {{ progress }}%
                                                     </div>
                                                 </div>
-
-                                                <label class="btn btn-default">
-                                                  <input type="file" (change)="selectFile($event)" />
-                                                </label>
-
-                                                <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
-                                                  Upload
-                                                </button>
-
-                                                <div class="alert alert-light" role="alert">{{ message }}</div> -->
-
-                                                <!-- <div class="card">
-                                                    <div class="card-header">List of Files</div>
-                                                    <ul class="list-group list-group-flush" *ngFor="let file of fileInfos | async">
-                                                        <li class="list-group-item">
-                                                            <a href="{{ file.url }}">{{ file.name }}</a>
-                                                        </li>
-                                                    </ul>
-                                                </div> -->
+                                                <div class="row">
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="custom-file">
+                                                            <label class="custom-file-label">Nessun file selezionato</label>
+                                                            <input type="file" class="custom-file-input">
+                                                        </div>
+                                                        <div class="btn btn-default">Altro File 1
+                                                            <input type="submit" hidden>
+                                                        </div>
+                                                    </div>
+                                                    <div class=" col-md-6 mb-3 pr-1">
+                                                        <div class="custom-file">
+                                                            <label class="custom-file-label">Nessun file selezionato</label>
+                                                            <input type="file" class="custom-file-input">
+                                                        </div>
+                                                        <div class="btn btn-default">Altro File 2
+                                                            <input type="submit" hidden>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
                                         </div>
-
-
-                                        <!-- </div>
-                                        </div> -->
                                     </div>
                                 </div>
                             </ng-template>
                         </ngb-tab>
                     </ngb-tabset>
-                    <div class="row ml-1">
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Registra</button>
-                            <!-- <button (click)="registraBozza($event)" class="btn btn-primary">Registra Bozza</button>
-                            <button class="btn btn-primary" (click)="print($event)">Stampa</button> -->
-                        </div>
+                    <div class="">
+                        <button type="submit" class="btn btn-primary">Registra</button>
+                        <button (click)="registraBozza($event)" class="btn btn-primary">Registra Bozza</button>
+                        <button class="btn btn-primary" (click)="print($event)">Stampa</button>
                     </div>
-
-                    <ng-container>
-                        <ng-template #modal>
-                            <div class="modal-header">
-                                <h4 class="modal-title pull-left">Conferma</h4>
-                                <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
-      <span aria-hidden="true">×</span>
-    </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Sicuro di volere salvare il contratto? </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" (click)="closeModal()">Chiudi</button>
-                                <button type="submit" class="btn btn-primary" (click)="registerContract(contractForm.valid)">Registra</button>
-                            </div>
-                        </ng-template>
-                    </ng-container>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
+<ng-container>
+    <ng-template #modal>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Conferma</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+<span aria-hidden="true">×</span>
+</button>
+        </div>
+        <div class="modal-body">
+            <p>Sicuro di volere salvare il contratto? </p>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="closeModal()">Chiudi</button>
+            <ng-container *ngIf="!edit"><button type="submit" class="btn btn-primary" (click)="registerContract()">Registra</button></ng-container>
+            <ng-container *ngIf="edit">
+                <button type="submit" class="btn btn-primary" (click)="onEdit(contractForm.valid)">Aggiorna</button>
+            </ng-container>
+        </div>
+
+
+
+    </ng-template>
+</ng-container>

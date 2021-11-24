@@ -120,7 +120,7 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
   // }
 
   editContract(contract: any){
-    this.router.navigate(['nuovo-contratto'], {queryParams: contract})
+    this.router.navigate(['nuovo-contratto'], {queryParams: {id: contract.id}})
   }
 
   deleteContract(){
@@ -129,6 +129,8 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
       this.adminService.deleteContract(this.toDeleteId).subscribe(
         (res) => {
           this.adminService.showToast('S','contratto eliminato con success');
+            this.reload.emit(true);
+            this.reload.emit(false);
           this.buildForm();
         },(err) => {
           this.adminService.showToast('E','eliminazione contratto non riuscita');
@@ -139,7 +141,7 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
   }
 
   openModalWithClass(event:Event, modal: TemplateRef<any>,contractId) {
-    event.preventDefault();
+    event.stopPropagation();
     this.toDeleteId = contractId;
         this.modalRef = this.modalService.show(
           modal,
@@ -151,6 +153,12 @@ export class ElencoContractComponent implements OnInit,   AfterViewChecked {
         event.preventDefault();
         this.modalRef.hide()
       }
+
+      goToDetails(event:Event,contract){
+        event.preventDefault();
+        this.router.navigate(['contratto'], {queryParams: {id: contract.id}})
+      }
+
 
 
 }

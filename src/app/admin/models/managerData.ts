@@ -21,6 +21,7 @@ export class ManagerData {
   private _previousSupplier: string;
   private _shippingAddress: Address;
   private _plantLocationAddress: Address;
+  private _otherNumber: string;
 
 
 
@@ -49,6 +50,7 @@ export class ManagerData {
     this._previousSupplier = '';
     this._shippingAddress = new Address;
     this._plantLocationAddress = new Address;
+    this._otherNumber = '';
 
   }
 
@@ -57,6 +59,13 @@ export class ManagerData {
   }
   public set manager(value: string) {
     this._manager = value;
+  }
+
+  public get otherNumber(): string {
+    return this._otherNumber;
+  }
+  public set otherNumber(value: string) {
+    this._otherNumber = value;
   }
 
   public get package(): string {
@@ -201,7 +210,8 @@ export class ManagerData {
       serialNumber: this._serialNumber,
       previousSupplier: this._previousSupplier,
       plant_location_address: this.plantLocationAddress.toJSon(),
-      shipping_address : this.shippingAddress.toJSon()
+      shipping_address : this.shippingAddress.toJSon(),
+      otherNumber: this._otherNumber
     }
   }
 

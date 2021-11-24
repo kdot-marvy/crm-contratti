@@ -6,20 +6,20 @@
                     <h4 class="card-title text-center">Nuovo Gestore</h4>
                 </div>
                 <div class="card-body">
-                    <form #packageForm="ngForm" class="md-float-material" (submit)="save(packageForm.valid)">
+                    <form #managerForm="ngForm" class="md-float-material" (submit)="onSubmit(managerForm.valid)">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nome" name="name" [(ngModel)]="manager.name" name="nome" required>
+                                    <input type="text" class="form-control" placeholder="Nome" name="name" [(ngModel)]="manager.name" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
 
                             <div class="col-md-12">
-                                <div class="m-0 form-group custom-control py-2 custom-switch bg-light">
-                                    <label class="custom-control-label font-weight-bold m-0">Abilitato</label>
-                                    <input type="checkbox" class="custom-control-input" [(ngModel)]="manager.enabled" name="enabled">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitch1" [(ngModel)]="manager.enabled" name="enabled" (change)="changeToggle($event.target.checked)">
+                                    <label class="custom-control-label" for="customSwitch1">Enable</label>
                                 </div>
                             </div>
                         </div>
@@ -29,6 +29,21 @@
                                 <div class="m-0 form-group custom-control py-2 custom-switch bg-light">
                                     <button type="button" (click)="openModalWithClass(modal)" class="btn btn-link"><i class="nc-icon nc-simple-add"></i> aggiungi pacchetto</button>
                                 </div>
+                                <ng-container *ngIf="manager.packages.length >0">
+
+                                    <div class="row  ml-3">
+                                        <div class="col-12">
+
+
+                                            <div *ngFor="let package of manager.packages;let index = index">
+                                                <div class="btn btn-default">{{package.name}}
+                                                </div>
+                                                <button class="btn btn-secondary" (click)="removeSelectedManager(index)"><i class="nc-icon nc-simple-remove"></i></button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-container>
                             </div>
                         </div>
 
@@ -56,7 +71,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Nome" [(ngModel)]="package.name" name="nome" required>
+                                <input type="text" class="form-control" placeholder="Nome" [(ngModel)]="newPackageName" name="nome" required>
                             </div>
                         </div>
                     </div>

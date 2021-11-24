@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { JwtInterceptor } from './shared/helper/jwt.interceptor';
 import { HeaderInterceptor } from './shared/helper/header.interceptor';
+import { ErrorInterceptor } from './shared/helper/error.interceptor';
 
 
 
@@ -51,6 +52,10 @@ import { HeaderInterceptor } from './shared/helper/header.interceptor';
     },{
       provide: HTTP_INTERCEPTORS,
       useClass: HeaderInterceptor,
+      multi: true
+    },{
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     }
   ],

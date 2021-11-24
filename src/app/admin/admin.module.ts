@@ -30,6 +30,8 @@ import { FiscalCodeValidatorDirective } from './directives/fiscalCodeValidator';
 import { DateValidatorDirective } from './directives/dateValidator';
 import { EmailValidatorDirective } from './directives/emailValidator';
 import { NumberValidatorDirective } from './directives/numberValidator';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { DetailsContractComponent } from './components/elenco-contracts/details-contract/details-contract.component';
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { NumberValidatorDirective } from './directives/numberValidator';
       positionClass: 'toast-bottom-right',
     }), // ToastrModule added
     ModalModule.forRoot(),
+    GooglePlaceModule,
   ],
   declarations: [
     DashboardComponent,
@@ -65,7 +68,8 @@ import { NumberValidatorDirective } from './directives/numberValidator';
     DateValidatorDirective,
     FiscalCodeValidatorDirective,
     EmailValidatorDirective,
-    NumberValidatorDirective
+    NumberValidatorDirective,
+    DetailsContractComponent
   ]
 })
 

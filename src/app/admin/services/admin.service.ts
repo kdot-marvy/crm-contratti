@@ -1,3 +1,4 @@
+import { Manager } from './../models/manager.model';
 import { ContractModel } from './../models/contract.model';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
@@ -61,12 +62,12 @@ export class AdminService {
     return this.http.put(`${environment.apiUrl}` + this.managerUrl + '/' + managerId, managerDetails, {headers : headers});
   }
 
-  addManager(managerDetails: any) {
+  addManager(managerDetails: Manager) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json;charset=UTF-8'
       });
 
-    return this.http.put(`${environment.apiUrl}` + this.managerUrl, managerDetails, {headers : headers});
+    return this.http.post(`${environment.apiUrl}` + this.managerUrl, managerDetails.toJSon(), {headers : headers});
   }
 
 
@@ -91,32 +92,23 @@ export class AdminService {
     return this.http.get(`${environment.apiUrl}` + this.contractUrl + '/' + contractId);
   }
 
-  updateContract(contractId, contractDetails: any){
+  updateContract(id,contractDetails: any){
     const headers = new HttpHeaders({
       'Content-Type': 'application/json;charset=UTF-8'
       });
 
-    return this.http.put(`${environment.apiUrl}` + this.contractUrl + '/' + contractId, contractDetails.toJSon(), {headers : headers});
+    return this.http.put(`${environment.apiUrl}` + this.contractUrl + '/' + id, contractDetails.getRawValue(), {headers : headers});
   }
 
   addContract(contractDetails: ContractModel) {
 
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json;charset=UTF-8'
+      'Content-Type': 'application/json'
       });
 
-    // const data = JSON.stringify(contractDetails);
+      console.log(JSON.stringify(contractDetails), typeof(JSON.stringify(contractDetails)));
 
-    //   const formData: FormData = new FormData();
-    //   if(files && files.length > 0) {
-
-    //     for (let index = 0; index < files.length; index++) {
-    //       formData.append('files', files[index]);
-    //     }
-    //   }
-    //    formData.append('contract', data);
-
-    return this.http.post(`${environment.apiUrl}` + this.contractUrl, contractDetails.toJSon(), {headers : headers});
+    return this.http.post(`${environment.apiUrl}` + this.contractUrl,  JSON.stringify(contractDetails), {headers : headers});
 
   }
 

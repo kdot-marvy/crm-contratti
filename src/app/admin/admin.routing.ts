@@ -1,3 +1,4 @@
+import { DetailsContractComponent } from './components/elenco-contracts/details-contract/details-contract.component';
 import { Routes } from '@angular/router';
 
 import { ElencoUserComponent } from './components/elenco-user/elenco-user.component';
@@ -25,6 +26,7 @@ export const AdminRoutes: Routes = [
     },
     {path: 'nuovo-gestore', component: NewManagerComponent},
     {path: 'nuovo-contratto', component: NewContractComponent},
+    {path: 'contratto', component: DetailsContractComponent},
     {path: 'documenti', component: ElencoDocumentComponent},
     { path: 'utenti',           component: ElencoUserComponent },
     { path: 'table',          component: TableComponent },

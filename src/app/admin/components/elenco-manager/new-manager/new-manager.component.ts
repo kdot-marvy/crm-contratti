@@ -15,6 +15,10 @@ export class NewManagerComponent implements OnInit {
 
   package = new Package();
   manager = new Manager();
+  newPackageName;
+
+  private submitted = false;
+
 
 
 
@@ -35,14 +39,38 @@ export class NewManagerComponent implements OnInit {
   }
 
   addPackage(){
-    if(this.package.name !== ''){
-      this.manager.packages.push(this.package);
+    if(this.newPackageName !== ''){
+      const newPackage = new Package();
+      newPackage.name = this.newPackageName;
+      this.manager.packages.push(newPackage);
+      this.newPackageName = '';
+      this.closeModal();
     }
   }
 
-  save(valid){
+  onSubmit(valid){
+    this.submitted = true;
     if(valid){
-      this.adminService.addManager(this.manager);
+      this.adminService.addManager(this.manager).subscribe(
+        (res: any) => {
+          this.adminService.showToast('S', 'gestore inserito con success');
+        },(err) => {
+          this.adminService.showToast('E', 'inserimento gestore non riuscito');
+
+        });
+    }
+  }
+
+  removeSelectedManager(index) {
+    this.manager.packages.splice(index, 1);
+
+  }
+
+  changeToggle(enabled){
+    if(enabled){
+      this.manager.enabled = 1;
+    }else{
+      this.manager.enabled = 0;
     }
   }
 

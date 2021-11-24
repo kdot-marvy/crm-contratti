@@ -35,7 +35,7 @@ export class Manager {
     return {
       nome: this._name,
       enabled: this._enabled,
-      packages: this._packages
+      packages: this._packages.forEach((element:Package) => {element.toJSon()})
     };
   }
 }
